@@ -1,6 +1,6 @@
 ---
 name: User Story
-about: This is our default user story templatepurpose here.
+about: This is our default user story templatepurpose here
 title: 'USER-STORY: <TITLE>'
 labels: ''
 assignees: ''
