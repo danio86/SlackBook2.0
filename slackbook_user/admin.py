@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import User
+# from django_summernote.admin import SummernoteModelAdmin
+
+
+# admin.site.register(Channel)
+
+
+admin.site.register(User)
