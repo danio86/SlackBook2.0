@@ -1,14 +1,23 @@
-
 <H1>Hello was geht?</H1>
 
-<div>
+<div class= "row test text-light bg-dark">
+    <div class="col-6">
 {% for topic in channel %}
-    <!-- <a class="col-md-8" href="{% url 'home' %}?r={{topic.title}}">{{topic.title}}</a>
-    <a class="col-md-8" href="{% url 'home' %}">All Categories</a> -->
-
-{{topic.title}}
+    
+test
+{{ topic.title }}
     <br>
 {% endfor %}
 </div>
+</div>
 <H1>Hello was geht?</H1>
+
+<div>
+    {% for topic in channel %}
+        {{ test2 }}
+        <br>
+    {% endfor %}
+    test
+
+</div>
 
