@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User
+from .models import User, Channel, Topic
 # from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -8,3 +8,5 @@ from .models import User
 
 
 admin.site.register(User)
+admin.site.register(Channel)
+admin.site.register(Topic)

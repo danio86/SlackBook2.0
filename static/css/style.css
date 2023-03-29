@@ -24,6 +24,19 @@
     width: 75%;
 }
 
-.header2 {
+.header2{
     width: 100%;
+}
+
+/* Main Content */
+.container{
+    text-align: center;
+}
+
+/* Footer */
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
