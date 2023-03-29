@@ -3,6 +3,7 @@ from .models import User, Channel, Topic
 
 
 def home(request):
+    r = request.GET.get('r') if request.GET.get('r') is not None else ''
     queryset = Channel.objects.all
 
     context = {
@@ -21,7 +22,6 @@ def channel(request, pk):
 
 
 def topics(request):
-    queryset = Channel.objects.all()
-
+    queryset = Topic.objects.all()[0:6]
     context = {'channel': queryset}
     return render(request, 'base/topics.html', context)

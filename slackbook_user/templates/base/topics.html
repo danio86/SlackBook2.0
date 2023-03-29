@@ -1,7 +1,15 @@
 
 <H1>Hello was geht?</H1>
-{% for topic in channel %}
+
 <div>
-    {{'hello???'}}
-</div>
+{% for topic in channel %}
+    <!-- <a class="col-md-8" href="{% url 'home' %}?r={{topic.title}}">{{topic.title}}</a>
+    <a class="col-md-8" href="{% url 'home' %}">All Categories</a> -->
+    <span class="col-md-4 category-number bg-secondary text-info">{{topic.title}}</span>
+
+{{topic.title}}
+    <br>
 {% endfor %}
+</div>
+<H1>Hello was geht?</H1>
+

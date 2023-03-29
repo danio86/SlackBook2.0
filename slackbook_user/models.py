@@ -30,7 +30,7 @@ class Channel(models.Model):
     # Topic wouldt need quotes ('Topic')
     # if the topic is deleted, the Channel is not deleted (SET_NULL)
     # title = models.CharField(max_length=200)
-    name = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True, max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     guests = models.ManyToManyField(User, related_name='guests', blank=True)
