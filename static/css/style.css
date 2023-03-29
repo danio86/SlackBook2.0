@@ -1,1 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Rubik&display=swap');
+
+
+.no-gutters{
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+
+.header{
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+
+#navbarSupportedContent {
+    display: block !important;
+}
