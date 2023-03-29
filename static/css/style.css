@@ -8,10 +8,22 @@
 
 .header{
     text-align: center;
-    display: flex;
+    display: block ruby;
     width: 100%;
 }
 
-#navbarSupportedContent {
-    display: block !important;
+.header ul{
+    display: block;
+}
+
+.header form{
+    display: flex;
+}
+
+.header input{
+    width: 75%;
+}
+
+.header2 {
+    width: 100%;
 }
