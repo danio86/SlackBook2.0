@@ -5,9 +5,10 @@ from .models import User, Channel, Topic
 def home(request):
     r = request.GET.get('r') if request.GET.get('r') is not None else ''
     queryset = Topic.objects.all()[0:6]
+    channels = Channel.objects.all()
 
     context = {
-        'channel': queryset,
+        'topics': queryset, 'channels': channels
     }
     return render(request, 'base/index.html', context)
 

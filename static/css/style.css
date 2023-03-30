@@ -28,9 +28,37 @@
     width: 100%;
 }
 
+.index-headline{
+    margin: 20px auto;
+}
+
 /* Main Content */
 .container{
     text-align: center;
+}
+
+.main-content{
+    width: 100%;
+    background-color: darkcyan;
+    border-radius: 10px;
+}
+
+.main-content a{
+    text-decoration: none;
+    color: cyan;
+}
+
+/* .main-content-headline{
+    background-color: darkgray;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+} */
+
+.channel-content{
+    background-color: rgb(57, 57, 57);
+    border-radius: 10px;
+    padding: 2px;
 }
 
 /* Footer */
@@ -39,8 +67,4 @@ footer{
     bottom: 0;
     width: 100%;
     text-align: center;
-}
-
-.test{
-    background-color: aquamarine;
 }
