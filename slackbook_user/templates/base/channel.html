@@ -28,7 +28,7 @@
                     <!-- timesince replace the date and the time -->
                     <p>Comment: {{ post.body }}</p>
                     {% if request.user == post.user%}
-                        <a href="#"><button>Delete Comment</button></a>
+                        <a href="{% url 'delete-comment' post.id %}"><button>Delete Comment</button></a>
                     {% endif %}
                     <hr>  
                 </div>

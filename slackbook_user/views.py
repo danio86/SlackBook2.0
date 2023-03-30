@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User, Channel, Topic, Post
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -57,3 +58,16 @@ def account(request, pk):
                'comments': user_comments, 'topics': categories,
                'channel_count': channel_count}
     return render(request, 'base/account.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def deleteComment(request, pk):
+    object = Post.objects.get(id=pk)
+    channelId = object.channel.id
+
+    context = {'object': object}
+    if request.method == 'POST':
+        object.delete()
+        return redirect('channel', channelId)
+
+    return render(request, 'base/delete.html', context)
