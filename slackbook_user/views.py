@@ -15,10 +15,23 @@ def home(request):
 
 def channel(request, pk):
     queryset = Channel.objects.get(id=pk)
+    posts = queryset.post_set.all().order_by('-created_on')
+    # this gives all attributes of the Channel-Model-Child Post
+    guests = queryset.guests.all()
 
-    context = {
-        'channel': queryset
-    }
+    if request.method == 'POST':
+        post = Post.objects.create(
+            user=request.user,
+            channel=queryset,
+            body=request.POST.get('body'),
+        )
+        # .create is a django function
+
+        queryset.guests.add(request.user)
+        # this makes everybody a guest of the channel who posts something
+        return redirect('channel', pk)
+
+    context = {'channel': queryset, 'posts': posts, 'guests': guests}
     return render(request, 'base/channel.html', context)
 
 

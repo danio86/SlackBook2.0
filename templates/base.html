@@ -31,30 +31,45 @@
         
         <div class="col-md-8 collapse navbar-collapse" id="navbarSupportedContent">
           <div class="row header2">
-              <div class="col-md-6" >
-                <ul class="navbar-nav mr-auto">
-                  <!-- <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li> -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">All Channels</a>
+              <!-- <div class="col-md-6" > -->
+                <div class="col-md-6 btn-group account-image">
+                  <!-- <div class="btn-group col-lg-1"> -->
+                      <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button" data-toggle="dropdown" aria-expanded="false">
+                      <!-- <img src="/static/images/SlackBook-Logo.png" class="account-image" alt="account-image"> -->
+                      {% if user.is_authenticated %}
+                          {{ request.user.username }}
+                      {% endif %}
+                      <i class="fas fa-user"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <!-- <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a> -->
+                        {% if user.is_authenticated %}
+                          
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                          </li>
+                        {% else %}
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                          </li>
+                        {% endif %}
+
+                        <div class="dropdown-divider"></div>
+                        {% if user.is_authenticated %}
+                          <a class="dropdown-item" href="#">Settings</a>
+                        {% endif %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">All Channels</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">All Categories</a>
+                        </li>
+                      </div>
                     </div>
-                  </li>
-                  <!-- <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                  </li> -->
-                </ul>
-              </div>
               <div class="col-md-6">
                 <form class="form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

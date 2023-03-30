@@ -1,9 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row justify-content-around">
-    <div class="col-4">
-      One of two columns
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4 main-channel-content">
+
+      <div>  
+        <h2 class="main-content-headline">{{ channel.title }}</h2>
+        {% if request.user == channel.host %}
+        <small>
+            <a href="#"><i class="fas fa-edit"></i></a>
+            <a href="#"><i class="fas fa-trash-alt"></i></a>
+        </small>
+        {% endif %}
+        hosted by: <i class="fas fa-user"></i>{{channel.host.username}} - Created: {{channel.created_on|timesince}}
+      </div>
+
+      <span>{{ channel.topic }}</span>
+        <hr>
+        <div class="channel-content">
+            <h3>Disscussion</h3>
+            {{ channel.content }}
+            <hr>
+            {% for post in posts %}
+                <div>
+                    <small><a href="#">@{{ post.user.username }}</a> - {{ post.created_on|timesince }} ago</small>
+                    <!-- timesince replace the date and the time -->
+                    <p>Comment: {{ post.body }}</p>
+                    {% if request.user == post.user%}
+                        <a href="#"><button>Delete Comment</button></a>
+                    {% endif %}
+                    <hr>  
+                </div>
+            {% endfor%}
+        
+
+          {% if request.user.is_authenticated %}
+          <div class="post-form">
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  <input type="text" placeholder="Place your Comment..." name="body">   
+              </form>
+          </div>
+          {% endif %}
+      </div>
     </div>
+    
+    <div class="col-4 main-channel-content">
+      <h2 class="main-content-headline">Who is there? ({{guests.count}} joined)</h2>
+          {% for guest in guests %}
+              <div>
+                  <a href="#"><p><i class="fas fa-user"></i> @{{ guest.username }}</p></a>
+              </div>
+          {% endfor %}
+    </div>
+  </div>
 </div>
+      
 {% endblock %}

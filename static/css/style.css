@@ -32,6 +32,10 @@
     margin: 20px auto;
 }
 
+.button{
+    background-color: unset;
+}
+
 /* Main Content */
 .container{
     text-align: center;
@@ -51,12 +55,20 @@
     color: cyan;
 }
 
-/* .main-content-headline{
+.main-content-headline{
     background-color: darkgray;
-    width: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-} */
+    margin: -5px -5px 5px;
+}
+
+.main-channel-content{
+    background-color: darkcyan;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 5px;
+    text-align: center;
+}
 
 .channel-content{
     background-color: rgb(57, 57, 57);
