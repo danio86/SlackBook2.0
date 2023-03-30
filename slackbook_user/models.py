@@ -51,3 +51,20 @@ class Channel(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    # this says to which channel the post belongs
+    # all posts are children of the Channel Class/Model.
+    # If Channel or User gets deleted, all posts have to get deleted too.
+    body = models.TextField()
+    updated_on = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-updated_on', '-created_on']
+
+    def __str__(self):
+        return self.body[0:30]

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-around">
+    <div class="col-4">
+        <div class="main-content">
+
+            <div>
+                <span>@ <i class="fas fa-user"></i> {{ user.username }}</span>
+            </div>
+        
+            {% for topic in channels %}
+            <div>     
+                <h3>{{channel_count}} hosted Channels</h3>      
+                <a href="#">Create Channel</a>
+            <div>
+            <br>            
+            
+
+            <div class="channel-content">
+                <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
+                {% if request.user == topic.host %}
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                {% endif %}
+                <br>
+                <div class="channel-content">{{topic.content}}</div>
+                <br>
+                <a href="#"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                <span class="category-open"><small>{{ topic.topic.title }}</small></span>
+            </div>
+            <hr>
+            {% endfor %}    
+        </div>
+    </div>
+</div>
+
+{% endblock %}
