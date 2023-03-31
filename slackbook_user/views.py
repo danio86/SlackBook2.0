@@ -1,15 +1,23 @@
 from django.shortcuts import render, redirect
 from .models import User, Channel, Topic, Post
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 def home(request):
-    r = request.GET.get('r') if request.GET.get('r') is not None else ''
-    queryset = Topic.objects.all()[0:6]
+    s = request.GET.get('s') if request.GET.get('s') is not None else ''
+
+    queryset = Channel.objects.filter(
+        Q(topic__title__icontains=s) |
+        Q(title__icontains=s) |
+        Q(content__icontains=s)
+    )
+
+    topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
 
     context = {
-        'topics': queryset, 'channels': channels
+        'topics': topics, 'channels': channels, 'queryset': queryset
     }
     return render(request, 'base/index.html', context)
 
@@ -36,10 +44,10 @@ def channel(request, pk):
     return render(request, 'base/channel.html', context)
 
 
-def topics(request):
-    queryset = Topic.objects.all()
-    context = {'channel': queryset}
-    return render(request, 'base/topics.html', context)
+# def topics(request):
+#     queryset = Topic.objects.all()
+#     context = {'channel': queryset}
+#     return render(request, 'base/topics.html', context)
 
 
 def account(request, pk):

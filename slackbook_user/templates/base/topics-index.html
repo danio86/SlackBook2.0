@@ -1,0 +1,23 @@
+<div class="row justify-content-around">
+    <div class="col-4 main-content">
+        <div class="channel-content">
+            <div class="row">
+                <a class="col-md-8" href="{% url 'home' %}">All Categories</a>
+                <span class="col-md-4">{{topics.count}}</span>
+            </div>
+            <br>
+
+            {% for topic in topics %}
+                <div class="row">
+                    <a class="col-md-8" href="{% url 'home' %}?s={{topic.title}}">{{topic.title}}</a>
+                    <!-- this leads to the home-page with the url-endig of ?r=topic.title (e.x. pizza) -->
+                    <!-- r = request couls be any letter -->
+                    <span class="col-md-4">{{topic.channel_set.all.count}}</span>
+                    <!-- all childs of topic.Channel -->
+                </div>
+            {% endfor %}
+            <br>
+            <button class="btn btn-primary dropdown-toggle btn-outline-success button">more</button>
+        </div>
+    </div>
+</div>

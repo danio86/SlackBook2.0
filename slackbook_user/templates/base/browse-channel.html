@@ -1,7 +1,7 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
 
-        {% for channel in channels %}
+        {% for channel in queryset %}
 
         <div class="channel-content">
             <div><h5><a href="{% url 'channel' channel.id %} ">{{channel.title}}</a></h5></div>
