@@ -1,0 +1,24 @@
+<div class="row justify-content-around">
+    <div class="col-4 main-content">
+
+        
+        {% for topic in channels %}
+        <div class="channel-content">
+            <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
+            <a href="#"><h5><small>@{{topic.host.username}}</small></h5></a><i class="fas fa-user"></i>
+            <br>
+            {% if request.user == topic.host %}
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
+            {% endif %}
+            
+                <div class="channel-content">{{topic.content}}</div>
+                <br>
+                <a href="#"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                <span class="category-open"><small>{{ topic.topic.title }}</small></span>
+        </div>
+        <hr>
+        {% endfor %}
+
+    </div>
+</div>

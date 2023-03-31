@@ -3,7 +3,7 @@
 
         {% for channel in channels %}
 
-        <div>
+        <div class="channel-content">
             <div><h5><a href="{% url 'channel' channel.id %} ">{{channel.title}}</a></h5></div>
             <a href="#"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>
             <!-- host.user is a django function -->
