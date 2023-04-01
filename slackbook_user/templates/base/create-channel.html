@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row bg-dark text-white form">
+        <div class="col-md-4"></div>
+        <form class="col-md-4 form" action="" method="POST">
+            <!-- if method is not specified, it will send to the current url -->
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <!-- if somesthing is sendent the token needs to be included to avoid malicious attempts -->
+            <!-- the .as_ps wraps a paragraph around every inputfield (looks nicer) -->
+            <div>
+                <h2>Create yor Channel</h2>
+                
+
+                <div>
+                    <label for="channel-title">Enter a Channel topip:</label>
+                    <br>
+                    <!-- creating a manuel dropdown -->
+                    <input type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
+                    <!-- <input required type="text" value="{{room.topic.name}}" name="topic" list="topic-list" /> -->
+                    <datalist id="topic-list">
+                        <select name="categories" id="form-category">
+                            {% for category in categories %}
+                                <!-- <option value="{{ category.title }}"></option> -->
+                                <option value="{{ category.title }}">{{ category.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </datalist>
+                    <!-- <span class="text-white-50" bg-dark id="form-topic">{{ form.topic }}</span> -->
+                    
+                </div>
+                <br>
+                <div>
+                    <label for="form-category">Coose a title:</label>
+                    <br>
+                    <input type="text" value="{{ queryset.title }}" name="topic-name">
+                </div>
+                <div>
+                    <label for="channel-description">About:</label>
+                    <br>
+                    {{ form.description }}
+                </div>
+                <br>
+                <div>
+                    <label for="private">Is this a private channel?</label>
+                    <br>
+                    <!-- {{ form.private }} -->
+                    Yes, only for invited guests
+                    <input type="checkbox" value="False" name="private">
+                    <br>
+                    It's a free channel
+                    <input type="checkbox" value="True" name="private">
+                    <!-- <button name="private" value="True">Set to True</button> -->
+                    <!-- <button name="private" value="False">Set to False</button> -->
+                </div>
+                <br>
+
+            </div>
+
+
+            <button><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
+            <br>
+            <input type="submit" value="Create Channel">
+        </form>
+        <div class="col-md-4"></div>
+    </div>
+
+{% endblock %}

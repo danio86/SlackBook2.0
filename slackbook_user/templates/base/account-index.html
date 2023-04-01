@@ -5,8 +5,8 @@
         {% for topic in channels %}
         
         <div class="channel-content">
-            <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
-            <a href="#"><h5><small>@{{topic.host.username}}</small></h5></a><i class="fas fa-user"></i>
+            <h4><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h4>
+            <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
             <br>
             {% if request.user == topic.host %}
                 <a href="#">Edit</a>

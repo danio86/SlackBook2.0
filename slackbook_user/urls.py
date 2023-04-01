@@ -9,5 +9,6 @@ urlpatterns = [
     path('account/<str:pk>/', views.account, name='account'),
     path(
      'delete-comment/<str:pk>/', views.deleteComment, name='delete-comment'),
+    path('create-channel/', views.createChannel, name='create-channel'),
 
 ]

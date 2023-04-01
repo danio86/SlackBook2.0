@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import User, Channel, Topic, Post
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+# from .forms import ChannelForm, UserForm
+from .forms import ChannelForm
 
 
 def home(request):
@@ -79,3 +81,30 @@ def deleteComment(request, pk):
         return redirect('channel', channelId)
 
     return render(request, 'base/delete.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def createChannel(request):
+    form = ChannelForm()
+    categories = Topic.objects.all()
+
+    if request.method == 'POST':
+        # method of the form in channel_form.html
+        form = ChannelForm(request.POST)
+        # this passis the POST into the form automatically.
+        category_title = request.POST.get('topic')
+        category, created = Topic.objects.get_or_create(title=category_title)
+        # get_or_create() is a method which gets or creates an object
+
+        Channel.objects.create(
+            host=request.user,
+            topic=category,
+            title=request.POST.get('topic-name'),
+            description=request.POST.get('description'),
+            # title from the frontend
+            private=request.POST.get('private')
+            )
+        return redirect('home')
+
+    context = {'form': form, 'categories': categories}
+    return render(request, 'base/create-channel.html', context)
