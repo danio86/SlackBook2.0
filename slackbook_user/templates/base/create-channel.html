@@ -56,6 +56,28 @@
                     <!-- <button name="private" value="False">Set to False</button> -->
                 </div>
                 <br>
+                <div>
+                    <label for="members">Members: </label>
+                    <br>
+                    <!-- <input type="search" value="{{form.members}}" name="members"> -->
+                    <!-- {{form.members}} -->
+                    <br>
+                    {{form.guests}}
+                   
+
+                    {% for member in form.guests %}
+
+                        <div>{{ member.all.first }}</div>
+
+                    {% endfor %}
+                   
+                    
+                    
+                    
+                    
+
+                </div>
+                <br>
 
             </div>
 

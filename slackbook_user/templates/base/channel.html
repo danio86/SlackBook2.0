@@ -9,8 +9,8 @@
         <h2 class="main-content-headline">{{ channel.title }}</h2>
         {% if request.user == channel.host %}
         <small>
-            <a href="#"><i class="fas fa-edit"></i></a>
-            <a href="#"><i class="fas fa-trash-alt"></i></a>
+          <a href="{% url 'update-channel' channel.id %}"><i class="fas fa-edit"></i></a>
+          <a href="{% url 'delete-channel' channel.id %}"><i class="fas fa-trash-alt"></i></a>
         </small>
         {% endif %}
         hosted by: <i class="fas fa-user"></i>{{channel.host.username}} - Created: {{channel.created_on|timesince}}

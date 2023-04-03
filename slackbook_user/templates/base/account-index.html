@@ -9,8 +9,8 @@
             <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
             <br>
             {% if request.user == topic.host %}
-                <a href="#">Edit</a>
-                <a href="#">Delete</a>
+                <a href="{% url 'update-channel' topic.id %}">Edit</a>
+                <a href="{% url 'delete-channel' topic.id %}">Delete</a>
             {% endif %}
             
                 <div class="channel-content">{{topic.content}}</div>

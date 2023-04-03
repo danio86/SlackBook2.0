@@ -3,7 +3,7 @@ from .models import User, Channel, Topic, Post
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from .forms import ChannelForm, UserForm
-from .forms import ChannelForm
+from .forms import ChannelForm, UserForm
 
 
 def home(request):
@@ -71,6 +71,28 @@ def account(request, pk):
 
 
 @login_required(login_url='/accounts/login/')
+def userSettings(request):
+    user = request.user
+    user_form = UserForm(instance=user)
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=user)
+
+        user_form.username = request.POST.get('username')
+        user_form.email = request.POST.get('email')
+        if user_form.is_valid():
+            user_form.save()
+        else:
+            messages.error(request, 'Please only enter letters.')
+            return redirect('/user-settings/')
+
+        return redirect('user-account', user.id)
+
+    context = {'user_form': user_form}
+    return render(request, 'base/user-settings.html', context)
+
+
+@login_required(login_url='/accounts/login/')
 def deleteComment(request, pk):
     object = Post.objects.get(id=pk)
     channelId = object.channel.id
@@ -102,9 +124,56 @@ def createChannel(request):
             title=request.POST.get('topic-name'),
             description=request.POST.get('description'),
             # title from the frontend
-            private=request.POST.get('private')
-            )
-        return redirect('home')
+            private=request.POST.get('private'),
+            guests=request.POST.get('guests'),
 
+            )
+        
+
+        return redirect('home')
     context = {'form': form, 'categories': categories}
     return render(request, 'base/create-channel.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def updateChannel(request, pk):
+    queryset = Channel.objects.get(id=pk)
+    form = ChannelForm(instance=queryset)
+    categories = Topic.objects.all()
+    # this shows the prefild form to edit (instance is important!)
+    groups_member = queryset.guests.all()
+
+    # if request.user != queryset.host:
+    #     return HttpResponse('You are not authorized!')
+
+    if request.method == 'POST':
+        form = ChannelForm(request.POST, instance=queryset)
+        # this only updates the form. It doesn't refill it.
+
+        category_name = request.POST.get('topic')
+        category, created = Topic.objects.get_or_create(title=category_name)
+
+        queryset.title = request.POST.get('topic-name')
+        queryset.topic = category
+        queryset.description = request.POST.get('description')
+        queryset.private = request.POST.get('private')
+        # queryset.members = queryset.members.set()
+        queryset.save()
+        return redirect('home')
+
+    context = {'form': form, 'categories': categories, 'queryset': queryset, 'groups_member': groups_member}
+    return render(request, 'base/create-channel.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def deleteChannel(request, pk):
+    object = Channel.objects.get(id=pk)
+
+    # if request.user != object.host:
+    #     return HttpResponse('You are not authorized!')
+
+    context = {'object': object}
+    if request.method == 'POST':
+        object.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', context)

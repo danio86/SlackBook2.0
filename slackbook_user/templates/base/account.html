@@ -9,15 +9,13 @@
             <div>
                 <span>@ <i class="fas fa-user"></i> {{ user.username }}</span>
             </div>
-        
-            {% for topic in channels %}
-            <div>     
-                <h3>{{channel_count}} hosted Channels</h3>      
+            <h3>{{channel_count}} hosted Channels</h3> 
+            <div>         
                 <a href="{% url 'create-channel' %}">Create Channel</a>
             <div>
-            <br>            
-            
-
+            <br> 
+        
+            {% for topic in channels %}
             <div class="channel-content">
                 <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
                 {% if request.user == topic.host %}
