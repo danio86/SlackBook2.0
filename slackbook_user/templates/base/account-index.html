@@ -3,7 +3,7 @@
 
         
         {% for topic in channels %}
-        
+        {% if request.user == topic.host or request.user == topic_post.user %}
         <div class="channel-content">
             <h4><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h4>
             <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
@@ -15,10 +15,11 @@
             
                 <div class="channel-content">{{topic.content}}</div>
                 <br>
-                <a href="#"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                <a href="{% url 'member' topic.id %}"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
                 <span class="category-open"><small>{{ topic.topic.title }}</small></span>
         </div>
         <hr>
+        {% endif %}
         {% endfor %}
 
     </div>

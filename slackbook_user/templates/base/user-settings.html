@@ -22,11 +22,11 @@
             <br>
             {% endfor %}
         
-            <div>
+            <!-- <div>
                 <label for="avatar">Avatar: <i class='fas fa-user'></i> </label>
                 <input id="avatar" type="file" placeholder="blbla" name="avatar">
             </div>
-            <br>
+            <br> -->
             <!-- <div>
                 <label for="username">Username: </label>
                 <input id="username" type="text" placeholder="Please enter Username" name="username">
@@ -37,12 +37,13 @@
                 <input id="email" type="email" placeholder="Please enter your email adress" name="email">
             </div>
             <br> -->
-            <div>
+            <!-- <div>
                 <label for="about">About you: </label>
                 <input id="about" type="text" placeholder="Tell us somethong about you." name="about">
             </div>
-            <br>
+            <br> -->
             <input type="submit" value="Update">
+            <a href="{% url 'create-channel' %}">Create new Channel</a>
         </form>
     </div>
     <div class="col-md-3"></div>

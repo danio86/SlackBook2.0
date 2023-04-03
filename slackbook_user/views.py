@@ -46,6 +46,14 @@ def channel(request, pk):
     return render(request, 'base/channel.html', context)
 
 
+def channelMember(request, pk):
+    queryset = Channel.objects.get(id=pk)
+    # queryset = Channel.objects.all()
+    guests = queryset.guests.all()
+
+    context = {'guests': guests}
+    return render(request, 'base/channel-member.html', context)
+
 # def topics(request):
 #     queryset = Topic.objects.all()
 #     context = {'channel': queryset}
@@ -118,17 +126,17 @@ def createChannel(request):
         category, created = Topic.objects.get_or_create(title=category_title)
         # get_or_create() is a method which gets or creates an object
 
-        Channel.objects.create(
+        instance = Channel.objects.create(
             host=request.user,
             topic=category,
             title=request.POST.get('topic-name'),
             description=request.POST.get('description'),
             # title from the frontend
             private=request.POST.get('private'),
-            guests=request.POST.get('guests'),
+            # guests=request.POST.get('guests'),
 
             )
-        
+        instance.guests.add(*request.POST.get('guests'))
 
         return redirect('home')
     context = {'form': form, 'categories': categories}
@@ -157,11 +165,13 @@ def updateChannel(request, pk):
         queryset.topic = category
         queryset.description = request.POST.get('description')
         queryset.private = request.POST.get('private')
-        # queryset.members = queryset.members.set()
+        # queryset.guests = groups_member.update('guests')
+        queryset.guests.add(request.POST.get('guests'))
         queryset.save()
+    
         return redirect('home')
 
-    context = {'form': form, 'categories': categories, 'queryset': queryset, 'groups_member': groups_member}
+    context = {'form': form, 'categories': categories, 'queryset': queryset}
     return render(request, 'base/create-channel.html', context)
 
 

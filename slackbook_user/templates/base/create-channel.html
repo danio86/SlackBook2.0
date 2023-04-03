@@ -61,13 +61,13 @@
                     <br>
                     <!-- <input type="search" value="{{form.members}}" name="members"> -->
                     <!-- {{form.members}} -->
-                    <br>
-                    {{form.guests}}
+                    
+                    <div id="members" name="members">{{form.guests}}</div>
+                    {{form.members}}
                    
-
                     {% for member in form.guests %}
 
-                        <div>{{ member.all.first }}</div>
+                        
 
                     {% endfor %}
                    

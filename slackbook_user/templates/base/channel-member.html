@@ -1,0 +1,12 @@
+<div class="row">
+    <div>
+        <h3>Who is there?</h3>
+        <hr>
+        {% for guest in guests %}
+            <div>
+                <!-- <h5>@{{ guest }}</h5> -->
+                <p>@{{ guest.username }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
