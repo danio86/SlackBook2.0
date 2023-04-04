@@ -47,14 +47,36 @@
                     <label for="private">Is this a private channel?</label>
                     <br>
                     <!-- {{ form.private }} -->
-                    False
-                    <input type="checkbox" value="False" name="private">
+                    <!-- False
+                    <input type="checkbox" value="False" name="private">{{ form.private }}
                     <br>
                     True
                     <input type="checkbox" value="True" name="private">
                     <button name="private" value="True">Set to True</button>
                     <button name="private" value="False">Set to False</button>
-                </div>
+                </div> -->
+                <!-- {{ form.private.value }} -->
+                <br>
+                {% if form.private.value == True %}
+                    True
+                    <input type="checkbox" value="True" name="private" checked>
+                    <br>
+                    False
+                    <input type="checkbox" value="False" name="private">
+                {% elif form.private.value == False %}
+                    True
+                    <input type="checkbox" value="True" name="private">
+                    <br>
+                    False
+                    <input type="checkbox" value="False" name="private" checked>
+                {% else %}
+                    True
+                    <input type="checkbox" value="True" name="private">
+                    <br>
+                    False
+                    <input type="checkbox" value="False" name="private">
+                {% endif %}
+
                 <br>
                 <div>
                     <label for="members">Members: </label>
@@ -63,13 +85,7 @@
                     <!-- {{form.members}} -->
                     
                     <div id="members" name="members">{{form.guests}}</div>
-                    {{form.members}}
                    
-                    {% for member in form.guests %}
-
-                        
-
-                    {% endfor %}
                    
                     
                     

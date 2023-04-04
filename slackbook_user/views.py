@@ -136,7 +136,7 @@ def createChannel(request):
             # guests=request.POST.get('guests'),
 
             )
-        instance.guests.add(*request.POST.get('guests'))
+        # instance.guests.add(request.POST.get('guests'))
 
         return redirect('home')
     context = {'form': form, 'categories': categories}
@@ -167,8 +167,9 @@ def updateChannel(request, pk):
         queryset.private = request.POST.get('private')
         # queryset.guests = groups_member.update('guests')
         queryset.guests.add(request.POST.get('guests'))
+        
         queryset.save()
-    
+
         return redirect('home')
 
     context = {'form': form, 'categories': categories, 'queryset': queryset}
