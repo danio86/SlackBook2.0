@@ -134,7 +134,6 @@ def createChannel(request):
             # title from the frontend
             private=request.POST.get('private'),
             # guests=request.POST.get('guests'),
-
             )
         # instance.guests.add(request.POST.get('guests'))
 
@@ -166,8 +165,12 @@ def updateChannel(request, pk):
         queryset.description = request.POST.get('description')
         queryset.private = request.POST.get('private')
         # queryset.guests = groups_member.update('guests')
-        queryset.guests.add(request.POST.get('guests'))
-        
+        print(queryset.private)
+        if queryset.private == 'True':
+            queryset.guests.add(request.POST.get('guests'))
+        else:
+            pass
+
         queryset.save()
 
         return redirect('home')

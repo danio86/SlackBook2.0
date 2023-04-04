@@ -92,6 +92,7 @@
     padding: 10px;
     border: 1px solid darkcyan;
     margin: 10px auto;
+    width: unset;
 }
 
 /* Footer */

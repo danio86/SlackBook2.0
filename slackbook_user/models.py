@@ -42,7 +42,7 @@ class Channel(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     keywords = models.TextField(blank=True)
-    private = models.BooleanField(default=True, blank=True)
+    private = models.BooleanField(default=False, blank=True)
     permission = models.TextField(blank=True)
     members = models.ManyToManyField(
         User, blank=True, related_name='members',
