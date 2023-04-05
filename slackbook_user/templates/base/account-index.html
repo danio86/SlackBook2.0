@@ -1,8 +1,53 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
 
-        
+        <!-- <div >
+            hallo
+            {{request.user.username}} - {{comment.user.username}} -
+            {% for comment in comments %}
+            {{comment.channel.host.username}}
+                {% if comment.user.username == request.user.username or request.user.username == comment.channel.host %}
+                    {{ comment.channel.title }}
+                {% endif %}
+                
+            {% endfor %}
+            hallo2
+        </div> -->
+
+        <div>
+            <!-- hallo
+            {{request.user.username}} - {{comment.user.username}} - -->
+            {% for comment in comments %}
+            <!-- {{comment.channel.host.username}} -->
+            
+                {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
+                <div class="channel-content"> 
+                    <h4><a href="#">{{ comment.channel.title }}</a></h4>
+                    <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
+                    <!-- <a href="#"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i> -->
+                    <div>
+                        <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                        <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
+                    </div>               
+                    <div>
+                        <div class="channel-content">
+                            <h5>{{ comment.body }}</h5>
+                        </div>  
+                    </div>
+                    <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
+                    <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
+                </div>  
+                <hr>      
+                {% endif %}
+            
+            {% endfor %}
+
+        </div>
+    
+
         {% for topic in channels %}
+        
+
         {% if request.user == topic.host or request.user == topic_post.user %}
         <div class="channel-content">
             <h4><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h4>
@@ -13,9 +58,6 @@
                 <a href="{% url 'delete-channel' topic.id %}">Delete</a>
             {% endif %}
             {% for comment in comments %}
-                <!-- <div>
-                {% include 'base/channel-index.html' %}
-                </div> -->
                 {% if comment.channel.title == topic.title %}
                 <div>
                     <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
