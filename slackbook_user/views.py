@@ -18,8 +18,15 @@ def home(request):
     topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
 
+    comments = Post.objects.all().order_by('-created_on').filter(
+        Q(channel__topic__title__icontains=s))
+        # Q(channel__title__icontains=s))
+    # this filters by the title of the topic of the channel
+    # if the url ending is in channel title
+
     context = {
-        'topics': topics, 'channels': channels, 'queryset': queryset
+        'topics': topics, 'channels': channels, 'queryset': queryset,
+        'comments': comments
     }
     return render(request, 'base/index.html', context)
 

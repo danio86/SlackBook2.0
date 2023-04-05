@@ -12,9 +12,24 @@
                 <a href="{% url 'update-channel' topic.id %}">Edit</a>
                 <a href="{% url 'delete-channel' topic.id %}">Delete</a>
             {% endif %}
-            
-                <div class="channel-content">{{topic.content}}</div>
+            {% for comment in comments %}
+                <!-- <div>
+                {% include 'base/channel-index.html' %}
+                </div> -->
+                {% if comment.channel.title == topic.title %}
+                <div>
+                    <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                    <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
+                </div>               
+                <div>
+                    <div class="channel-content">
+                        <h5>{{ comment.body }}</h5>
+                    </div>  
+                </div>
                 <br>
+                {% endif %}
+            {% endfor  %}
+
                 <a href="{% url 'member' topic.id %}"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
                 <span class="category-open"><small>{{ topic.topic.title }}</small></span>
         </div>
