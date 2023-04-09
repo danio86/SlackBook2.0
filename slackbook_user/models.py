@@ -11,6 +11,7 @@ class User(AbstractUser):
     biography = models.TextField(null=True)
     id = models.AutoField(primary_key=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
+    userImage = models.ImageField(null=True, default="avatar.png")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

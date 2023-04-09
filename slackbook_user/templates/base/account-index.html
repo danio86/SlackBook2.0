@@ -24,7 +24,12 @@
                 <div class="channel-content"> 
                     <h4><a href="#">{{ comment.channel.title }}</a></h4>
 
-                   
+                    
+                    {% if image %}
+                        <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
+                    {% else %}
+                        <img class="brand" src="/static/images/avatar.png" alt="logo">
+                    {% endif %}
                     
 
                     <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
