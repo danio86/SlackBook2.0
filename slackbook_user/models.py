@@ -10,7 +10,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     biography = models.TextField(null=True)
     id = models.AutoField(primary_key=True)
-    # avatar = models.ImageField(null=True, default="avatar.svg")
+    avatar = models.ImageField(null=True, default="avatar.svg")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
