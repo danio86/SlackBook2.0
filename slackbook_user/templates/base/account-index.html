@@ -23,6 +23,11 @@
                 {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
                 <div class="channel-content"> 
                     <h4><a href="#">{{ comment.channel.title }}</a></h4>
+
+                   
+                    
+
+                    <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
                     <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
                     <!-- <a href="#"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i> -->
                     <div>
@@ -51,6 +56,7 @@
         {% if request.user == topic.host or request.user == topic_post.user %}
         <div class="channel-content">
             <h4><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h4>
+            <img class="user-image" src="{{ topic.host.avatar.url }}" alt="user-image">
             <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
             <br>
             {% if request.user == topic.host %}
