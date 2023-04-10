@@ -23,16 +23,11 @@
                 {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
                 <div class="channel-content"> 
                     <h4><a href="#">{{ comment.channel.title }}</a></h4>
-
-                    
-                    {% if image %}
-                        <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
+                    {% if comment.channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                        <img class="user-image" src="/static/images/avatar.png" alt="logo">                      
                     {% else %}
-                        <img class="brand" src="/static/images/avatar.png" alt="logo">
+                        <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
                     {% endif %}
-                    
-
-                    <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
                     <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
                     <!-- <a href="#"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i> -->
                     <div>
