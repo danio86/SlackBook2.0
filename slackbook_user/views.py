@@ -91,7 +91,7 @@ def userSettings(request):
     user_form = UserForm(instance=user)
 
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=user)
+        user_form = UserForm(request.POST, request.FILES, instance=user)
 
         user_form.username = request.POST.get('username')
         user_form.email = request.POST.get('email')
@@ -101,7 +101,9 @@ def userSettings(request):
             messages.error(request, 'Please only enter letters.')
             return redirect('/user-settings/')
 
-        return redirect('user-account', user.id)
+        return redirect('home')
+        # return redirect('user-settings')
+        # return redirect('user-account', user.id)
 
     context = {'user_form': user_form}
     return render(request, 'base/user-settings.html', context)

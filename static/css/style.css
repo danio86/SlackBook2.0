@@ -18,6 +18,13 @@
     border-radius: 50px;
 }
 
+.user-logedout{
+    width: 25px;
+    height: 25px;
+    border: 2px solid red;
+    border-radius: 50px;
+}
+
 .header{
     text-align: center;
     display: block ruby;

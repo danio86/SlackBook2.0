@@ -4,7 +4,8 @@
 <div class="row text-white bg-dark">
     <div class="col-md-3"></div>
     <div class="col-md-6 user-settings">
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
+        <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
             {% csrf_token %}
 
             {% for field in user_form %}
@@ -12,13 +13,13 @@
                 <label for="user-field">{{ field.label }}</label>
                 {{ field }}
             </div>
-            {% if messages %}
+            <!-- {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
-            {% endif %}
+            {% endif %} -->
             <br>
             {% endfor %}
         
