@@ -40,7 +40,12 @@ def channel(request, pk):
 
     if request.method == 'POST':
         # post_form = PostForm(request.FILES)
-        post_form = PostForm(request.POST, request.FILES, instance=posts.first())
+        posts = Post.objects.create(
+                user=request.user,
+                channel=queryset,
+                
+            )
+        post_form = PostForm(request.POST, request.FILES, instance=posts)
         # post_form = PostForm(request.POST, request.FILES)
 
         post_form.body = request.POST.get('body')
@@ -48,25 +53,25 @@ def channel(request, pk):
     #     post_form.image_description = request.POST.get('image_description')
         if post_form.is_valid():
             post_form.save()
-            posts = Post.objects.create(
-                user=request.user,
-                channel=queryset,
-                body=post_form.body,
-                image=post_form.image,
-            )
+            # posts = Post.objects.create(
+            #     user=request.user,
+            #     channel=queryset,
+            #     body=post_form.body,
+            #     image=post_form.image,
+            # )
 
             return redirect('channel', pk)
         # else:
         #     messages.error(request, 'Please only enter letters.')
         #     return redirect('channel', pk)
 
-    if request.method == 'POST':
-        post = Post.objects.create(
-            user=request.user,
-            channel=queryset,
-            body=request.POST.get('body'),
-            image=request.POST.get('image'),
-        )
+    # if request.method == 'POST':
+    #     post = Post.objects.create(
+    #         user=request.user,
+    #         channel=queryset,
+    #         body=request.POST.get('body'),
+    #         image=request.POST.get('image'),
+    #     )
         # .create is a django function
 
         queryset.guests.add(request.user)
