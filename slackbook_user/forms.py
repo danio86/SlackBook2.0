@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from .models import User
-from .models import Channel
+from .models import Channel, Post
 
 
 class ChannelForm(ModelForm):
@@ -22,3 +22,10 @@ class UserForm(ModelForm):
         fields = '__all__'
         fields = ['avatar', 'username', 'name', 'email', 'biography']
         # exclude = ['', '']
+
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        # fields = '__all__'
+        fields = ['body', 'image']

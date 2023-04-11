@@ -3,7 +3,7 @@ from .models import User, Channel, Topic, Post
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from .forms import ChannelForm, UserForm
-from .forms import ChannelForm, UserForm
+from .forms import ChannelForm, UserForm, PostForm
 
 
 def home(request):
@@ -36,12 +36,14 @@ def channel(request, pk):
     posts = queryset.post_set.all().order_by('-created_on')
     # this gives all attributes of the Channel-Model-Child Post
     guests = queryset.guests.all()
+    post_form = PostForm(request.FILES, instance=queryset)
 
     if request.method == 'POST':
         post = Post.objects.create(
             user=request.user,
             channel=queryset,
             body=request.POST.get('body'),
+            image=request.POST.get('image'),
         )
         # .create is a django function
 
@@ -49,7 +51,8 @@ def channel(request, pk):
         # this makes everybody a guest of the channel who posts something
         return redirect('channel', pk)
 
-    context = {'channel': queryset, 'posts': posts, 'guests': guests}
+    context = {'channel': queryset, 'posts': posts, 'guests': guests,
+               'post_form': post_form}
     return render(request, 'base/channel.html', context)
 
 

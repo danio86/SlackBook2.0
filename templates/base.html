@@ -40,7 +40,12 @@
                           {{ request.user.username }}
                       {% endif %}
                       <!-- <i class="fas fa-user"></i> -->
-                      <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
+                      {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                        <img class="user-image" src="/static/images/avatar.png" alt="user-image">              
+                      {% else %}
+                            <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
+                      {% endif %}
+                      <!-- <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image"> -->
                       </button>
                       <div class="dropdown-menu">
                         <!-- <a class="dropdown-item" href="#">Action</a>

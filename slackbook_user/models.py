@@ -11,7 +11,7 @@ class User(AbstractUser):
     biography = models.TextField(null=True)
     id = models.AutoField(primary_key=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
-    userImage = models.ImageField(null=True, default="avatar.png")
+    # userImage = models.ImageField(null=True, default="avatar.png")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -45,9 +45,9 @@ class Channel(models.Model):
     keywords = models.TextField(blank=True)
     private = models.BooleanField(default=False, blank=True)
     permission = models.TextField(blank=True)
-    members = models.ManyToManyField(
-        User, blank=True, related_name='members',
-        limit_choices_to={'name': True})
+    # members = models.ManyToManyField(
+    #     User, blank=True, related_name='members',
+    #     limit_choices_to={'name': True})
 
     class Meta:
         ordering = ["-created_on"]
@@ -63,6 +63,9 @@ class Post(models.Model):
     # all posts are children of the Channel Class/Model.
     # If Channel or User gets deleted, all posts have to get deleted too.
     body = models.TextField()
+    image = models.ImageField(null=True)
+    # video = models.FileField(upload_to='videos_uploaded',null=True,
+    # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
 

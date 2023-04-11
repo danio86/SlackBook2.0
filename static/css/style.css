@@ -109,6 +109,13 @@
     width: unset;
 }
 
+.post-image{
+    width: 150px;
+    height: 100px;
+    border: 1px solid darkcyan;
+    border-radius: 2px;
+}
+
 /* Footer */
 footer{
     position: fixed;

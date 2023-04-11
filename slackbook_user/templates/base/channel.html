@@ -27,6 +27,11 @@
                     <small><a href="#">@{{ post.user.username }}</a> - {{ post.created_on|timesince }} ago</small>
                     <!-- timesince replace the date and the time -->
                     <p>Comment: {{ post.body }}</p>
+                    <br>
+                    {% if post.image %}
+                        <img class="post-image" src="{{ post.image.url }}" alt="post-image">
+                    {% endif %}
+                    <br>
                     {% if request.user == post.user%}
                         <a href="{% url 'delete-comment' post.id %}"><button>Delete Comment</button></a>
                     {% endif %}
@@ -37,11 +42,30 @@
 
           {% if request.user.is_authenticated %}
           <div class="post-form">
-              <form action="" method="POST">
+              <form action="" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
                   <input type="text" placeholder="Place your Comment..." name="body">   
+                  <!-- <input type="image" placeholder="Image..." name="image">   
+                  <input type="file" placeholder="Image..." name="image">   
+                  <input type="submit" value="Submit"> -->
               </form>
           </div>
+          <hr>
+
+          <form action="" method="POST" enctype="multipart/form-data">
+            <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
+            {% csrf_token %}
+            {% for field in post_form %}
+                <div>
+                    <label for="post-field">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <br>           
+                {% endfor %}
+                <input type="submit" value="Submit">
+            </form>
+          <hr>
+
           {% endif %}
       </div>
     </div>
