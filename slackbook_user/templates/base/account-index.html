@@ -44,6 +44,7 @@
                     <div>
                         <div class="channel-content">
                             <h5>{{ comment.body }}</h5>
+                            test<h5>{{ comment.image }}</h5>test
                         </div>  
                     </div>
                     <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
@@ -80,6 +81,9 @@
                 <div>
                     <div class="channel-content">
                         <h5>{{ comment.body }}</h5>
+                        {% if comment.image %}
+                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                        {% endif %}
                     </div>  
                 </div>
                 <br>
