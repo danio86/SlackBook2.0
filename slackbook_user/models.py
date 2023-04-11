@@ -62,12 +62,15 @@ class Post(models.Model):
     # this says to which channel the post belongs
     # all posts are children of the Channel Class/Model.
     # If Channel or User gets deleted, all posts have to get deleted too.
-    body = models.TextField()
-    image = models.ImageField(null=True)
+    body = models.TextField(blank=True)
+    image = models.ImageField(null=True, blank=True)
+    image_description = models.TextField(null=True, max_length=200, blank=True)
     # video = models.FileField(upload_to='videos_uploaded',null=True,
     # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    REQUIRED_FIELDS = []
 
     class Meta:
         ordering = ['-updated_on', '-created_on']

@@ -30,6 +30,8 @@
                     <br>
                     {% if post.image %}
                         <img class="post-image" src="{{ post.image.url }}" alt="post-image">
+                    {% else %}
+                        <p>Comment: {{ post.body }}</p>
                     {% endif %}
                     <br>
                     {% if request.user == post.user%}
@@ -57,7 +59,7 @@
             {% csrf_token %}
             {% for field in post_form %}
                 <div>
-                    <label for="post-field">{{ field.label }}</label>
+                    <label for="post-field" name="">{{ field.label }}</label>
                     {{ field }}
                 </div>
                 <br>           

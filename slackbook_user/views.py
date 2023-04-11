@@ -36,7 +36,29 @@ def channel(request, pk):
     posts = queryset.post_set.all().order_by('-created_on')
     # this gives all attributes of the Channel-Model-Child Post
     guests = queryset.guests.all()
-    post_form = PostForm(request.FILES, instance=queryset)
+    post_form = PostForm()
+
+    if request.method == 'POST':
+        # post_form = PostForm(request.FILES)
+        post_form = PostForm(request.POST, request.FILES, instance=posts.first())
+        # post_form = PostForm(request.POST, request.FILES)
+
+        post_form.body = request.POST.get('body')
+        post_form.image = request.POST.get('image')
+    #     post_form.image_description = request.POST.get('image_description')
+        if post_form.is_valid():
+            post_form.save()
+            posts = Post.objects.create(
+                user=request.user,
+                channel=queryset,
+                body=post_form.body,
+                image=post_form.image,
+            )
+
+            return redirect('channel', pk)
+        # else:
+        #     messages.error(request, 'Please only enter letters.')
+        #     return redirect('channel', pk)
 
     if request.method == 'POST':
         post = Post.objects.create(
