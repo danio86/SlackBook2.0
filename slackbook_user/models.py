@@ -12,6 +12,7 @@ class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
     # userImage = models.ImageField(null=True, default="avatar.png")
+    loggedin = models.BooleanField(default=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
