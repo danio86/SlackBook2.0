@@ -21,13 +21,14 @@
             {% endif %}
 
                 test{{ request.user.username }}test
-                test{{ request.user.status.value }}test
+                test{{ request.user.loggedin }}test
+                <button type="submit" name="loggedin" value="False">{% trans 'Log Out' %}</button>
                 <p>{% trans 'request.user' %}</p>
 
             <button type="submit">{% trans 'Sign Out' %}</button>
             </form>
         </div>
-      </div>
+    </div>
     </div>
 </div>
 
