@@ -17,49 +17,49 @@
             </div>
 
             <div class="row justify-content-center">
-            <div class="col-6">
-                <h3>{{channel_count}} hosted Channels</h3>      
-                {% for topic in channels %}
-                <div class="channel-content">
-                    <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
-                    {% if request.user == topic.host %}
-                        <a href="{% url 'create-channel' %}">Create Channel</a>
-                        <a href="{% url 'update-channel' topic.id %}">Edit</a>
-                        <a href="{% url 'delete-channel' topic.id %}">Delete</a>
-                    {% endif %}
-                    <br>
-                    <div class="channel-content">{{topic.content}}</div>
-                    <br>
-                    <a href="#"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
-                    <span class="category-open"><small>{{ topic.topic.title }}</small></span>
-                </div>
-                <hr>
-                {% endfor %}
-            </div>
-
-            <div class="col-6">
-                <h3>{{joined_count}} joined Channels</h3>      
-                {% for comment in comments %}
-                    <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
-                    <div>
-                        <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
-                    </div>               
-                    <div>
-                        <div class="channel-content">
-                            <h5>{{ comment.body }}</h5>
-                            {% if comment.image %}
-                                <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
-                            {% endif %}
-                        </div>  
+                <div class="col-6">
+                    <h3>{{channel_count}} hosted Channels</h3>      
+                    {% for topic in channels %}
+                    <div class="channel-content">
+                        <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
+                        {% if request.user == topic.host %}
+                            <a href="{% url 'create-channel' %}">Create Channel</a>
+                            <a href="{% url 'update-channel' topic.id %}">Edit</a>
+                            <a href="{% url 'delete-channel' topic.id %}">Delete</a>
+                        {% endif %}
+                        <br>
+                        <div class="channel-content">{{topic.content}}</div>
+                        <br>
+                        <a href="#"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                        <span class="category-open"><small>{{ topic.topic.title }}</small></span>
                     </div>
-                    <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
-                    <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
-                </div>  
-                <hr>      
-                {% endfor %}     
-            </div> 
-            </div>
+                    <hr>
+                    {% endfor %}
+                </div>
 
+                <div class="col-6">
+                    <h3>{{joined_count}} joined Channels</h3>      
+                    {% for comment in comments %}
+                    {% if comment.channel.host.username != user.username %}
+                        <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
+                        <div>
+                            <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                        </div>               
+                        <div>
+                            <div class="channel-content">
+                                <h5>{{ comment.body }}</h5>
+                                {% if comment.image %}
+                                    <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                                {% endif %}
+                            </div>  
+                        </div>
+                        <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
+                        <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
+                        <hr> 
+                    {% endif %}    
+                    {% endfor %}        
+                </div>  
+            </div>  
         </div>
     </div>
 </div>
