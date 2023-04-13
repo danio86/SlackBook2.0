@@ -40,10 +40,10 @@
                 <div class="col-6">
                     
 
-                    <h3>joined Channels</h3>      
+                    <h3>Joined Channels</h3>      
                     {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
-                        
+                    <!-- test{{ comments.count }}test -->
                     
                     <!-- {% for number in comments %}
                     {% if number.channel.host.username != user.username %}
