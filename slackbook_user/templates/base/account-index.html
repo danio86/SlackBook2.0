@@ -15,15 +15,16 @@
         </div> -->
 
         <div>
-
+            <small><p class="channel-assignment">You joined:</p></small>
             <!-- hallo
             {{request.user.username}} - {{comment.user.username}} - -->
             {% for comment in comments %}
             <!-- {{comment.channel.host.username}} -->
-            
+                
                 {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
                 <div class="channel-content"> 
-                    <h4><a href="#">{{ comment.channel.title }}</a></h4>
+                    
+                    <h4><a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a></h4>
 
                     <!-- test{{comment.channel.host.online}}test -->
 
@@ -60,20 +61,16 @@
                     <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
                 </div>  
                 <hr>      
-                {% endif %}
-            
+                {% endif %}     
             {% endfor %}
-
         </div>
     
-
+        <small><p class="channel-assignment">You hosted:</p></small>
         {% for topic in channels %}
-        
-
         {% if request.user == topic.host or request.user == topic_post.user %}
         <div class="channel-content">
             <!-- {{ topic.host.account_logout }} -->
-            <h4><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h4>
+            <h4><a href="{% url 'channel' topic.id %}">{{topic.title}}</a></h4>
             <img class="user-image" src="{{ topic.host.avatar.url }}" alt="user-image">
             <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
             <br>

@@ -11,6 +11,10 @@
     border-radius: 5px;
 }
 
+.bg-light {
+    background-color: #3a3a3a !important;
+  }
+
 .user-image{
     width: 25px;
     height: 25px;
@@ -69,6 +73,11 @@
 
 .index-center{
     margin: 0 50px;
+}
+
+.channel-assignment{
+    color: #3a3a3a;
+    display: flex;
 }
 
 .main-content{

@@ -14,7 +14,7 @@ def home(request):
         Q(topic__title__icontains=s) |
         Q(title__icontains=s) |
         Q(content__icontains=s)
-    )
+    )[0:6]
 
     topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
