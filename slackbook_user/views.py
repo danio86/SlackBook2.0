@@ -110,10 +110,11 @@ def account(request, pk):
 
     # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
+    joined_count = user_comments.count()
 
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,
-               'channel_count': channel_count}
+               'channel_count': channel_count, 'joined_count': joined_count}
     return render(request, 'base/account.html', context)
 
 
