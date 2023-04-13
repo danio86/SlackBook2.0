@@ -110,7 +110,10 @@ def account(request, pk):
 
     # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
-    joined_count = user_comments.count()
+    joined_count = 0
+    for chan in Channel.objects.all():
+        if queryset.username == chan.guests:
+            joinded_count += 1
 
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,

@@ -38,10 +38,23 @@
                 </div>
 
                 <div class="col-6">
-                    <h3>{{joined_count}} joined Channels</h3>      
+                    
+
+                    <h3>joined Channels</h3>      
                     {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
+                        
+                    
+                    <!-- {% for number in comments %}
+                    {% if number.channel.host.username != user.username %}
+                    {{ forloop.counter }}
+                    
+                    {% endif %}
+                    {% endfor %} -->
+                
                         <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
+                        <h5><a href="#">{{comment.channel.title}}</a></h5>
+                        
                         <div>
                             <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
                         </div>               
