@@ -21,9 +21,13 @@
             {% endif %}
 
                 test{{ request.user.username }}test
+                <br>
                 test{{ request.user.loggedin }}test
-                <button type="submit" name="loggedin" value="False">{% trans 'Log Out' %}</button>
-                <p>{% trans 'request.user' %}</p>
+                <br>
+                <input type="checkbox" value="False" name="loggedin">
+                <br>
+            <!-- <button type="submit" name="loggedin" value="False">{% trans 'Log Out' %}</button> -->
+            <button name="loggedin" value="False">Set to False</button>
 
             <button type="submit">{% trans 'Sign Out' %}</button>
             </form>

@@ -17,5 +17,6 @@ urlpatterns = [
     path(
      'delete-channel/<str:pk>/', views.deleteChannel, name='delete-channel'),
     path('user-settings/', views.userSettings, name='user-settings'),
+    path('account/logout/', views.logoutUser, name='logout'),
 
 ]

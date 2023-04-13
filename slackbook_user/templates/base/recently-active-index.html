@@ -1,0 +1,31 @@
+<div class="row justify-content-around">
+    <div class="col-4 main-content">
+        <div class="channel-content">
+            {% for comment in comments %}
+                <div class="recent-comments">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="col-md-10">
+                            <small><a href="{% url 'account' comment.user.id %}">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                            <h5>answered to: <a href="{% url 'channel' comment.channel.id %}">{{ comment.channel }}</a></h5>
+                        </div>
+                        <div class="col-md-1">
+                            {% if request.user == comment.user%}
+                                <a href="{% url 'delete-comment' comment.id %}">X</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row bg-secondary text-white message">
+                            <h5>{{ comment }}</h5>
+                        </div>
+                        
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>

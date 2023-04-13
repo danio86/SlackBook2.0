@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from .forms import ChannelForm, UserForm
 from .forms import ChannelForm, UserForm, PostForm
+from django.contrib.auth import authenticate, login, logout
 
 
 def home(request):
@@ -230,3 +231,29 @@ def deleteChannel(request, pk):
         object.delete()
         return redirect('home')
     return render(request, 'base/delete.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def logoutUser(request):
+    request.user.loogedin = False
+    logout(request)
+    return redirect('home')
+
+
+# def logout(request):
+#     user = request.user
+#     user_form = UserForm(instance=user)
+
+#     if request.method == 'POST':
+
+#         user_form.loggedin = request.POST.get('loggedin')
+#         if user_form.is_valid():
+#             user_form.save()
+#         else:
+#             messages.error(request, 'Please only enter letters.')
+#             return redirect('/logout/')
+
+#         return redirect('logout')
+
+#     context = {}
+#     return render(request, 'base/account/logout.html', context)
