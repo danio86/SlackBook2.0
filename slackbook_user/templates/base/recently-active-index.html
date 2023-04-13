@@ -10,8 +10,8 @@
                         <div class="col-md-10">
                             <small><a href="#">@{{ user.username }}</a></small>
                             <br>
-                            {% for comment in user.post_set.all %}
-                                {{comment.body}} - {{comment.created_on|timesince}}
+                            {% for comment in user.post_set.all|slice:"1" %}
+                                {{ comment.body }} - {{ comment.created_on|timesince }}
                                 <br>
                                 answered to: {{comment.channel.title}}
                                 <br>

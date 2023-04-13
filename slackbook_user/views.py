@@ -17,7 +17,7 @@ def home(request):
     )
 
     topics = Topic.objects.all()[0:6]
-    channels = Channel.objects.all()[0:6]
+    channels = Channel.objects.all()
     users = User.objects.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(

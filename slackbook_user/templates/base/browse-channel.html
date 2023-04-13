@@ -10,7 +10,7 @@
             {{ channel.created_on|timesince }}
             <br>
             <!-- this leads to channel(name!) with the right id -->
-            <div class="channel-content">{{channel.content}}</div>
+            <div class="channel-content">{{channel.post_set.all|first }}</div>
             <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
             <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>
             <hr>
