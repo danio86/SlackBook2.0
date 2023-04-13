@@ -10,11 +10,13 @@
             {{ channel.created_on|timesince }}
             <br>
             <!-- this leads to channel(name!) with the right id -->
-            <div class="channel-content">{{channel.post_set.all|first }}</div>
+            {% if channel.post_set.all|first %}
+            <div class="channel-content">{{ channel.post_set.all|first }}</div>
+            {% endif %}
             <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
             <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>
-            <hr>
         </div>
+        <hr>
         
     
         {% endfor %}
