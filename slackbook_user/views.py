@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import User, Channel, Topic, Post
+from .models import User, Channel, Topic, Post, Chat
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from .forms import ChannelForm, UserForm
-from .forms import ChannelForm, UserForm, PostForm
+from .forms import ChannelForm, UserForm, PostForm, ChatForm
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -189,26 +189,24 @@ def createChannel(request):
 
 @login_required(login_url='/accounts/login/')
 def createPersonalChannel(request):
-    form = ChannelForm()
+
+    form = ChatForm()
     categories = Topic.objects.all()
 
     if request.method == 'POST':
-        # method of the form in channel_form.html
-        form = ChannelForm(request.POST)
-        # this passis the POST into the form automatically.
-        category_title = 'social'
+        form = ChatForm(request.POST)
+        category_title = 'test1'
         category, created = Topic.objects.get_or_create(title=category_title)
         # get_or_create() is a method which gets or creates an object
 
-        instance = Channel.objects.create(
+        Chat.objects.create(
             host=request.user,
-            topic=category,
-            title='request.user, user.username',
-            description=request.POST.get('description'),
+            title='test2',
+            body=request.POST.get('body'),
             # title from the frontend
-            private=True
-            # guests=request.POST.get('guests'),
             )
+        if form.is_valid():
+            form.save()
         # instance.guests.add(request.POST.get('guests'))
 
         return redirect('home')

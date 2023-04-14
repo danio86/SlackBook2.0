@@ -1,6 +1,5 @@
 from django.forms import ModelForm
-from .models import User
-from .models import Channel, Post
+from .models import User, Channel, Post, Chat
 
 
 class ChannelForm(ModelForm):
@@ -8,7 +7,7 @@ class ChannelForm(ModelForm):
         model = Channel
         fields = '__all__'
         # exclude = ['host', 'content', 'guests', 'status', 'slug', 'excerpt']
-        
+
 
 # this shows the model(Channel) i want to create a form for and the
 # writable fields. Alternatively: ['body', 'title',...]
@@ -29,3 +28,9 @@ class PostForm(ModelForm):
         model = Post
         # fields = '__all__'
         fields = ['body', 'image', 'image_description']
+
+
+class ChatForm(ModelForm):
+    class Meta:
+        model = Chat
+        fields = ['title', 'body', 'image']
