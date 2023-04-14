@@ -115,9 +115,25 @@ def account(request, pk):
     #     if queryset.username == chan.guests:
     #         joinded_count += 1
 
+    form = ChatForm()
+
+    if request.method == 'POST':
+        form = ChatForm(request.POST)
+
+        Chat.objects.create(
+            host=request.user,
+            title=request.user.username,
+            body=request.POST.get('body'),
+            )
+        if form.is_valid():
+            form.save()
+
+        return redirect('home')
+
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,
-               'channel_count': channel_count, 'joined_count': joined_count}
+               'channel_count': channel_count, 'joined_count': joined_count,
+               'form': form, 'categories': categories}
     return render(request, 'base/account.html', context)
 
 
