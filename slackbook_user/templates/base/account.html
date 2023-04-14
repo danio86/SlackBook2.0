@@ -38,20 +38,14 @@
                 </div>
 
                 <div class="col-6">
-                    
 
-                    <h3>Joined Channels</h3>      
+                  
+
+                    <h3>Joined Channels</h3>     
+         
                     {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
-                    <!-- test{{ comments.count }}test -->
-                    
-                    <!-- {% for number in comments %}
-                    {% if number.channel.host.username != user.username %}
-                    {{ forloop.counter }}
-                    
-                    {% endif %}
-                    {% endfor %} -->
-                
+
                         <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
                         <h5><a href="#">{{comment.channel.title}}</a></h5>
                         

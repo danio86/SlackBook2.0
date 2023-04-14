@@ -111,9 +111,9 @@ def account(request, pk):
     # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
     joined_count = 0
-    for chan in Channel.objects.all():
-        if queryset.username == chan.guests:
-            joinded_count += 1
+    # for chan in Channel.objects.all():
+    #     if queryset.username == chan.guests:
+    #         joinded_count += 1
 
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,
@@ -185,6 +185,35 @@ def createChannel(request):
         return redirect('home')
     context = {'form': form, 'categories': categories}
     return render(request, 'base/create-channel.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def createPersonalChannel(request):
+    form = ChannelForm()
+    categories = Topic.objects.all()
+
+    if request.method == 'POST':
+        # method of the form in channel_form.html
+        form = ChannelForm(request.POST)
+        # this passis the POST into the form automatically.
+        category_title = 'social'
+        category, created = Topic.objects.get_or_create(title=category_title)
+        # get_or_create() is a method which gets or creates an object
+
+        instance = Channel.objects.create(
+            host=request.user,
+            topic=category,
+            title='request.user, user.username',
+            description=request.POST.get('description'),
+            # title from the frontend
+            private=True
+            # guests=request.POST.get('guests'),
+            )
+        # instance.guests.add(request.POST.get('guests'))
+
+        return redirect('home')
+    context = {'form': form, 'categories': categories}
+    return render(request, 'base/create-personal-channel.html', context)
 
 
 @login_required(login_url='/accounts/login/')

@@ -1,0 +1,115 @@
+<div class="row justify-content-around">
+    <div class="col-4">
+        <div class="main-content">
+
+            <form class="col-md-4 form channel-content" action="" method="POST">
+                <!-- if method is not specified, it will send to the current url -->
+                {% csrf_token %}
+                <!-- {{ form.as_p }} -->
+                <!-- if somesthing is sendent the token needs to be included to avoid malicious attempts -->
+                <!-- the .as_ps wraps a paragraph around every inputfield (looks nicer) -->
+                <div>
+                    <h2>Create a personal Channel</h2>
+                    
+    
+                    <div>
+                        <label for="channel-title">Enter a Channel topic:</label>
+                        <br>
+                        <!-- creating a manuel dropdown -->
+                        <input type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
+                        <!-- <input required type="text" value="{{room.topic.name}}" name="topic" list="topic-list" /> -->
+                        <datalist id="topic-list">
+                            <select name="categories" id="form-category">
+                                {% for category in categories %}
+                                    <!-- <option value="{{ category.title }}"></option> -->
+                                    <option value="{{ category.title }}">{{ category.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </datalist>
+                        <!-- <span class="text-white-50" bg-dark id="form-topic">{{ form.topic }}</span> -->
+                        
+                    </div>
+                    <br>
+                    <div>
+                        <label for="form-category">Coose a title:</label>
+                        <br>
+                        <input type="text" value="{{ queryset.title }}" name="topic-name">
+                    </div>
+                    <!-- <div>
+                        <label for="channel-description">About:</label>
+                        <br>
+                        {{ form.description }}
+                    </div> -->
+                    <br>
+                    <div>
+                        <label for="private">Is this a private channel?</label>
+                        <br>
+                        <!-- {{ form.private }} -->
+                        <!-- False
+                        <input type="checkbox" value="False" name="private">{{ form.private }}
+                        <br>
+                        True
+                        <input type="checkbox" value="True" name="private">
+                        <button name="private" value="True">Set to True</button>
+                        <button name="private" value="False">Set to False</button>
+                    </div> -->
+                    <!-- {{ form.private.value }} -->
+                    <br>
+                    {% if form.private.value == True %}
+                        Yes. The Channel is privat. Users are added manually.
+                        <input type="checkbox" value="True" name="private" checked>
+                        <br>
+                        This is a free channel. Each user can register himself.
+                        <input type="checkbox" value="False" name="private">
+                    {% elif form.private.value == False %}
+                        Yes. The Channel is privat. Users are added manually.
+                        <input type="checkbox" value="True" name="private">
+                        <br>
+                        This is a free channel. Each user can register himself.
+                        <input type="checkbox" value="False" name="private" checked>
+                    {% else %}
+                        Yes. The Channel is privat. Users are added manually.
+                        <input type="checkbox" value="True" name="private">
+                        <br>
+                        This is a free channel. Each user can register himself.
+                        <input type="checkbox" value="False" name="private">
+                    {% endif %}
+    
+                    <br>
+                    <div>
+                        {% if form.private.value == True %}
+                        <label for="members">Members: </label>
+                        <br>
+                        <!-- <input type="search" value="{{form.members}}" name="members"> -->
+                        <!-- {{form.members}} -->
+                        
+                            <div aria-required="true" id="members" name="guests">{{form.guests}}</div>
+                        {% endif %}
+    
+                       
+                        <!-- {% for member in form.guests %}
+                        <input type="submit" required id="id_guests" value=2>
+                        {{ member }}
+                        <button id="id_guests" required name="guests" value=4>{{ member }}</button> -->
+    
+    
+                        <!-- {% endfor %} -->
+                        
+                        
+                        
+    
+                    </div>
+                    <br>
+    
+                </div>
+    
+    
+                <button class="btn btn-primary dropdown-toggle btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
+                
+                <input class="btn btn-primary dropdown-toggle btn-outline-success button" type="submit" value="Create Channel">
+            </form>    
+        </div>
+    </div>
+</div>
+
+
