@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4 main-channel-content">
+
+        <div class="channel-content">
+            <label for="channel-description">Conversation:</label>
+            <br>
+            {{ chat.body }} {{ chat.created_on|timesince }}
+            <hr>
+            {% for post in posts %}
+            {% if post.chat %}
+                <div>
+                    <small><a href="#">@{{ post.user.username }}</a> - {{ post.created_on|timesince }} ago</small>
+                    <p>Comment: {{ post.body }}</p>
+                    <br>
+                    {% if post.image %}
+                        <img class="post-image" src="{{ post.image.url }}" alt="post-image">
+                    {% else %}
+                        <p>Comment: {{ post.body }}</p>
+                    {% endif %}
+                    <br>
+                    {% if request.user == post.user%}
+                        <a href="{% url 'delete-comment' post.id %}"><button>Delete Comment</button></a>
+                    {% endif %}
+                    <hr>  
+                </div>
+                {% endif %}
+            {% endfor%}
+        
+
+          {% if request.user.is_authenticated %}
+          <div class="post-form">
+              <form action="" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="text" placeholder="Place your Comment..." name="body">   
+              </form>
+          </div>
+          <hr>
+
+          <!-- <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in post_form %}
+                <div>
+                    <label for="post-field" name="">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <br>           
+                {% endfor %}
+                <input type="submit" value="Submit">
+            </form>
+          <hr> -->
+
+          {% endif %}
+      </div>
+    </div>
+    
+    
+  </div>
+</div>

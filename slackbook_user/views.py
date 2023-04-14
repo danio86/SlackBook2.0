@@ -45,7 +45,7 @@ def channel(request, pk):
         posts = Post.objects.create(
                 user=request.user,
                 channel=queryset,
-                
+
             )
         post_form = PostForm(request.POST, request.FILES, instance=posts)
         # post_form = PostForm(request.POST, request.FILES)
@@ -85,6 +85,33 @@ def channel(request, pk):
     return render(request, 'base/channel.html', context)
 
 
+def chat(request, pk):
+    queryset = Chat.objects.get(id=pk)
+    posts = queryset.post_set.all().order_by('-created_on')
+    
+    post_form = PostForm()
+
+    if request.method == 'POST':
+        posts = Post.objects.create(
+                user=request.user,
+                chat=queryset,
+
+            )
+        post_form = PostForm(request.POST, request.FILES, instance=posts)
+
+        post_form.body = request.POST.get('body')
+        post_form.image = request.POST.get('image')
+
+        if post_form.is_valid():
+            post_form.save()
+
+            return redirect('chat', pk)
+
+    context = {'chat': queryset, 'posts': posts,
+               'post_form': post_form}
+    return render(request, 'base/chat.html', context)
+
+
 def channelMember(request, pk):
     queryset = Channel.objects.get(id=pk)
     # queryset = Channel.objects.all()
@@ -93,20 +120,31 @@ def channelMember(request, pk):
     context = {'guests': guests}
     return render(request, 'base/channel-member.html', context)
 
-# def topics(request):
-#     queryset = Topic.objects.all()
-#     context = {'channel': queryset}
-#     return render(request, 'base/topics.html', context)
-
 
 def account(request, pk):
     queryset = User.objects.get(id=pk)
+    chat = Chat.objects.get(id=request.user.id)
     user_channels = queryset.channel_set.all()
-    # this gives the whole Channel Model of the User with the right id
-    # channels in context need to be called channels
-    # because channel_availiable.html asks for channels!il
     user_comments = queryset.post_set.all()
     categories = Topic.objects.all()
+
+    posts = queryset.post_set.all().order_by('-created_on')
+    post_form = PostForm()
+
+    if request.method == 'POST':
+        posts = Post.objects.create(
+                user=queryset,
+                chat=chat,
+
+            )
+        post_form = PostForm(request.POST, request.FILES, instance=posts)
+
+        post_form.body = request.POST.get('body')
+        post_form.image = request.POST.get('image')
+        if post_form.is_valid():
+            post_form.save()
+
+            return redirect('chat', pk)
 
     # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
@@ -118,22 +156,28 @@ def account(request, pk):
     form = ChatForm()
 
     if request.method == 'POST':
-        form = ChatForm(request.POST)
 
-        Chat.objects.create(
-            host=request.user,
-            title=request.user.username,
-            body=request.POST.get('body'),
-            )
-        if form.is_valid():
-            form.save()
+
+        form = ChatForm(request.POST, instance=chat)
+        # this only updates the form. It doesn't refill it.
+
+        category_name = request.user.username
+        category, created = Chat.objects.get_or_create(title=category_name)
+
+        chat.body = request.POST.get('body')
+        chat.save()
 
         return redirect('home')
+
+
+
+
+
 
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,
                'channel_count': channel_count, 'joined_count': joined_count,
-               'form': form, 'categories': categories}
+               'form': form, 'categories': categories, 'chat': chat, 'posts': posts}
     return render(request, 'base/account.html', context)
 
 

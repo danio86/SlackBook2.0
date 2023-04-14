@@ -58,9 +58,27 @@ class Channel(models.Model):
         return self.title
 
 
+class Chat(models.Model):
+    host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=200, unique=True)
+    body = models.TextField(blank=True, max_length=200)
+    image = CloudinaryField('image', default='placeholder')
+    updated_on = models.DateTimeField(auto_now=True)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    private = models.BooleanField(default=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.title
+
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, null=True)
     # this says to which channel the post belongs
     # all posts are children of the Channel Class/Model.
     # If Channel or User gets deleted, all posts have to get deleted too.
@@ -79,20 +97,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.body[0:30]
-
-
-class Chat(models.Model):
-    host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    title = models.CharField(max_length=200, unique=True)
-    body = models.TextField(blank=True, max_length=200)
-    image = CloudinaryField('image', default='placeholder')
-    updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    private = models.BooleanField(default=True, blank=True)
-
-    class Meta:
-        ordering = ["-created_on"]
-
-    def __str__(self):
-        return self.title
