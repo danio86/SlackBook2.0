@@ -123,28 +123,29 @@ def channelMember(request, pk):
 
 def account(request, pk):
     queryset = User.objects.get(id=pk)
-    chat = Chat.objects.get(id=request.user.id)
+    # chat = Chat.objects.get(id=request.user.id)
+    chat = Chat.objects.all()
     user_channels = queryset.channel_set.all()
     user_comments = queryset.post_set.all()
     categories = Topic.objects.all()
 
-    posts = queryset.post_set.all().order_by('-created_on')
-    post_form = PostForm()
+    # posts = queryset.post_set.all().order_by('-created_on')
+    # post_form = PostForm()
 
-    if request.method == 'POST':
-        posts = Post.objects.create(
-                user=queryset,
-                chat=chat,
+    # if request.method == 'POST':
+    #     posts = Post.objects.create(
+    #             user=queryset,
+    #             chat=chat,
 
-            )
-        post_form = PostForm(request.POST, request.FILES, instance=posts)
+    #         )
+    #     post_form = PostForm(request.POST, request.FILES, instance=posts)
 
-        post_form.body = request.POST.get('body')
-        post_form.image = request.POST.get('image')
-        if post_form.is_valid():
-            post_form.save()
+    #     post_form.body = request.POST.get('body')
+    #     post_form.image = request.POST.get('image')
+    #     if post_form.is_valid():
+    #         post_form.save()
 
-            return redirect('chat', pk)
+            # return redirect('chat', pk)
 
     # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
@@ -153,21 +154,41 @@ def account(request, pk):
     #     if queryset.username == chan.guests:
     #         joinded_count += 1
 
+    # posts = queryset.post_set.all().order_by('-created_on')
+    # post_form = PostForm()
+
+    # if request.method == 'POST':
+    #     posts = Post.objects.create(
+    #             user=queryset,
+    #             chat=chat,
+
+    #         )
+    #     post_form = PostForm(request.POST, request.FILES, instance=posts)
+
+    #     post_form.body = request.POST.get('body')
+    #     post_form.image = request.POST.get('image')
+    #     if post_form.is_valid():
+    #         post_form.save()
+
+            # return redirect('chat', pk)
+
     form = ChatForm()
 
     if request.method == 'POST':
+        form = ChatForm(request.POST)
 
-
-        form = ChatForm(request.POST, instance=chat)
-        # this only updates the form. It doesn't refill it.
-
-        category_name = request.user.username
-        category, created = Chat.objects.get_or_create(title=category_name)
-
-        chat.body = request.POST.get('body')
-        chat.save()
-
-        return redirect('home')
+        Chat.objects.create(
+            host=queryset,
+            title=request.user,
+            body=request.POST.get('body'),
+            # title from the frontend
+            )
+        if form.is_valid():
+            form.save()
+            # return redirect('chat', form.id)
+        
+        return redirect('chat', chat[0].id)
+        # return redirect('home')
 
 
 
@@ -177,7 +198,7 @@ def account(request, pk):
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,
                'channel_count': channel_count, 'joined_count': joined_count,
-               'form': form, 'categories': categories, 'chat': chat, 'posts': posts}
+               'form': form, 'categories': categories, 'chat': chat}
     return render(request, 'base/account.html', context)
 
 
@@ -251,17 +272,17 @@ def createChannel(request):
 def createPersonalChannel(request):
 
     form = ChatForm()
-    categories = Topic.objects.all()
+    # categories = Topic.objects.all()
 
     if request.method == 'POST':
         form = ChatForm(request.POST)
-        category_title = 'test1'
-        category, created = Topic.objects.get_or_create(title=category_title)
+        # category_title = 'test1'
+        # category, created = Topic.objects.get_or_create(title=category_title)
         # get_or_create() is a method which gets or creates an object
 
         Chat.objects.create(
             host=request.user,
-            title='test2',
+            title='test4',
             body=request.POST.get('body'),
             # title from the frontend
             )
@@ -270,7 +291,8 @@ def createPersonalChannel(request):
         # instance.guests.add(request.POST.get('guests'))
 
         return redirect('home')
-    context = {'form': form, 'categories': categories}
+    context = {'form': form}
+    # context = {'form': form, 'categories': categories}
     return render(request, 'base/create-personal-channel.html', context)
 
 
