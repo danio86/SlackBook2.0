@@ -179,7 +179,7 @@ def account(request, pk):
 
         Chat.objects.create(
             host=queryset,
-            title=request.user,
+            title=request.user.username,
             body=request.POST.get('body'),
             # title from the frontend
             )

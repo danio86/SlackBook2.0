@@ -39,8 +39,20 @@
 
                 <div class="col-6" style="margin-left: -10px;">
 
+                    
+
                     <div>
-                        {% include 'base/create-personal-channel.html' %}
+                        {% for converstation in chat %}
+                        -{{converstation.title}}-
+                        <br>
+                        -{{request.user.username}}-
+                        <br>
+                        {% if converstation.title == request.user.username %}
+                            yes
+                        {% else %}
+                            no
+                        {% endif %}
+                        {% endfor %}
                     </div>
 
                     <div>
