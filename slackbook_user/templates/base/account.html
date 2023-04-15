@@ -49,6 +49,8 @@
                         <br> -->
                         {% if converstation.title == request.user.username and user == converstation.host%}
                             yes
+                            {{converstation.id}}
+                            <a href="{% url 'chat' converstation.id %}">Y</a>
                         {% else %}
                             
                         {% endif %}
