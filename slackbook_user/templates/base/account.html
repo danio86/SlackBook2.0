@@ -43,14 +43,14 @@
 
                     <div>
                         {% for converstation in chat %}
-                        -{{converstation.title}}-
+                        <!-- -{{converstation.title}}-
                         <br>
-                        -{{request.user.username}}-
-                        <br>
-                        {% if converstation.title == request.user.username %}
+                        -{{user}}-
+                        <br> -->
+                        {% if converstation.title == request.user.username and user == converstation.host%}
                             yes
                         {% else %}
-                            no
+                            
                         {% endif %}
                         {% endfor %}
                     </div>
