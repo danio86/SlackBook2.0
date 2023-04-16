@@ -125,6 +125,13 @@
     border-radius: 2px;
 }
 
+.comment-field{
+    width: 90%;
+    background-color: dimgray;
+    border: 1px solid darkcyan;
+    border-radius: 10px;
+}
+
 /* Footer */
 footer{
     position: fixed;

@@ -43,13 +43,7 @@
 
                     <div>
                         {% for converstation in chat|slice:"1" %}
-                        <!-- -{{converstation.title}}-
-                        <br>
-                        -{{user}}-
-                        <br> -->
                         {% if converstation.title == request.user.username and user == converstation.host %}
-                            <!-- yes -->
-                            <!-- {{converstation.id}} -->
                             <a href="{% url 'chat' converstation.id %}">Y</a>
                             {{ break }}
                         {% else %}
@@ -57,18 +51,9 @@
                         {% endif %}
                         {% endfor %}
                     </div>
-
-                    
-
-                    <!-- <div>
-                        {% include 'base/chat.html' %}
-                    </div> -->
                   
                     <div>
-                    <h3>Joined Channels</h3>     
-                        
-                    
-
+                    <h3>Joined Channels</h3>
                     {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
 
