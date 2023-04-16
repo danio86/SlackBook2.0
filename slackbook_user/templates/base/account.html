@@ -42,24 +42,27 @@
                     
 
                     <div>
-                        {% for converstation in chat %}
+                        {% for converstation in chat|slice:"1" %}
                         <!-- -{{converstation.title}}-
                         <br>
                         -{{user}}-
                         <br> -->
-                        {% if converstation.title == request.user.username and user == converstation.host%}
-                            yes
-                            {{converstation.id}}
+                        {% if converstation.title == request.user.username and user == converstation.host %}
+                            <!-- yes -->
+                            <!-- {{converstation.id}} -->
                             <a href="{% url 'chat' converstation.id %}">Y</a>
+                            {{ break }}
                         {% else %}
-                            
+                            {% include 'base/chat.html' %}
                         {% endif %}
                         {% endfor %}
                     </div>
 
-                    <div>
+                    
+
+                    <!-- <div>
                         {% include 'base/chat.html' %}
-                    </div>
+                    </div> -->
                   
                     <div>
                     <h3>Joined Channels</h3>     
