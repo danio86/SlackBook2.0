@@ -40,6 +40,7 @@
                 <div class="col-6" style="margin-left: -10px;">
 
                     
+                {% if request.user != user %}
 
                     <div>
                         {% for converstation in chat|slice:"1" %}
@@ -51,11 +52,21 @@
                         {% endif %}
                         {% endfor %}
                     </div>
+
+                {% endif %}
                   
                     <div>
+                       
+
                     <h3>Joined Channels</h3>
                     {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
+                    <!-- {% if comment.channel.title == comment.channel.title %}
+                            <br>
+                            {{ comment.channel.title }}
+                            yes
+                            {{pass}}
+                        {% endif %} -->
 
                         <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
                         <h5><a href="#">{{comment.channel.title}}</a></h5>
@@ -73,7 +84,11 @@
                         </div>
                         <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
                         <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
-                        <hr> 
+                         
+
+                        
+                        <hr>
+                
                     {% endif %}    
                     {% endfor %}        
                     </div>
