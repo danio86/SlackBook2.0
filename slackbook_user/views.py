@@ -126,6 +126,8 @@ def account(request, pk):
     # chat = Chat.objects.get(id=request.user.id)
     chat = Chat.objects.all()
     user_channels = queryset.channel_set.all()
+    all_Channels = Channel.objects.all()
+    guests = queryset.guests.all()
     user_comments = queryset.post_set.all()
     categories = Topic.objects.all()
 
@@ -190,15 +192,11 @@ def account(request, pk):
         return redirect('chat', chat[0].id)
         # return redirect('home')
 
-
-
-
-
-
     context = {'user': queryset, 'channels': user_channels,
                'comments': user_comments, 'topics': categories,
                'channel_count': channel_count, 'joined_count': joined_count,
-               'form': form, 'categories': categories, 'chat': chat}
+               'form': form, 'categories': categories, 'chat': chat,
+               'all_Channels': all_Channels, 'guests': guests}
     return render(request, 'base/account.html', context)
 
 

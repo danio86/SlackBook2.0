@@ -67,7 +67,7 @@
                             yes
                             {{pass}}
                         {% endif %} -->
-
+                        
                         <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
                         <h5><a href="#">{{comment.channel.title}}</a></h5>
                         
@@ -84,13 +84,18 @@
                         </div>
                         <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
                         <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
-                         
-
-                        
                         <hr>
+                        
                 
                     {% endif %}    
-                    {% endfor %}        
+                    {% endfor %}
+                    
+                        <div>
+                            {% for guest in guests %}
+                                {{guest}}
+                            {% endfor %}
+                        </div>
+
                     </div>
                 </div>  
             </div>  
