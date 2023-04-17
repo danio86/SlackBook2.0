@@ -151,7 +151,7 @@ def account(request, pk):
 
     # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
-    joined_count = 0
+    joined_count = guests.count() - channel_count
     # for chan in Channel.objects.all():
     #     if queryset.username == chan.guests:
     #         joinded_count += 1

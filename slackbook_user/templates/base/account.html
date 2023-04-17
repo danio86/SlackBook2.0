@@ -58,8 +58,8 @@
                     <div>
                        
 
-                    <h3>Joined Channels</h3>
-                    {% for comment in comments %}
+                    <h3>{{joined_count}} Joined Channels</h3>
+                    <!-- {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
                     
                         
@@ -83,21 +83,31 @@
                         
                 
                     {% endif %}    
-                    {% endfor %}
+                    {% endfor %} -->
                     
                         <div>
                             {% for guest in guests %}
                                 <!-- {{guest}} -->
                                 {% if guest.host != user %}
-                                    <h5><a href="#">{{guest.title}}</a></h5>
-                                    <br>
-                                    <h5><a href="#">{{guest.host.username}}</a></h5>
-                                    <br>
-                                    {% for comment in comments %}
-                                        {% if guest.title == comment.channel.title and comment.user == user %}
-                                            <small>{{ comment.body }} - {{ comment.created_on|timesince }} ago</small>
-                                        {% endif %}
-                                    {% endfor %}
+                                    <div class="channel-content">
+                                        <h5><a href="#">{{guest.title}}</a></h5>                                 
+                                        <h6><a href="#">@{{guest.host.username}}</a></h6>                                 
+                                        {% for comment in comments %}
+                                            {% if guest.title == comment.channel.title and comment.user == user %}
+                                                <small>@{{ comment.user.username }} - {{ comment.created_on|timesince }} ago</small>
+                                                <div class="channel-content">
+                                                    {{ comment.body }}
+                                                    {% if comment.image %}
+                                                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                                                    {% endif %}
+                                                </div>
+                                                <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
+                                                <span><small>{{ comment.channel.topic.title }}</small></span>
+                                            {% endif %}               
+                                            {{ break }}                 
+                                        {% endfor %}
+                                    </div>
+                                    <hr>
                                 {% endif %}
                             {% endfor %}
                         </div>
