@@ -61,12 +61,7 @@
                     <h3>Joined Channels</h3>
                     {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
-                    <!-- {% if comment.channel.title == comment.channel.title %}
-                            <br>
-                            {{ comment.channel.title }}
-                            yes
-                            {{pass}}
-                        {% endif %} -->
+                    
                         
                         <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
                         <h5><a href="#">{{comment.channel.title}}</a></h5>
@@ -92,7 +87,18 @@
                     
                         <div>
                             {% for guest in guests %}
-                                {{guest}}
+                                <!-- {{guest}} -->
+                                {% if guest.host != user %}
+                                    <h5><a href="#">{{guest.title}}</a></h5>
+                                    <br>
+                                    <h5><a href="#">{{guest.host.username}}</a></h5>
+                                    <br>
+                                    {% for comment in comments %}
+                                        {% if guest.title == comment.channel.title and comment.user == user %}
+                                            <small>{{ comment.body }} - {{ comment.created_on|timesince }} ago</small>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                             {% endfor %}
                         </div>
 
