@@ -143,6 +143,11 @@
     border-radius: 10px;
 }
 
+#id_body{
+    height: 50px;
+    width: -moz-available;
+  }
+
 /* Footer */
 footer{
     position: fixed;

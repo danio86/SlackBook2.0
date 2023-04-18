@@ -27,7 +27,7 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         # fields = '__all__'
-        fields = ['body', 'image', 'image_description']
+        fields = ['body', 'image']
 
 
 class ChatForm(ModelForm):

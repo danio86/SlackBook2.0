@@ -39,28 +39,29 @@
         
 
           {% if request.user.is_authenticated %}
-          <div class="post-form">
+          <!-- <div class="post-form">
               <form action="" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <input type="text" placeholder="Place your Comment..." name="body">   
+                  <input type="text" placeholder="Place your Comment..." name="body">    -->
                   <!-- <input type="image" placeholder="Image..." name="image">   
                   <input type="file" placeholder="Image..." name="image">   
                   <input type="submit" value="Submit"> -->
-              </form>
+              <!-- </form>
           </div>
-          <hr>
+          <hr> -->
 
           <form action="" method="POST" enctype="multipart/form-data">
             <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
             {% csrf_token %}
+            <h6><small>Your contribution:</small></h6>
             {% for field in post_form %}
                 <div>
-                    <label for="post-field" name="">{{ field.label }}</label>
-                    {{ field }}
-                </div>
-                <br>           
+                    <!-- <label for="post-field" name="">{{field.label}}</label> -->
+                    <div>{{ field }}</div>
+                </div>        
                 {% endfor %}
-                <input type="submit" value="Submit">
+                <br>
+                <input class="btn btn-outline-success button" type="submit" value="Submit">
             </form>
           <hr>
 
