@@ -6,7 +6,7 @@
     <div class="col-4 main-channel-content">
 
       <div>  
-        <h2 class="main-content-headline">{{ channel.title }}</h2>
+        <h2 class="channel-headline">{{ channel.title }}</h2>
         {% if request.user == channel.host %}
         <small>
           <a href="{% url 'update-channel' channel.id %}"><i class="fas fa-edit"></i></a>
@@ -27,15 +27,11 @@
                     <small><a href="#">@{{ post.user.username }}</a> - {{ post.created_on|timesince }} ago</small>
                     <!-- timesince replace the date and the time -->
                     <p>Comment: {{ post.body }}</p>
-                    <br>
                     {% if post.image %}
                         <img class="post-image" src="{{ post.image.url }}" alt="post-image">
-                    {% else %}
-                        <p>Comment: {{ post.body }}</p>
                     {% endif %}
-                    <br>
                     {% if request.user == post.user%}
-                        <a href="{% url 'delete-comment' post.id %}"><button>Delete Comment</button></a>
+                        <a href="{% url 'delete-comment' post.id %}"><button class="btn btn-outline-success button">X</button></a>
                     {% endif %}
                     <hr>  
                 </div>
@@ -73,12 +69,14 @@
     </div>
     
     <div class="col-4 main-channel-content">
-      <h2 class="main-content-headline">Who is there? ({{guests.count}} joined)</h2>
-          {% for guest in guests %}
-              <div>
-                  <a href="#"><p><i class="fas fa-user"></i> @{{ guest.username }}</p></a>
-              </div>
-          {% endfor %}
+        <div class="main-content">
+            <h2 class="channel-headline">Who is there? ({{guests.count}} joined)</h2>
+            {% for guest in guests %}
+                <div class="channel-content">
+                    <a href="#"><p><i class="fas fa-user"></i> @{{ guest.username }}</p></a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
   </div>
 </div>

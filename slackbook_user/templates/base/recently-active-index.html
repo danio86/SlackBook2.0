@@ -8,12 +8,14 @@
                             <small><a href="{% url 'account' user.id %}">@{{ user.username }}</a></small>
                             <br>
                             {% for comment in user.post_set.all|slice:"1" %}
+                                {% if comment.channel and comment.channel.private == False %}
                                 {{ comment.created_on|timesince }}
                                 <br>
                                 <div class="channel-content">
                                 {{ comment.body }}
                                 </div>
                                 in Channel: <a href="#">{{comment.channel.title}}</a>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <br>

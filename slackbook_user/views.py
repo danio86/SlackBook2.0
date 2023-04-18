@@ -61,7 +61,7 @@ def channel(request, pk):
             #     body=post_form.body,
             #     image=post_form.image,
             # )
-
+            queryset.guests.add(request.user)
             return redirect('channel', pk)
         # else:
         #     messages.error(request, 'Please only enter letters.')
@@ -76,7 +76,7 @@ def channel(request, pk):
     #     )
         # .create is a django function
 
-        queryset.guests.add(request.user)
+        # queryset.guests.add(request.user)
         # this makes everybody a guest of the channel who posts something
         return redirect('channel', pk)
 
