@@ -15,13 +15,25 @@
                     <br>
                 <span>{{ user.username }}</span>
                 {% if request.user == user %}
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <!-- <a href="#"><i class="fas fa-envelope"></i></a> -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          {% for conversation in chat %}
+                            {% if conversation.host == user %}
+                            <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation}}</a>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                    </div>
                 {% endif %}
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-6">
-                    <h3>{{channel_count}} hosted Channels</h3>      
+                    <h4>{{channel_count}} hosted Channels</h4>      
                     {% for topic in channels %}
                     <div class="channel-content">
                         <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
@@ -41,7 +53,7 @@
                 </div>
 
                 <div class="col-6" style="margin-left: -10px;">
-
+                    <h4>Send {{user.username }} a message</h4>
                     
                 {% if request.user != user %}
 
@@ -61,7 +73,7 @@
                     <div>
                        
 
-                    <h3>{{joined_count}} Joined Channels</h3>
+                    <h4>{{joined_count}} Joined Channels</h4>
                     <!-- {% for comment in comments %}
                     {% if comment.channel.host.username != user.username %}
                     

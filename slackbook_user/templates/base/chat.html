@@ -1,16 +1,23 @@
-
+{% load static %}
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-4 main-channel-content">
+    <div class="col-4 main-content">
 
         <div class="channel-content">
+            <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a>
             {% if 'chat' in request.path %}
-            <label for="channel-description">Conversation:</label>
+            <label for="channel-description">Conversation with
+                {% if request.user == chat.host %}
+                    {{ chat.title }}
+                {% else %}
+                    {{ chat.host }}
+                {% endif %}:
+            </label>
             <br>
-            {% endif %}
             {{ chat.body }} {{ chat.created_on|timesince }}
             <hr>
+            {% endif %}
             {% for post in posts %}
             {% if post.chat %}
                 <div>
@@ -43,7 +50,9 @@
                 <!-- <input type="submit" value="Submit">  -->
               </form>
           </div>
-          <hr>
+          {% if 'chat' in request.path %}
+            <hr>
+          {% endif %} 
 
           <!-- <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
