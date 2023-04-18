@@ -61,7 +61,7 @@ class Channel(models.Model):
 class Chat(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200)
-    body = models.TextField(blank=True, max_length=200)
+    body = models.TextField(blank=True, max_length=200, default=' ', null=True)
     image = CloudinaryField('image', default='placeholder')
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
