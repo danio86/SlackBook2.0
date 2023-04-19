@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-nav.html" %}
 
 {% load i18n %}
 
@@ -9,27 +9,17 @@
     <div class="row justify-content-center">
       <div class="col-4 main-channel-content">
   
-        <div>
+        <div class="channel-content">
             <h1>{% trans "Sign Out" %}</h1>
 
-            <p>{% trans 'Are you sure you want to ?? sign out?' %}</p>
+            <p>{% trans 'Are you sure you want to sign out?' %}</p>
 
             <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
             {% endif %}
-
-                test{{ request.user.username }}test
-                <br>
-                test{{ request.user.loggedin }}test
-                <br>
-                <input type="checkbox" value="False" name="loggedin">
-                <br>
-            <!-- <button type="submit" name="loggedin" value="False">{% trans 'Log Out' %}</button> -->
-            <button name="loggedin" value="False">Set to False</button>
-
-            <button type="submit">{% trans 'Sign Out' %}</button>
+            <button class="btn btn-outline-success button" type="submit">{% trans 'Log Out' %}</button>
             </form>
         </div>
     </div>

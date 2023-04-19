@@ -21,7 +21,7 @@
 <!------------------------------- Header -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
       <div class="row header no-gutters">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
         </div>
 
         
-        <div class="col-md-8 collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="col-md-6 collapse navbar-collapse" id="navbarSupportedContent">
           <div class="row header2">
               <!-- <div class="col-md-6" > -->
                 <div class="col-md-6 btn-group account-image">
@@ -41,11 +41,9 @@
                       {% endif %}
                       <!-- <i class="fas fa-user"></i> -->
                       {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">              
-                      {% elif not user.is_authenticated %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                        <img class="user-image" src="/static/images/avatar.png" alt="user-image">              
                       {% else %}
-                         <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
+                            <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
                       {% endif %}
                       <!-- <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image"> -->
                       </button>
@@ -78,12 +76,6 @@
                         </li>
                       </div>
                     </div>
-              <div class="col-md-6">
-                <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="s">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </div>
         </div>
         </div>
         </div>

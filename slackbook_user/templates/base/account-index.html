@@ -13,55 +13,194 @@
             {% endfor %}
             hallo2
         </div> -->
+        {% if user.is_authenticated %}
+        <div>
+            <small><p class="channel-assignment">You joined:</p></small>
+
+            <!-- {% for comment in user.post_set.all %}
+                {% if comment.channel.host != request.user %}
+                    {{comment.channel.title}}
+                {% endif %}
+            {% endfor %} -->
+
+
+            {% for comment in comments %}
+                {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
+                <div class="channel-content"> 
+                
+                    <!-- {{ comment.channel.title|slice:":-" }}  -->
+                    <!-- {{ comment.channel.title|slice:"-1" }}  -->
+                    <!-- {{ comment.channel.title|slice:"first" }}  -->
+                    <!-- {{ comment.channel.title }} -->
+                    
+                        <h4><a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a></h4>
+                    
+                        <!-- test{{comment.channel.host.online}}test -->
+
+                        {% if comment.channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            <!-- {% if comment.channel.host.online == 'False' %}
+                            <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="logo">
+                            {% else %}
+                            <img class="user-logedout" src="{{ comment.channel.host.avatar.url }}" alt="logo">
+                            {% endif %}                  -->
+                        {% else %}
+                            <!-- {% if comment.channel.host.online == 'False' %}
+                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            {% else %}
+                            <img class="user-logedout" src="/static/images/avatar.png" alt="logo">
+                            {% endif %} -->
+                            <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
+                        {% endif %}
+                        <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
+                        <!-- <a href="#"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i> -->
+                        <div>
+                            <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                            <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
+                        </div>               
+                        <div>
+                            <div class="channel-content">
+                                
+                                <h5>{{ comment.body}}</h5>
+                                {% if comment.image %}
+                                    <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                                {% endif %}
+                            </div>  
+                        </div>
+                        <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
+                        <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
+                    </div>  
+                    <hr> 
+                         
+                {% endif %}
+                <!-- {{ comment.channel.title|slice:":-" }}    -->
+            {% endfor %}
+        </div>
+    
+        <small><p class="channel-assignment">You hosted:</p></small>
+        {% for topic in channels %}
+        {% if request.user == topic.host or request.user == topic_post.user %}
+        <div class="channel-content">
+            <!-- {{ topic.host.account_logout }} -->
+            <h4><a href="{% url 'channel' topic.id %}">{{topic.title}}</a></h4>
+            <img class="user-image" src="{{ topic.host.avatar.url }}" alt="user-image">
+            <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
+            <br>
+            <!-- loggedIn: {{ topic.host.loggedin }} -->
+            <br>
+            {% if request.user == topic.host %}
+                <a href="{% url 'update-channel' topic.id %}">Edit</a>
+                <a href="{% url 'delete-channel' topic.id %}">Delete</a>
+            {% endif %}
+            {% for comment in comments %}
+                {% if comment.channel.title == topic.title %}
+                <div>
+                    <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                    <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
+                </div>               
+                <div>
+                    <div class="channel-content">
+                        <h5>{{ comment.body }}</h5>
+                        {% if comment.image %}
+                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                        {% endif %}
+                    </div>  
+                </div>
+                <br>
+                {% endif %}
+            {% endfor  %}
+
+                <a href="{% url 'member' topic.id %}"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                <span class="category-open"><small>{{ topic.topic.title }}</small></span>
+        </div>
+        <hr>
+        {% endif %}
+        {% endfor %}
+
+        {% else %}
+            <div class="channel-content">
+            <h2>Your channels could be here. Please <a href="{% url 'account_signup' %}">sign up!</a></h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+        
+<div class="row justify-content-around">
+    <div class="col-4 main-content">
+
+        <!-- <div >
+            hallo
+            {{request.user.username}} - {{comment.user.username}} -
+            {% for comment in comments %}
+            {{comment.channel.host.username}}
+                {% if comment.user.username == request.user.username or request.user.username == comment.channel.host %}
+                    {{ comment.channel.title }}
+                {% endif %}
+                
+            {% endfor %}
+            hallo2
+        </div> -->
 
         <div>
             <small><p class="channel-assignment">You joined:</p></small>
-            <!-- hallo
-            {{request.user.username}} - {{comment.user.username}} - -->
+
+           
+
+
             {% for comment in comments %}
-            <!-- {{comment.channel.host.username}} -->
+                
                 
                 {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
                 <div class="channel-content"> 
+                
+                    <!-- {{ comment.channel.title|slice:":-" }}  -->
+                    <!-- {{ comment.channel.title|slice:"-1" }}  -->
+                    <!-- {{ comment.channel.title|slice:"first" }}  -->
+                    <!-- {{ comment.channel.title }} -->
                     
-                    <h4><a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a></h4>
+                        <h4><a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a></h4>
+                    
+                        <!-- test{{comment.channel.host.online}}test -->
 
-                    <!-- test{{comment.channel.host.online}}test -->
-
-                    {% if comment.channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                        <!-- {% if comment.channel.host.online == 'False' %}
-                        <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="logo">
+                        {% if comment.channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            <!-- {% if comment.channel.host.online == 'False' %}
+                            <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="logo">
+                            {% else %}
+                            <img class="user-logedout" src="{{ comment.channel.host.avatar.url }}" alt="logo">
+                            {% endif %}                  -->
                         {% else %}
-                        <img class="user-logedout" src="{{ comment.channel.host.avatar.url }}" alt="logo">
-                        {% endif %}                  -->
-                    {% else %}
-                        <!-- {% if comment.channel.host.online == 'False' %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                        {% else %}
-                        <img class="user-logedout" src="/static/images/avatar.png" alt="logo">
-                        {% endif %} -->
-                        <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
-                    {% endif %}
-                    <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
-                    <!-- <a href="#"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i> -->
-                    <div>
-                        <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
-                        <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
-                    </div>               
-                    <div>
-                        <div class="channel-content">
-                            <h5>{{ comment.body }}</h5>
-                            {% if comment.image %}
-                                <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
-                            {% endif %}
-                        </div>  
-                    </div>
-                    <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
-                    <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
-                </div>  
-                <hr>      
-                {% endif %}     
+                            <!-- {% if comment.channel.host.online == 'False' %}
+                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            {% else %}
+                            <img class="user-logedout" src="/static/images/avatar.png" alt="logo">
+                            {% endif %} -->
+                            <img class="user-image" src="{{ comment.channel.host.avatar.url }}" alt="user-image">
+                        {% endif %}
+                        <h5><a href="#">@{{comment.channel.host.username}}</a></h5>
+                        <!-- <a href="#"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i> -->
+                        <div>
+                            <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                            <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
+                        </div>               
+                        <div>
+                            <div class="channel-content">
+                                
+                                <h5>{{ comment.body}}</h5>
+                                {% if comment.image %}
+                                    <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                                {% endif %}
+                            </div>  
+                        </div>
+                        <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
+                        <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
+                        <!-- {{ comment.channel.guests.set.all.username }} -->
+                    </div>  
+                    <hr> 
+                         
+                {% endif %}
+                <!-- {{ comment.channel.title|slice:":-" }}    -->
             {% endfor %}
         </div>
     

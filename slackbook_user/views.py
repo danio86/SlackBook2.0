@@ -18,7 +18,8 @@ def home(request):
 
     topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
-    users = User.objects.all()
+    users = User.objects.all().order_by('-loggedin')
+    # guests = users.guests.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(
         Q(channel__topic__title__icontains=s))
@@ -28,7 +29,7 @@ def home(request):
 
     context = {
         'topics': topics, 'channels': channels, 'queryset': queryset,
-        'comments': comments, 'users': users
+        'comments': comments, 'users': users, 
     }
     return render(request, 'base/index.html', context)
 
