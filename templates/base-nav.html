@@ -42,8 +42,10 @@
                       <!-- <i class="fas fa-user"></i> -->
                       {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
                         <img class="user-image" src="/static/images/avatar.png" alt="user-image">              
+                      {% elif not user.is_authenticated %}
+                        <img class="user-image" src="/static/images/avatar.png" alt="logo">
                       {% else %}
-                            <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
+                        <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
                       {% endif %}
                       <!-- <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image"> -->
                       </button>
