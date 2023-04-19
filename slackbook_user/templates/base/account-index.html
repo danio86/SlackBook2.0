@@ -117,11 +117,7 @@
         {% endif %}
         {% endfor %}
 
-        {% else %}
-            <div class="channel-content">
-            <h2>Your channels could be here. Please <a href="{% url 'account_signup' %}">sign up!</a></h2>
-            </div>
-        {% endif %}
+        
     </div>
 </div>
 
@@ -243,6 +239,12 @@
         <hr>
         {% endif %}
         {% endfor %}
+
+        {% else %}
+            <div class="channel-content">
+            <h2>Your channels could be here. Please <a href="{% url 'account_signup' %}">sign up!</a></h2>
+            </div>
+        {% endif %}
 
     </div>
 </div>

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-nav.html" %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -11,10 +11,11 @@
 
             <div class="container">
                 <div class="row justify-content-center">
-                  <div class="col-4 main-channel-content">
+                  <div class="col-4">
               
-                    <div class="main-content">  
-                        <h1>{% trans "Sign In toyou" %}</h1>
+                    <div class="row main-content">
+                    <div class="col-md-6 offset-md-3 channel-content">  
+                        <h1>{% trans "Log In" %}</h1>
 
                         {% get_providers as socialaccount_providers %}
 
@@ -40,19 +41,16 @@
                         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
                         {% endif %}
 
-                        test
-                        {% trans "test" %}
-                        {{ request.user }}
-
                         <form class="login" method="POST" action="{% url 'account_login' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
-                        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-                        <button class="primaryAction" type="submit">{% trans "Log In" %}</button>
+                        <!-- <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
+                        <button class="primaryAction btn btn-outline-success button" type="submit">{% trans "Log In" %}</button>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>
