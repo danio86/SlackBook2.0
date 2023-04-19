@@ -24,7 +24,7 @@
             <hr>
             {% for post in posts %}
                 <div>
-                    <small><a href="#">@{{ post.user.username }}</a> - {{ post.created_on|timesince }} ago</small>
+                    <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> - {{ post.created_on|timesince }} ago</small>
                     <!-- timesince replace the date and the time -->
                     <p>Comment: {{ post.body }}</p>
                     {% if post.image %}
@@ -70,11 +70,17 @@
     </div>
     
     <div class="col-4 main-channel-content">
-        <div class="main-content">
+        <div>  
             <h2 class="channel-headline">Who is there? ({{guests.count}} joined)</h2>
+        <div class="channel-content">
             {% for guest in guests %}
-                <div class="channel-content">
-                    <a href="#"><p><i class="fas fa-user"></i> @{{ guest.username }}</p></a>
+                <div>
+                    {% if guest.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                        <img class="user-image" src="/static/images/avatar.png" alt="logo"><a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
+                    {% else %}
+                        <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image"><a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
+                        <!-- <p>{{guest.avatar.url}}<a href="{% url 'account' guest.id %}"> @{{ guest.username }}</p></a> -->
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

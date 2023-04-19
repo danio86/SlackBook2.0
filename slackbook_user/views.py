@@ -22,7 +22,7 @@ def home(request):
     # guests = users.guests.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(
-        Q(channel__topic__title__icontains=s))
+        Q(channel__topic__title__icontains=s))[0:3]
     # Q(channel__title__icontains=s))
     # this filters by the title of the topic of the channel
     # if the url ending is in channel title
