@@ -2,21 +2,21 @@
 
 {% block content %}
 
-<div class="row justify-content-around">
-    <div class="col-2">
+<div class="row justify-content-center">
+    <div class="col-3">
         <div class="channel-content">
             <div class="row">
-                <a class="col-md-8" href="{% url 'topics' %}">All Categories</a>
-                <span class="col-md-4">{{topics.count}}</span>
+                <a class="col-md-10" href="{% url 'topics' %}">All Categories</a>
+                <span class="col-md-2">{{topics.count}}</span>
             </div>
             <br>
 
             {% for topic in topics %}
                 <div class="row">
-                    <a class="col-md-8" href="{% url 'topics' %}?s={{topic.title}}">{{topic.title}}</a>
+                    <a class="col-md-10" href="{% url 'topics' %}?s={{topic.title}}">{{topic.title}}</a>
                     <!-- this leads to the home-page with the url-endig of ?r=topic.title (e.x. pizza) -->
                     <!-- r = request couls be any letter -->
-                    <span class="col-md-4">{{topic.channel_set.all.count}}</span>
+                    <span class="col-md-2">{{topic.channel_set.all.count}}</span>
                     <!-- all childs of topic.Channel -->
                 </div>
             {% endfor %}
@@ -25,11 +25,11 @@
         </div>
     </div>
 
-    <div class="col-2">
+    <div class="col-3">
         <div class="channel-content">
             <div class="row">
-                <a class="col-md-8" href="{% url 'topics' %}">All Channels</a>
-                <span class="col-md-4">{{ queryset.count }}</span>
+                <a class="col-md-10" href="{% url 'topics' %}">Available Channels</a>
+                <span class="col-md-2">{{ queryset.count }}</span>
             </div>
             <br>
 
@@ -42,7 +42,9 @@
                     <br>
                     <!-- this leads to channel(name!) with the right id -->
                     {% if channel.post_set.all|first %}
-                    <div class="channel-content">{{ channel.post_set.all|first }}</div>
+                    <div class="channel-content">
+                        {{ channel.post_set.all|first }}
+                    </div>
                     {% endif %}
                     <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
                     <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>

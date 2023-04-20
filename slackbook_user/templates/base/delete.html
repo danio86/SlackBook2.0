@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="row text-white bg-dark">
+    <div class="row text-white bg-dark main-content">
         <div class="col-md-3"></div>
-        <div class="col-md-6 delete-form">   
+        <div class="col-md-6 delete-form channel-content">   
             <form action="" method="POST">
                 {% csrf_token %}
-                <button class="field-headline"><a href="{{request.META.HTTP_REFERER}}">Back</a></button>
+                <button class="field-headline btn btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Back</a></button>
                 <br>
                 <div class="field-contend">
-                    <p>Are you sure you want to delete:
-                    <br>{{object}}?</p>
+                    <p>Are you sure you want to delete:</p>
                     <br>
-                    <input class="bg-info text-dark input" type="submit" value="CONFIRM">
+                    {{object}}
+                    {% if object.image %}
+                    <br>
+                    <img class="post-image" src="{{ object.image.url }}" alt="post-image">
+                    {% endif %}?
+                    <br>
+                    <hr>
+                    <input class="bg-danger text-dark input btn btn-outline-success button" type="submit" value="CONFIRM">
                 </div>
                 
                 <!-- this leads back to the page the user was before -->

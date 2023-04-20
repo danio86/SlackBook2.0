@@ -61,10 +61,14 @@
     border-color: darkcyan;
 }
 
-.btn-outline-success {
+.btn-outline-success{
     color: darkcyan;
     border-color: darkcyan;
-  }
+}
+
+.navbar-light .navbar-toggler{
+    background-color: darkcyan;
+}
 
 /* Main Content */
 .container{
@@ -138,7 +142,7 @@
     width: 150px;
     height: 100px;
     border: 1px solid darkcyan;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 .comment-field{
@@ -151,7 +155,12 @@
 #id_body{
     height: 50px;
     width: -moz-available;
-  }
+}
+
+#id_image {
+    width: -moz-available;
+    font-size: 70%;
+}
 
 /* Footer */
 footer{
