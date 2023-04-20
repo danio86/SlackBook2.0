@@ -1,8 +1,8 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
 
+        <div class= "channel-content"><a class="col-md-8" href="{% url 'home' %}">Available Channels: </a><span class="col-md-4">{{ queryset.count }}</span></div>
         {% for channel in queryset %}
-
         <div class="channel-content">
             <div><h5><a href="{% url 'channel' channel.id %} ">{{channel.title}}</a></h5></div>
             <a href="#"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>

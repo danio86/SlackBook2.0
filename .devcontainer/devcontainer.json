@@ -1,4 +1,4 @@
-ge.py runserv{
+{
   "name": "Codeinstitute template",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",

@@ -17,25 +17,27 @@
         <div>
             <small><p class="channel-assignment">You joined:</p></small>
 
-            {% for comment in user.post_set.all %}
+            <!-- {% for comment in user.post_set.all %}
                 {% ifchanged comment.channel.title %}
                 {% if comment.channel.host != request.user %}
-                    {{ comment.channel.title }}
+                    {{ comment.channel.title|make_list }}
                 {% endif %}
                 {% endifchanged %}
-            {% endfor %}
+            {% endfor %} -->
                 
+            
 
-
-            {% for comment in comments %}
+            {% for comment in user.post_set.all %}
+                {% ifchanged comment.channel.title %}
                 {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
                 <div class="channel-content"> 
                 
                     <!-- {{ comment.channel.title|slice:":-" }}  -->
                     <!-- {{ comment.channel.title|slice:"-1" }}  -->
                     
-                    
-                        <h4><a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a></h4>
+                        <!-- {{comment.channel.id}} -->
+                        <h4><a href="#">{{ comment.channel.title }}</a></h4>
+                        
                     
                         <!-- test{{comment.channel.host.online}}test -->
 
@@ -75,7 +77,7 @@
                     <hr> 
                          
                 {% endif %}
-                <!-- {{ comment.channel.title|slice:":-" }}    -->
+                {% endifchanged %}
             {% endfor %}
         </div>
     

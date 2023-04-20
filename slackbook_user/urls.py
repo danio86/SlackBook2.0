@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('channel/<str:pk>/', views.channel, name='channel'),
+    path('topics', views.topics, name='topics'),
     path('chat/<str:pk>/', views.chat, name='chat'),
     # path('topics/', views.topics, name='topics'),
     path('account/<str:pk>/', views.account, name='account'),
@@ -20,6 +21,6 @@ urlpatterns = [
     path(
      'delete-channel/<str:pk>/', views.deleteChannel, name='delete-channel'),
     path('user-settings/', views.userSettings, name='user-settings'),
-    path('account/logout/', views.logoutUser, name='logout'),
+    # path('account/logout/', views.logoutUser, name='logout'),
 
 ]

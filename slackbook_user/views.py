@@ -14,7 +14,7 @@ def home(request):
         Q(topic__title__icontains=s) |
         Q(title__icontains=s) |
         Q(content__icontains=s)
-    )[0:6]
+    )
 
     topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
@@ -199,6 +199,21 @@ def account(request, pk):
                'form': form, 'categories': categories, 'chat': chat,
                'all_Channels': all_Channels, 'guests': guests}
     return render(request, 'base/account.html', context)
+
+
+def topics(request):
+    s = request.GET.get('s') if request.GET.get('s') is not None else ''
+
+    queryset = Channel.objects.filter(
+        Q(topic__title__icontains=s) |
+        Q(title__icontains=s) |
+        Q(content__icontains=s)
+    )
+
+    topics = Topic.objects.all()
+
+    context = {'topics': topics, 'queryset': queryset, }
+    return render(request, 'base/topics.html', context)
 
 
 @login_required(login_url='/accounts/login/')
