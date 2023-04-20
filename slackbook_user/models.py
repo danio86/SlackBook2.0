@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from cloudinary.models import CloudinaryField
+from taggit.managers import TaggableManager
 
 STATUS = ((0, 'Draft'), (1, 'Published'))
 
@@ -47,6 +48,7 @@ class Channel(models.Model):
     keywords = models.TextField(blank=True)
     private = models.BooleanField(default=False, blank=True)
     permission = models.TextField(blank=True)
+    tags = TaggableManager()
     # members = models.ManyToManyField(
     #     User, blank=True, related_name='members',
     #     limit_choices_to={'name': True})

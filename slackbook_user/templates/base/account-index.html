@@ -17,13 +17,7 @@
         <div>
             <small><p class="channel-assignment">You joined:</p></small>
 
-            <!-- {% for comment in user.post_set.all %}
-                {% ifchanged comment.channel.title %}
-                {% if comment.channel.host != request.user %}
-                    {{ comment.channel.title|make_list }}
-                {% endif %}
-                {% endifchanged %}
-            {% endfor %} -->
+            
                 
             
 
@@ -34,13 +28,9 @@
                 
                     <!-- {{ comment.channel.title|slice:":-" }}  -->
                     <!-- {{ comment.channel.title|slice:"-1" }}  -->
-                    
-                        <!-- {{comment.channel.id}} -->
-                        <h4><a href="#">{{ comment.channel.title }}</a></h4>
-                        
-                    
-                        <!-- test{{comment.channel.host.online}}test -->
-
+                        {% if comment.channel.id %}
+                        <h4><a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a></h4>
+                        {% endif %}                    
                         {% if comment.channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
                             <img class="user-image" src="/static/images/avatar.png" alt="logo">
                             <!-- {% if comment.channel.host.online == 'False' %}
