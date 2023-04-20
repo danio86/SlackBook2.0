@@ -8,7 +8,7 @@
       <div>  
         <h2 class="channel-headline">{{ channel.title }}</h2>
         {% if request.user == channel.host %}
-        <small>
+        <small class="main-content">
           <a href="{% url 'update-channel' channel.id %}"><i class="fas fa-edit"></i></a>
           <a href="{% url 'delete-channel' channel.id %}"><i class="fas fa-trash-alt"></i></a>
         </small>
