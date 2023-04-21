@@ -25,15 +25,17 @@
             <span>{{ channel.topic }}</span>
             <hr>
             <div class="channel-content">
-                <h3>Disscussion</h3>
+                <h3><a href="{{request.META.HTTP_REFERER}}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
                 {{ channel.content }}
                 <hr>
                 {% for post in objects %}
                 {% if post.channel.title == channel.title  %}
                 <div>
+                    
                     <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
                         {{ post.created_on|timesince }} ago</small>
                     <!-- timesince replace the date and the time -->
+                    <h5>{{ post.title }}</h5>
                     <p>Comment: {{ post.body }}</p>
                     {% if post.image %}
                     <img class="post-image" src="{{ post.image.url }}" alt="post-image">

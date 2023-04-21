@@ -75,7 +75,6 @@
         {% for topic in channels %}
         {% if request.user == topic.host or request.user == topic_post.user %}
         <div class="channel-content">
-            {{topic.id}}
             <h4><a href="{% url 'channel' topic.id %}">{{topic.title}}</a></h4>
             {% if topic.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
                 <img class="user-image" src="/static/images/avatar.png" alt="logo">
@@ -89,9 +88,10 @@
                 <a href="{% url 'update-channel' topic.id %}">Edit</a>
             {% endif %}
             {% for comment in comments %}
+            
                 {% if comment.channel.title == topic.title %}
                 <div>
-                    <small><a href="#">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
+                    <small><a href="{% url 'account' comment.user.id %}">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
                     <!-- <h5>answered to: <a href="#">{{ comment.channel }}</a></h5>     -->
                 </div>               
                 <div>
