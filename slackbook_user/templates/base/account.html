@@ -24,6 +24,10 @@
                           {% for conversation in chat %}
                             {% if conversation.host == user %}
                             <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation}}</a>
+                            {% else %}
+                                {% ifchanged You have no current conversation. %}
+                                    You have no current conversation.
+                                {% endifchanged %}                  
                             {% endif %}
                           {% endfor %}
                         </div>
@@ -60,7 +64,7 @@
                     <div>
                         {% for converstation in chat|slice:"1" %}
                         {% if converstation.title == request.user.username and user == converstation.host %}
-                            <a href="{% url 'chat' converstation.id %}">Y</a>
+                            <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
                             {{ break }}
                         {% else %}
                             {% include 'base/chat.html' %}

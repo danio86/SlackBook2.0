@@ -5,13 +5,13 @@
     <div class="col-4 main-content">
 
         <div class="channel-content">
-            <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a>
             {% if 'chat' in request.path %}
+            <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a>
             <label for="channel-description">Conversation with
                 {% if request.user == chat.host %}
                     {{ chat.title }}
                 {% else %}
-                    {{ chat.host }}
+                    {{ chat.host.username }}
                 {% endif %}:
             </label>
             <br>
@@ -46,7 +46,7 @@
                 {% if 'chat' in request.path %}
                 <input class="comment-field" type="text" placeholder="Place your meassage..." name="body">
                 {% endif %}   
-                <button type="submit">send</button>
+                <button class="btn btn-outline-success button" type="submit">send message</button>
                 <!-- <input type="submit" value="Submit">  -->
               </form>
           </div>
