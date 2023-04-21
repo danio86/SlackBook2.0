@@ -36,19 +36,18 @@ class Channel(models.Model):
     # title = models.CharField(max_length=200)
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True, max_length=200)
-    # slug = models.SlugField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
+    # slug = models.SlugField(max_length=200)
     guests = models.ManyToManyField(User, related_name='guests', blank=True)
     featured_image = CloudinaryField('image', default='placeholder')
     # excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     keywords = models.TextField(blank=True)
     private = models.BooleanField(default=False, blank=True)
     permission = models.TextField(blank=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     # members = models.ManyToManyField(
     #     User, blank=True, related_name='members',
     #     limit_choices_to={'name': True})
@@ -80,13 +79,15 @@ class Chat(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True)
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, null=True)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, null=True, blank=True)
     # this says to which channel the post belongs
     # all posts are children of the Channel Class/Model.
     # If Channel or User gets deleted, all posts have to get deleted too.
+    title = models.CharField(max_length=200, blank=True)
     body = models.TextField(blank=True)
     image = models.ImageField(null=True, blank=True)
     image_description = models.TextField(null=True, max_length=200, blank=True)
+    keywords = models.TextField(blank=True)
     # video = models.FileField(upload_to='videos_uploaded',null=True,
     # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     updated_on = models.DateTimeField(auto_now=True)

@@ -14,7 +14,7 @@ def home(request):
         Q(topic__title__icontains=s) |
         Q(title__icontains=s) |
         Q(content__icontains=s)
-    )
+    )[0:4]
 
     topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
@@ -29,17 +29,25 @@ def home(request):
 
     context = {
         'topics': topics, 'channels': channels, 'queryset': queryset,
-        'comments': comments, 'users': users, 
+        'comments': comments, 'users': users,
     }
     return render(request, 'base/index.html', context)
 
 
 def channel(request, pk):
+
+    s = request.GET.get('s') if request.GET.get('s') is not None else ''
+
+    objects = Post.objects.filter(
+        Q(title__icontains=s)
+    )
+
     queryset = Channel.objects.get(id=pk)
     posts = queryset.post_set.all().order_by('-created_on')
     # this gives all attributes of the Channel-Model-Child Post
     guests = queryset.guests.all()
     post_form = PostForm()
+    # chat = Chat.objects.all()
 
     if request.method == 'POST':
         # post_form = PostForm(request.FILES)
@@ -82,7 +90,7 @@ def channel(request, pk):
         return redirect('channel', pk)
 
     context = {'channel': queryset, 'posts': posts, 'guests': guests,
-               'post_form': post_form}
+               'post_form': post_form, 'objects': objects}
     return render(request, 'base/channel.html', context)
 
 
