@@ -23,9 +23,9 @@
 
             {% for comment in user.post_set.all %}
                 {% ifchanged comment.channel.title %}
-                {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username%}
-                <div class="channel-content"> 
-                
+                {% if comment.channel.title %}
+                {% if comment.user.username == request.user.username and request.user.username != comment.channel.host.username %}        
+                <div class="channel-content">     
                     <!-- {{ comment.channel.title|slice:":-" }}  -->
                     <!-- {{ comment.channel.title|slice:"-1" }}  -->
                         {% if comment.channel.id %}
@@ -64,8 +64,8 @@
                         <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
                         <span class="category-open"><small>{{ comment.channel.topic.title }}</small></span>
                     </div>  
-                    <hr> 
-                         
+                    <hr>            
+                {% endif %}
                 {% endif %}
                 {% endifchanged %}
             {% endfor %}
@@ -75,12 +75,14 @@
         {% for topic in channels %}
         {% if request.user == topic.host or request.user == topic_post.user %}
         <div class="channel-content">
-            <!-- {{ topic.host.account_logout }} -->
+            {{topic.id}}
             <h4><a href="{% url 'channel' topic.id %}">{{topic.title}}</a></h4>
-            <img class="user-image" src="{{ topic.host.avatar.url }}" alt="user-image">
-            <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a><i class="fas fa-user"></i>
-            <br>
-            <!-- loggedIn: {{ topic.host.loggedin }} -->
+            {% if topic.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                <img class="user-image" src="/static/images/avatar.png" alt="logo">
+            {% else %}
+                <img class="user-image" src="{{ topic.host.avatar.url }}" alt="user-image">
+            {% endif %}
+            <a href="{% url 'account' topic.host.id %}"><h5>@{{topic.host.username}}</h5></a>
             <br>
             {% if request.user == topic.host %}
                 <a href="{% url 'delete-channel' topic.id %}">Delete</a>
@@ -96,7 +98,7 @@
                     <div class="channel-content">
                         <h5>{{ comment.body }}</h5>
                         {% if comment.image %}
-                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                            <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
                         {% endif %}
                     </div>  
                 </div>

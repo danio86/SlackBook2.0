@@ -29,9 +29,8 @@
                 {{ channel.content }}
                 <hr>
                 {% for post in objects %}
-                
+                {% if post.channel.title == channel.title  %}
                 <div>
-                    <h5 {% url 'channel' post.channel.id %}?s={{post.title}}>{{post.title}}</h5>
                     <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
                         {{ post.created_on|timesince }} ago</small>
                     <!-- timesince replace the date and the time -->
@@ -45,6 +44,7 @@
                     {% endif %}
                     <hr>
                 </div>
+                {% endif %}
                 {% endfor%}
 
 

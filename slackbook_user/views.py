@@ -13,8 +13,8 @@ def home(request):
     queryset = Channel.objects.filter(
         Q(topic__title__icontains=s) |
         Q(title__icontains=s) |
-        Q(content__icontains=s)
-    )[0:4]
+        Q(description__icontains=s)
+    )
 
     topics = Topic.objects.all()[0:6]
     channels = Channel.objects.all()
@@ -155,7 +155,6 @@ def account(request, pk):
     #     post_form.image = request.POST.get('image')
     #     if post_form.is_valid():
     #         post_form.save()
-
             # return redirect('chat', pk)
 
     # channel_count = Channel.objects.count()
@@ -180,7 +179,6 @@ def account(request, pk):
     #     post_form.image = request.POST.get('image')
     #     if post_form.is_valid():
     #         post_form.save()
-
             # return redirect('chat', pk)
 
     form = ChatForm()
