@@ -138,6 +138,12 @@
     width: unset;
 }
 
+.channel-scroll{
+    height: 400px;
+/* overflow-y: scroll; */
+    overflow-y: auto;
+}
+
 .post-image{
     width: 150px;
     height: 100px;

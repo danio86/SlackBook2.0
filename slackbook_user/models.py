@@ -78,7 +78,7 @@ class Chat(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True)
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True, related_name='channel_post')
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, null=True, blank=True)
     # this says to which channel the post belongs
     # all posts are children of the Channel Class/Model.
