@@ -12,6 +12,7 @@ urlpatterns = [
     path(
      'delete-comment/<str:pk>/', views.deleteComment, name='delete-comment'),
     path('create-channel/', views.createChannel, name='create-channel'),
+    path('add-members/<str:pk>/', views.addMembers, name='add-members'),
     path('create-personal-channel/', views.createPersonalChannel,
          name='personal-channel'),
     path('channel-member/<str:pk>/', views.channelMember,

@@ -14,11 +14,11 @@ def home(request):
         Q(topic__title__icontains=s) |
         Q(title__icontains=s) |
         Q(description__icontains=s)
-    )
+    ).order_by('-created_on')
 
     topics = Topic.objects.all()[0:6]
-    channels = Channel.objects.all()
-    users = User.objects.all().order_by('-loggedin')
+    channels = Channel.objects.all().order_by('updated_on', '-created_on')
+    users = User.objects.all().order_by('-last_login')
     # guests = users.guests.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(
@@ -336,7 +336,44 @@ def updateChannel(request, pk):
 
         queryset.title = request.POST.get('topic-name')
         queryset.topic = category
-        queryset.description = request.POST.get('description')
+        # queryset.description = request.POST.get('description')
+        queryset.private = request.POST.get('private')
+        # queryset.guests = groups_member.update('guests')
+        # print(queryset.private)
+        # if queryset.private == 'True':
+        #     queryset.guests.add(request.POST.get('guests'))
+        # else:
+        #     pass
+
+        queryset.save()
+
+        return redirect('home')
+
+    context = {'form': form, 'categories': categories, 'queryset': queryset}
+    return render(request, 'base/create-channel.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def addMembers(request, pk):
+    queryset = Channel.objects.get(id=pk)
+    form = ChannelForm(instance=queryset)
+    categories = Topic.objects.all()
+    # this shows the prefild form to edit (instance is important!)
+    groups_member = queryset.guests.all()
+
+    # if request.user != queryset.host:
+    #     return HttpResponse('You are not authorized!')
+
+    if request.method == 'POST':
+        form = ChannelForm(request.POST, instance=queryset)
+        # this only updates the form. It doesn't refill it.
+
+        category_name = request.POST.get('topic')
+        category, created = Topic.objects.get_or_create(title=category_name)
+
+        queryset.title = request.POST.get('topic-name')
+        queryset.topic = category
+        # queryset.description = request.POST.get('description')
         queryset.private = request.POST.get('private')
         # queryset.guests = groups_member.update('guests')
         print(queryset.private)

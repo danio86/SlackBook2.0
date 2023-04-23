@@ -4,8 +4,8 @@ from .models import User, Channel, Topic, Post, Chat
 from django_summernote.admin import SummernoteModelAdmin
 
 admin.site.register(User)
-admin.site.register(Topic)
-admin.site.register(Post)
+# admin.site.register(Topic)
+# admin.site.register(Post)
 # admin.site.register(Channel)
 admin.site.register(Chat)
 
@@ -18,11 +18,16 @@ class ChannelAdmin(SummernoteModelAdmin):
     list_filter = ('status', 'created_on')
     summernote_fields = ('description',)
 
-# @admin.register(Post)
-# class PostAdmin(SummernoteModelAdmin):
 
-#     list_display = ('title', 'slug', 'status', 'created_on')
-#     search_fields = ['title', 'content']
-#     list_filter = ('status', 'created_on')
-#     prepopulated_fields = {'slug': ('title',)}
-#     summernote_fields = ('content',)
+@admin.register(Topic)
+class TopicAdmin(SummernoteModelAdmin):
+
+    search_fields = ['title']
+
+
+@admin.register(Post)
+class PostAdmin(SummernoteModelAdmin):
+
+    search_fields = ['user', 'channel']
+    list_filter = ('user', 'created_on')
+
