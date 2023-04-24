@@ -96,10 +96,12 @@
     
                     <br>
                     <div>
-
                         {% if form.private.value == True %}
+                        
                         {% if not 'add-members' in request.path %}
-                        <a href="{% url 'add-members' 1 %}">Add Members</a>
+                        <!-- test{{ queryset.id }}test -->
+                        <a href="{% url 'add-members' queryset.id %}">Add Members</a>
+                        <!-- <a href="{% url 'add-members' 1 %}">Add Members</a> -->
                         <!-- <label for="members">Members: </label>
                         <br>
                         <div aria-required="true" id="members" name="guests">{{form.guests}}</div> -->

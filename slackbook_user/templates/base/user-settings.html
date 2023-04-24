@@ -1,52 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row text-white bg-dark">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 user-settings">
-        <form action="" method="POST" enctype="multipart/form-data">
-        <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
-            {% csrf_token %}
-
-            {% for field in user_form %}
-            <div>
-                <label for="user-field">{{ field.label }}</label>
-                {{ field }}
-            </div>
-            <!-- {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} -->
-            <br>
-            {% endfor %}
+    <div class="row text-white bg-dark main-content">
         
-            <!-- <div>
-                <label for="avatar">Avatar: <i class='fas fa-user'></i> </label>
-                <input id="avatar" type="file" placeholder="blbla" name="avatar">
-            </div>
-            <br> -->
-            <!-- <div>
-                <label for="username">Username: </label>
-                <input id="username" type="text" placeholder="Please enter Username" name="username">
-            </div>
-            <br>
-            <div>
-                <label for="email">Email: </label>
-                <input id="email" type="email" placeholder="Please enter your email adress" name="email">
-            </div>
-            <br> -->
-            <!-- <div>
-                <label for="about">About you: </label>
-                <input id="about" type="text" placeholder="Tell us somethong about you." name="about">
-            </div>
-            <br> -->
-            <input type="submit" value="Update">
-            <a href="{% url 'create-channel' %}">Create new Channel</a>
-        </form>
+        <div class="col-md-6 offset-md-3 channel-content">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
+                    {% csrf_token %}
+                    {% for field in user_form %}
+                    <div>
+                        <label for="user-field">{{ field.label }}</label>
+                        <br>
+                        {{ field }}
+                        <br>
+                        <br>
+                    </div> 
+                    {% endfor %} 
+                    <input type="submit" value="Update">
+                    <a href="{% url 'create-channel' %}">Create new Channel</a>           
+            </form>
+        </div>
+        
     </div>
-    <div class="col-md-3"></div>
-</div>
 {% endblock %}
