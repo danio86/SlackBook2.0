@@ -70,12 +70,11 @@
                     <!-- {{ form.private.value }} -->
                     <br>
                     {% if form.private.value == True %}
-                        This is a private channel. Host adds users manually. <!-- <i class="far fa-check-square"></i> -->
-                        <input type="checkbox" value="True" name="private" checked>
+                        This is a private channel. Host adds users manually. <i class="far fa-check-square"></i>
+                        <!-- <input type="checkbox" value="True" name="private" checked> -->
                         <br>
                         {% if not 'add-members' in request.path %}
                         This is a free channel. Each user can register himself.
-                        <!-- <input type="checkbox" value="False" name="private"> -->
                         <button class="btn private-button" name="private" value="False"><i class="far fa-square"></i></button>
                         {% endif %}
                     {% elif form.private.value == False %}
@@ -83,8 +82,8 @@
                         <!-- <input type="checkbox" value="True" name="private"> -->
                         <button class="btn private-button" name="private" value="True"><i class="far fa-square"></i></button>
                         <br>
-                        This is a free channel. Each user can register himself. <!-- <i class="far fa-check-square"></i> -->
-                        <input type="checkbox" value="False" name="private" checked>
+                        This is a free channel. Each user can register himself. <i class="far fa-check-square"></i>
+                        <!-- <input type="checkbox" value="False" name="private" checked> -->
                     {% else %}
                         Set channel to private. Host adds users manually.
                         <!-- <input type="checkbox" value="True" name="private"> -->
@@ -133,9 +132,16 @@
     
                 <button class="btn btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
                 {% if 'add-members' in request.path %}
-                <input class="btn btn-outline-success button" type="submit" value="Add Members">
+                    <input class="btn btn-outline-success button" type="submit" value="Add Members">
+                    <button type="submit" class="btn private-button" name="private" value="True">Add-Members</button>
+                {% elif 'update-channel' in request.path %}
+                    {% if form.private.value == True %}
+                        <button type="submit" class="btn private-button" name="private" value="True">Update Channel</button>
+                    {% else %}
+                        <button type="submit" class="btn private-button" name="private" value="False">Update Channel</button>
+                    {% endif %}
                 {% else %}
-                <input class="btn btn-outline-success button" type="submit" value="Create/Update Channel">
+                    <input class="btn btn-outline-success button" type="submit" value="Create Channel">
                 {% endif %}
             </form>    
         </div>
