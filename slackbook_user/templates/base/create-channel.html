@@ -15,7 +15,7 @@
                 <div>
 
                     
-
+                    {% if not 'add-members' in request.path %}
                     <h2>Create your Channel</h2>
                     
                     
@@ -42,16 +42,22 @@
                         <br>
                         <input type="text" value="{{ queryset.title }}" name="topic-name">
                     </div>
+                    <br>
+
+                    {% else %}
+                        <h2>{{ queryset.title }}</h2>
+                    {% endif %}
                     <!-- <div>
                         <label for="channel-description">About:</label>
                         <br>
                         {{ form.description }}
                     </div> -->
-                    <br>
+                    
                     <div>
-
+                        {% if 'create-channel' in request.path %}
                         <label for="private">Is this a private channel?</label>
                         <br>
+                        {% endif %}
                         <!-- {{ form.private }} -->
                         <!-- False
                         <input type="checkbox" value="False" name="private">{{ form.private }}
@@ -64,37 +70,45 @@
                     <!-- {{ form.private.value }} -->
                     <br>
                     {% if form.private.value == True %}
-                        Yes. The Channel is private. Users are added manually.
+                        This is a private channel. Host adds users manually. <!-- <i class="far fa-check-square"></i> -->
                         <input type="checkbox" value="True" name="private" checked>
                         <br>
+                        {% if not 'add-members' in request.path %}
                         This is a free channel. Each user can register himself.
-                        <input type="checkbox" value="False" name="private">
+                        <!-- <input type="checkbox" value="False" name="private"> -->
+                        <button class="btn private-button" name="private" value="False"><i class="far fa-square"></i></button>
+                        {% endif %}
                     {% elif form.private.value == False %}
-                        Yes. The Channel is private. Users are added manually.
-                        <input type="checkbox" value="True" name="private">
+                        Set channel to private. Host adds users manually.
+                        <!-- <input type="checkbox" value="True" name="private"> -->
+                        <button class="btn private-button" name="private" value="True"><i class="far fa-square"></i></button>
                         <br>
-                        This is a free channel. Each user can register himself.
+                        This is a free channel. Each user can register himself. <!-- <i class="far fa-check-square"></i> -->
                         <input type="checkbox" value="False" name="private" checked>
                     {% else %}
-                        Yes. The Channel is private. Users are added manually.
-                        <input type="checkbox" value="True" name="private">
+                        Set channel to private. Host adds users manually.
+                        <!-- <input type="checkbox" value="True" name="private"> -->
+                        <button class="btn private-button" name="private" value="True">Create a private channel</button>
                         <br>
-                        This is a free channel. Each user can register himself.
-                        <input type="checkbox" value="False" name="private" checked>
+                        Set channelvto free. Each user can register himself.
+                        <button class="btn private-button" name="private" value="False">Create an open channel</button>
+                        <!-- <input type="checkbox" value="False" name="private" checked> -->
                     {% endif %}
     
                     <br>
                     <div>
 
                         {% if form.private.value == True %}
+                        {% if not 'add-members' in request.path %}
                         <a href="{% url 'add-members' 1 %}">Add Members</a>
                         <!-- <label for="members">Members: </label>
                         <br>
                         <div aria-required="true" id="members" name="guests">{{form.guests}}</div> -->
                         {% endif %}
+                        {% endif %}
 
                         {% if 'add-members' in request.path %}
-                        <label for="members">Members: </label>
+                        <label for="members">Choose Members:</label>
                         <br>
                         <div aria-required="true" id="members" name="guests">{{form.guests}}</div>
                         {% endif %}
@@ -117,9 +131,12 @@
                 </div>
     
     
-                <button class="btn btn-primary dropdown-toggle btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
-                
-                <input class="btn btn-primary dropdown-toggle btn-outline-success button" type="submit" value="Create/Update Channel">
+                <button class="btn btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
+                {% if 'add-members' in request.path %}
+                <input class="btn btn-outline-success button" type="submit" value="Add Members">
+                {% else %}
+                <input class="btn btn-outline-success button" type="submit" value="Create/Update Channel">
+                {% endif %}
             </form>    
         </div>
     </div>

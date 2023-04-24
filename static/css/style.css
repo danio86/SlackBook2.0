@@ -61,6 +61,12 @@
     border-color: darkcyan;
 }
 
+.private-button{
+    color: white;
+    margin-bottom: 5px;
+    margin-left: -13px;
+}
+
 .btn-outline-success{
     color: darkcyan;
     border-color: darkcyan;

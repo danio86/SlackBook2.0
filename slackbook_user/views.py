@@ -368,12 +368,13 @@ def addMembers(request, pk):
         form = ChannelForm(request.POST, instance=queryset)
         # this only updates the form. It doesn't refill it.
 
-        category_name = request.POST.get('topic')
-        category, created = Topic.objects.get_or_create(title=category_name)
+        # category_name = request.POST.get('topic')
+        # category, created = Topic.objects.get_or_create(title=category_name)
 
-        queryset.title = request.POST.get('topic-name')
-        queryset.topic = category
+        # queryset.title = request.POST.get('topic-name')
+        # queryset.topic = category
         # queryset.description = request.POST.get('description')
+        # queryset.private = True
         queryset.private = request.POST.get('private')
         # queryset.guests = groups_member.update('guests')
         print(queryset.private)
