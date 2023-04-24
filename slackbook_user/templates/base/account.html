@@ -12,10 +12,9 @@
                 {% else %}
                     <img class="user-image" src="{{ user.avatar.url }}" alt="user-image">
                 {% endif %}
-                <br>
+                
                 <span>{{ user.username }}</span>
                 {% if request.user == user %}
-                    <!-- <a href="#"><i class="fas fa-envelope"></i></a> -->
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-envelope"></i>
@@ -32,6 +31,20 @@
                           {% endfor %}
                         </div>
                     </div>
+                {% endif %}
+                {% if request.user != user %}
+                    <p>Send a message</p>
+                    <div>
+                        {% for converstation in chat|slice:"1" %}
+                        {% if converstation.title == request.user.username and user == converstation.host %}
+                            <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
+                            {{ break }}
+                        {% else %}
+                            {% include 'base/chat.html' %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
                 {% endif %}
             </div>
 
@@ -57,10 +70,10 @@
                 </div>
 
                 <div class="col-6" style="margin-left: -10px;">
-                    <h4>Send {{user.username }} a message</h4>
+                    
                     
                 {% if request.user != user %}
-
+                    <h4>Send {{user.username }} a message</h4>
                     <div>
                         {% for converstation in chat|slice:"1" %}
                         {% if converstation.title == request.user.username and user == converstation.host %}

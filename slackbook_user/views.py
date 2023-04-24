@@ -43,7 +43,8 @@ def channel(request, pk):
     )
 
     queryset = Channel.objects.get(id=pk)
-    posts = queryset.post_set.all().order_by('-created_on')
+    posts = Post.objects.all().order_by('-created_on')
+    # posts = queryset.post_set.all().order_by('-created_on')
     # this gives all attributes of the Channel-Model-Child Post
     guests = queryset.guests.all()
     post_form = PostForm()
@@ -249,12 +250,18 @@ def userSettings(request):
 @login_required(login_url='/accounts/login/')
 def deleteComment(request, pk):
     object = Post.objects.get(id=pk)
-    channelId = object.channel.id
+    if object.channel:
+        channelId = object.channel.id
+    else:
+        chatId = object.chat.id
 
     context = {'object': object}
     if request.method == 'POST':
         object.delete()
-        return redirect('channel', channelId)
+        if object.channel:
+            return redirect('channel', channelId)
+        else:
+            return redirect('chat', chatId)
 
     return render(request, 'base/delete.html', context)
 

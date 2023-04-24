@@ -16,15 +16,15 @@
   }
 
 .user-image{
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     border: 2px solid darkcyan;
     border-radius: 50px;
 }
 
 .user-logedout{
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     border: 2px solid red;
     border-radius: 50px;
 }
@@ -59,6 +59,7 @@
     background-color: unset;
     color: darkcyan;
     border-color: darkcyan;
+    margin: 2px;
 }
 
 .private-button{
