@@ -48,12 +48,13 @@
                                     {{ post.body }}
                                     <br>
                                     {{ post.user.username }} - {{ post.created_on|timesince }} ago
-                                    <br>                                                
+                                    <br> 
+                                    <br>                                               
                                 {% endif %}
                             {% endfor %}
                         </div>
                         <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
-                        <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>
+                        <span class="category-open"><small> - Category: {{ channel.topic.title }}</small></span>
                     </div>
                 </div>
                 <hr>
