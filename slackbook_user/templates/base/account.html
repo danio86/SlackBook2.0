@@ -33,7 +33,7 @@
                     </div>
                 {% endif %}
                 {% if request.user != user %}
-                    <p>Send a message</p>
+                    <p>Get connected</p>
                     <div>
                         {% for converstation in chat|slice:"1" %}
                         {% if converstation.title == request.user.username and user == converstation.host %}
@@ -72,7 +72,7 @@
                 <div class="col-6" style="margin-left: -10px;">
                     
                     
-                {% if request.user != user %}
+                <!-- {% if request.user != user %}
                     <h4>Send {{user.username }} a message</h4>
                     <div>
                         {% for converstation in chat|slice:"1" %}
@@ -85,7 +85,7 @@
                         {% endfor %}
                     </div>
 
-                {% endif %}
+                {% endif %} -->
                   
                     <div>
                        

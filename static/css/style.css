@@ -68,6 +68,11 @@
     margin-left: -13px;
 }
 
+.delete-post{
+    margin-top: -60px;
+    float: right;
+}
+
 .btn-outline-success{
     color: darkcyan;
     border-color: darkcyan;
@@ -119,6 +124,10 @@
     border: 1px solid darkcyan;
 }
 
+.main-content-headline p{
+    margin-bottom: 0px;
+}
+
 .channel-headline{
     background-color: rgb(57, 57, 57);
     border-top-right-radius: 10px;
@@ -163,6 +172,7 @@
     background-color: dimgray;
     border: 1px solid darkcyan;
     border-radius: 10px;
+    color: white;
 }
 
 #id_body{
