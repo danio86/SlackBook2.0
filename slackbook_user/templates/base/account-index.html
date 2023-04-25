@@ -1,18 +1,6 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
 
-        <!-- <div >
-            hallo
-            {{request.user.username}} - {{comment.user.username}} -
-            {% for comment in comments %}
-            {{comment.channel.host.username}}
-                {% if comment.user.username == request.user.username or request.user.username == comment.channel.host %}
-                    {{ comment.channel.title }}
-                {% endif %}
-                
-            {% endfor %}
-            hallo2
-        </div> -->
         {% if user.is_authenticated %}
         <div>
             <small>
@@ -20,8 +8,6 @@
             </small>
         </div>
 
-        
-        
         {% for topic in channels %}
             {% for comment in user.post_set.all %}
             {% if comment.channel.title == topic.title %}
@@ -70,6 +56,11 @@
             {% endif %}
             {% endfor %}
         {% endfor %}
+
+        {% else %}
+        <div class="channel-content">
+            <h3>Your channels may be visible here. Please <a class="nav-link" href="{% url 'account_signup' %}">Sign Up!</a></h3>
+        </div>
         {% endif %}
     </div>
 </div>

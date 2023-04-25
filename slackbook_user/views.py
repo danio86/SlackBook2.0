@@ -209,17 +209,19 @@ def account(request, pk):
 
 
 def topics(request):
-    s = request.GET.get('s') if request.GET.get('s') is not None else ''
+    s = request.GET.get('s') if request.GET.get('s') is not None else 'topcics'
+    # s = request.GET.get('s') if request.GET.get('s') is not None else ''
 
     queryset = Channel.objects.filter(
         Q(topic__title__icontains=s) |
         Q(title__icontains=s) |
-        Q(content__icontains=s)
-    )
+        Q(description__icontains=s)
+    ).order_by('-created_on')
 
     topics = Topic.objects.all()
+    channels = Channel.objects.all()
 
-    context = {'topics': topics, 'queryset': queryset, }
+    context = {'topics': topics, 'queryset': queryset, 'channels': channels}
     return render(request, 'base/topics.html', context)
 
 
