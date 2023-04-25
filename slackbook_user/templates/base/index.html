@@ -6,19 +6,19 @@
 <div class="container">
     <div class="row">
 
-      <div class="col">
+      <div class="col smaller_screens">
         <h2 class="index-headline">Brows Topics</h2>
         {% include 'base/topics-index.html' %}
         <br>
         {% include 'base/browse-channel.html' %}
       </div>
 
-      <div class="col-5 index-center">
+      <div class="col-5 index-center small_screens">
          <h2 class="index-headline">My Channels</h2>
          {% include 'base/account-index.html' %}
       </div>
 
-      <div class="col">
+      <div class="col no_small_screens">
         <h2 class="index-headline">Active Users</h2>
         {% include 'base/recently-active-index.html' %}
       </div>

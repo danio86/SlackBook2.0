@@ -224,6 +224,20 @@ def topics(request):
     return render(request, 'base/topics.html', context)
 
 
+def recentlyActive(request):
+    s = request.GET.get('s') if request.GET.get('s') is not None else ''
+
+    queryset = User.objects.filter(
+        Q(name__icontains=s) |
+        Q(username__icontains=s)
+    ).order_by('-created_on')
+
+    posts = Post.objects.all()
+
+    context = {'queryset': queryset, 'posts': posts}
+    return render(request, 'base/recently-active.html', context)
+
+
 @login_required(login_url='/accounts/login/')
 def userSettings(request):
     user = request.user

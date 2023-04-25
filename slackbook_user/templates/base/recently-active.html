@@ -1,0 +1,35 @@
+{% extends 'base-nav.html' %}
+
+{% block content %}
+
+<div class="row justify-content-around">
+    <div class="col-4 main-content">
+        <div>
+            {% for user in users reversed %}
+                <div>
+                    <div class="row channel-content">
+                        <div >
+                            <small><a href="{% url 'account' user.id %}">@{{ user.username }}</a></small>
+                            {% for comment in user.post_set.all|slice:"1" %}
+                                {% if comment.channel and comment.channel.private == False %}
+                                {{ comment.created_on|timesince }}
+                                <br>
+                                <div class="channel-content">
+                                {{ comment.body }}
+                                </div>
+                                in Channel: <a href="#">{{comment.channel.title}}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <br>
+                    </div>
+                    <hr>
+            {% endfor %}
+
+            
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
