@@ -230,9 +230,10 @@ def recentlyActive(request):
     queryset = User.objects.filter(
         Q(name__icontains=s) |
         Q(username__icontains=s)
-    ).order_by('-created_on')
+    ).order_by('last_login')
 
     posts = Post.objects.all()
+    users = User.objects.all()
 
     context = {'queryset': queryset, 'posts': posts}
     return render(request, 'base/recently-active.html', context)

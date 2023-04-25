@@ -1,29 +1,34 @@
-{% extends 'base-nav.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<div class="row justify-content-around">
-    <div class="col-4 main-content">
+<div class="row">
+    <div class="col-md-4 offset-md-4">
         <div>
-            {% for user in users reversed %}
+            {% for user in queryset %}
                 <div>
-                    <div class="row channel-content">
-                        <div >
+                    <div class="row main-content">
+                        <div class="channel-content">
                             <small><a href="{% url 'account' user.id %}">@{{ user.username }}</a></small>
+                            {% if user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                                <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            {% else %}
+                                <img class="user-image" src="{{ user.avatar.url }}" alt="user-image">
+                            {% endif %}
+                            <br>
                             {% for comment in user.post_set.all|slice:"1" %}
                                 {% if comment.channel and comment.channel.private == False %}
-                                {{ comment.created_on|timesince }}
+                                commented {{ comment.created_on|timesince }} ago:
                                 <br>
                                 <div class="channel-content">
                                 {{ comment.body }}
                                 </div>
-                                in Channel: <a href="#">{{comment.channel.title}}</a>
+                                in Channel: <a href="{% url 'channel' comment.channel.id %}">{{comment.channel.title}}</a>
                                 {% endif %}
                             {% endfor %}
                         </div>
                         <br>
                     </div>
-                    <hr>
             {% endfor %}
 
             
