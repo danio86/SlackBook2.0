@@ -160,6 +160,11 @@
     overflow-y: auto;
 }
 
+.channel-scroll-topics{
+    height: 100px;
+    overflow-y: auto;
+}
+
 .post-image{
     width: 150px;
     height: 100px;
