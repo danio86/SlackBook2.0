@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Channel, Topic, Post, Chat
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from .forms import ChannelForm, UserForm
@@ -73,9 +74,9 @@ def channel(request, pk):
             # )
             queryset.guests.add(request.user)
             return redirect('channel', pk)
-        # else:
-        #     messages.error(request, 'Please only enter letters.')
-        #     return redirect('channel', pk)
+        else:
+            messages.error(request, 'Please only enter letters.')
+            return redirect('channel', pk)
 
     # if request.method == 'POST':
     #     post = Post.objects.create(
@@ -312,7 +313,7 @@ def createChannel(request, slug):
             # guests=request.POST.get('guests'),
             )
         # instance.guests.add(request.POST.get('guests'))
-
+        messages.success(request, "You created a Channel.")
         return redirect('home')
     context = {'form': form, 'categories': categories}
     return render(request, 'base/create-channel.html', context)
