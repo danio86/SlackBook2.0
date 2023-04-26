@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Channel, Topic, Post, Chat
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -286,9 +286,11 @@ def deleteComment(request, pk):
 
 
 @login_required(login_url='/accounts/login/')
-def createChannel(request):
+def createChannel(request, slug):
     form = ChannelForm()
     categories = Topic.objects.all()
+    # queryset = Channel.objects.all()
+    # channel = get_object_or_404(categories, title=slug)
 
     if request.method == 'POST':
         # method of the form in channel_form.html
@@ -297,11 +299,13 @@ def createChannel(request):
         category_title = request.POST.get('topic')
         category, created = Topic.objects.get_or_create(title=category_title)
         # get_or_create() is a method which gets or creates an object
+        # slug=request.POST.get('topic-name')
 
         instance = Channel.objects.create(
             host=request.user,
             topic=category,
             title=request.POST.get('topic-name'),
+            slug=request.POST.get('topic-name'),
             # description=request.POST.get('description'),
             # title from the frontend
             private=request.POST.get('private'),
