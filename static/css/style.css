@@ -55,6 +55,11 @@
     display: block !important;
   }
 
+.nav-link{
+    color: white;
+}
+
+
 .index-headline{
     margin: 20px auto;
 }
@@ -176,6 +181,8 @@
     border-radius: 5px;
 }
 
+
+
 .comment-field{
     width: 90%;
     background-color: dimgray;
@@ -183,6 +190,8 @@
     border-radius: 10px;
     color: white;
 }
+
+/* User-settings */
 
 #id_body{
     height: 50px;
@@ -193,10 +202,16 @@
     width: -moz-available;
     font-size: 70%;
 }
+
+#id_biography {
+    height: 35px;
+    border-radius: 5px;
+}
+
 /* Acout dropdown */
 .dropdown-menu.show {
     background-color: darkslategray;
-    color: white;
+    color: white !important;
     padding: 5px;
   }
 

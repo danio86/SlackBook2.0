@@ -302,7 +302,7 @@ def createChannel(request):
             host=request.user,
             topic=category,
             title=request.POST.get('topic-name'),
-            description=request.POST.get('description'),
+            # description=request.POST.get('description'),
             # title from the frontend
             private=request.POST.get('private'),
             # guests=request.POST.get('guests'),

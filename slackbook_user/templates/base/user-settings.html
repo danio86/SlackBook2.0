@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-nav.html' %}
 
 {% block content %}
     <div class="row text-white bg-dark main-content">
@@ -11,13 +11,13 @@
                     <div>
                         <label for="user-field">{{ field.label }}</label>
                         <br>
-                        {{ field }}
+                        <div>{{ field }}</div>
                         <br>
                         <br>
                     </div> 
                     {% endfor %} 
-                    <input type="submit" value="Update">
-                    <a href="{% url 'create-channel' %}">Create new Channel</a>           
+                    <input class="btn btn-outline-success button" type="submit" value="Update">
+                    <a class="btn btn-outline-success button" href="{% url 'create-channel' %}">Create new Channel</a>           
             </form>
         </div>
         
