@@ -299,13 +299,13 @@ def createChannel(request, slug):
         category_title = request.POST.get('topic')
         category, created = Topic.objects.get_or_create(title=category_title)
         # get_or_create() is a method which gets or creates an object
-        # slug=request.POST.get('topic-name')
+        slug = request.POST.get('topic-name')
 
         instance = Channel.objects.create(
             host=request.user,
             topic=category,
             title=request.POST.get('topic-name'),
-            slug=request.POST.get('topic-name'),
+            slug=request.POST.get('topic-name').lower().replace(" ", "-"),
             # description=request.POST.get('description'),
             # title from the frontend
             private=request.POST.get('private'),
