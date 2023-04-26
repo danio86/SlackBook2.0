@@ -7,7 +7,7 @@ admin.site.register(User)
 # admin.site.register(Topic)
 # admin.site.register(Post)
 # admin.site.register(Channel)
-admin.site.register(Chat)
+# admin.site.register(Chat)
 
 
 @admin.register(Channel)
@@ -31,3 +31,9 @@ class PostAdmin(SummernoteModelAdmin):
     search_fields = ['user', 'channel']
     list_filter = ('user', 'created_on')
 
+
+@admin.register(Chat)
+class ChatAdmin(SummernoteModelAdmin):
+
+    search_fields = ['title', 'host']
+    list_filter = ('title', 'host', 'created_on')

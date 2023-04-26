@@ -26,7 +26,7 @@
                                 {% if conversation.host == user %}
                                     <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation.title}}</a>
                                 {% else %}
-                                    <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation.host}}</a>
+                                    <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation.host.username}}</a>
                                 {% endif %}
                             {% else %}
                                 {% ifchanged You have no current conversation. %}
@@ -64,10 +64,19 @@
                             <a href="{% url 'update-channel' topic.id %}">Edit</a>
                             <a href="{% url 'delete-channel' topic.id %}">Delete</a>
                         {% endif %}
-                        <br>
-                        <div class="channel-content">{{topic.content}}</div>
-                        <br>
-                        <a href="#"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                        <div class="channel-content channel-scroll-topics">
+                            {% for comment in all_comments %}
+                                {% if comment.channel.title == topic.title %}
+                                    {{ comment.body }}
+                                    {% if comment.image %}
+                                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                                    {% endif %}
+                                    <br>
+                                    <br>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'member' topic.id %}"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
                         <span class="category-open"><small>{{ topic.topic.title }}</small></span>
                     </div>
                     <hr>
@@ -125,7 +134,7 @@
                                                         <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
                                                     {% endif %}
                                                 </div>
-                                                <a href="#"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
+                                                <a href="{% url 'member' comment.channel.id %}"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
                                                 <span><small>{{ comment.channel.topic.title }}</small></span>
                                             {% endif %}               
                                             {{ break }}                 

@@ -140,6 +140,7 @@ def account(request, pk):
     guests = queryset.guests.all()
     user_comments = queryset.post_set.all()
     categories = Topic.objects.all()
+    all_comments = Post.objects.all()
 
     # posts = queryset.post_set.all().order_by('-created_on')
     # post_form = PostForm()
@@ -204,7 +205,9 @@ def account(request, pk):
                'comments': user_comments, 'topics': categories,
                'channel_count': channel_count, 'joined_count': joined_count,
                'form': form, 'categories': categories, 'chat': chat,
-               'all_Channels': all_Channels, 'guests': guests}
+               'all_Channels': all_Channels, 'guests': guests,
+               'all_comments': all_comments
+               }
     return render(request, 'base/account.html', context)
 
 
