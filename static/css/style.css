@@ -193,6 +193,12 @@
     width: -moz-available;
     font-size: 70%;
 }
+/* Acout dropdown */
+.dropdown-menu.show {
+    background-color: darkslategray;
+    color: white;
+    padding: 5px;
+  }
 
 /* Footer */
 footer{
