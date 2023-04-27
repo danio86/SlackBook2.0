@@ -195,6 +195,7 @@
 .topic-scroll {
     height: 200px;
     overflow-y: auto;
+    overflow-x: hidden;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
   }

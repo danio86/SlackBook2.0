@@ -2,22 +2,26 @@
     <div class="col-4 main-content channel-scroll">
 
         <div class= "channel-content"><a class="col-md-8" href="{% url 'home' %}">Available Channels: </a><span class="col-md-4">{{ queryset.count }}</span></div>
-        {% for channel in queryset %}
-        <div class="channel-content">
-            <div><h5><a href="{% url 'channel' channel.id %} ">{{channel.title}}</a></h5></div>
-            <a href="#"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>
-            <!-- host.user is a django function -->
-            {{ channel.created_on|timesince }}
-            <br>
-            <!-- this leads to channel(name!) with the right id -->
-            {% if channel.post_set.all %}
-            <div class="channel-content">{{ channel.post_set.all|first }}</div>
-            {% endif %}
-            <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
-            <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>
-        </div>
-        <hr>
-        {% endfor %}
+        {% if queryset.count == 0 %}
+            <h4 class="bad-news">Sorry! Your query returned 0 results.</h4>
+        {% else %}
+            {% for channel in queryset %}
+                <div class="channel-content">
+                    <!-- {{ request.user.id }} -->
+                    <div><h5><a href="{% url 'channel' channel.id %} ">{{channel.title}}</a></h5></div>
+                    <!-- {{ channel.host.id }} -->
+                    <a href="{% url 'account' channel.host.id %}"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>
+                    {{ channel.created_on|timesince }}
+                    <br>
+                    {% if channel.post_set.all %}
+                    <div class="channel-content">{{ channel.post_set.all|first }}</div>
+                    {% endif %}
+                    <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
+                    <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>
+                </div>
+                <hr>
+            {% endfor %}
+        {% endif %}
         <button class="btn btn-primary dropdown-toggle btn-outline-success button channel-content">more</button>
     </div>
 </div>

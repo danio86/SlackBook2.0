@@ -122,47 +122,8 @@ def account(request, pk):
     categories = Topic.objects.all()
     all_comments = Post.objects.all()
 
-    # posts = queryset.post_set.all().order_by('-created_on')
-    # post_form = PostForm()
-
-    # if request.method == 'POST':
-    #     posts = Post.objects.create(
-    #             user=queryset,
-    #             chat=chat,
-
-    #         )
-    #     post_form = PostForm(request.POST, request.FILES, instance=posts)
-
-    #     post_form.body = request.POST.get('body')
-    #     post_form.image = request.POST.get('image')
-    #     if post_form.is_valid():
-    #         post_form.save()
-            # return redirect('chat', pk)
-
-    # channel_count = Channel.objects.count()
     channel_count = user_channels.count()
     joined_count = guests.count() - channel_count
-    # for chan in Channel.objects.all():
-    #     if queryset.username == chan.guests:
-    #         joinded_count += 1
-
-    # posts = queryset.post_set.all().order_by('-created_on')
-    # post_form = PostForm()
-
-    # if request.method == 'POST':
-    #     posts = Post.objects.create(
-    #             user=queryset,
-    #             chat=chat,
-
-    #         )
-    #     post_form = PostForm(request.POST, request.FILES, instance=posts)
-
-    #     post_form.body = request.POST.get('body')
-    #     post_form.image = request.POST.get('image')
-    #     if post_form.is_valid():
-    #         post_form.save()
-            # return redirect('chat', pk)
-
     form = ChatForm()
 
     if request.method == 'POST':
@@ -405,8 +366,6 @@ def addMembers(request, pk):
 def deleteChannel(request, pk):
     object = Channel.objects.get(id=pk)
 
-    # if request.user != object.host:
-    #     return HttpResponse('You are not authorized!')
 
     context = {'object': object}
     if request.method == 'POST':
@@ -422,20 +381,6 @@ def logoutUser(request):
     return redirect('home')
 
 
-# def logout(request):
-#     user = request.user
-#     user_form = UserForm(instance=user)
+def handling_404(request, exception):
 
-#     if request.method == 'POST':
-
-#         user_form.loggedin = request.POST.get('loggedin')
-#         if user_form.is_valid():
-#             user_form.save()
-#         else:
-#             messages.error(request, 'Please only enter letters.')
-#             return redirect('/logout/')
-
-#         return redirect('logout')
-
-#     context = {}
-#     return render(request, 'base/account/logout.html', context)
+    return render(request, 'base/404.html', {})

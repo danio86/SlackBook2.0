@@ -8,7 +8,6 @@ urlpatterns = [
     path('topics', views.topics, name='topics'),
     path('recently-active', views.recentlyActive, name='recently-active'),
     path('chat/<str:pk>/', views.chat, name='chat'),
-    # path('topics/', views.topics, name='topics'),
     path('account/<str:pk>/', views.account, name='account'),
     path(
      'delete-comment/<str:pk>/', views.deleteComment, name='delete-comment'),

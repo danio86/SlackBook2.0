@@ -47,27 +47,13 @@
                     {% else %}
                         <h2>{{ queryset.title }}</h2>
                     {% endif %}
-                    <!-- <div>
-                        <label for="channel-description">About:</label>
-                        <br>
-                        {{ form.description }}
-                    </div> -->
-                    
+                         
                     <div>
                         {% if 'create-channel' in request.path %}
                         <label for="private">Is this a private channel?</label>
                         <br>
                         {% endif %}
-                        <!-- {{ form.private }} -->
-                        <!-- False
-                        <input type="checkbox" value="False" name="private">{{ form.private }}
-                        <br>
-                        True
-                        <input type="checkbox" value="True" name="private">
-                        <button name="private" value="True">Set to True</button>
-                        <button name="private" value="False">Set to False</button>
-                    </div> -->
-                    <!-- {{ form.private.value }} -->
+                        
                     <br>
                     {% if form.private.value == True %}
                         This is a private channel. Host adds users manually. <i class="far fa-check-square"></i>
