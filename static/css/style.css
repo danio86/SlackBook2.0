@@ -192,6 +192,20 @@
     overflow-y: auto;
 }
 
+.topic-scroll {
+    height: 200px;
+    overflow-y: auto;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+.topic-index-button{
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin-top: -11px;
+
+}
+
 .post-image{
     width: 150px;
     height: 100px;
@@ -199,7 +213,9 @@
     border-radius: 5px;
 }
 
-
+.bad-news{
+    color:red;
+}
 
 .comment-field{
     width: 90%;

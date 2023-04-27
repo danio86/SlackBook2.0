@@ -87,68 +87,7 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-        <div class="row header no-gutters">
-            <div class="col-md-4">
-                <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png"
-                        alt="logo"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-
-            <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="row no-gutters header-small">
-                    <div class="btn-group account-image">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button"
-                            data-toggle="dropdown" aria-expanded="false">
-                            {% if user.is_authenticated %}
-                            {{ request.user.username }}
-                            {% endif %}
-                            {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                            {% elif not user.is_authenticated %}
-                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                            {% else %}
-                            <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
-                            {% endif %}
-                        </button>
-                        <div class="dropdown-menu">
-                            {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                            </li>
-                            {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                            </li>
-                            {% endif %}
-                            <div class="dropdown-divider"></div>
-                            {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user-settings' %}">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account' request.user.id %}">My Account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'recently-active' %}">Active Users</a>
-                            </li>
-                            {% endif %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'topics' %}">Categories and Channels</a>
-                            </li>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </nav>
+    
     <!-- -------------Content---------------- -->
     <div class="base-conent">
         {% block content %}

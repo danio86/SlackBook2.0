@@ -14,37 +14,45 @@
                     <a href="{% url 'delete-channel' channel.id %}"><i class="fas fa-trash-alt"></i></a>
                 </small>
                 {% endif %}
-                Hosted by:
-                {% if channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                {% else %}
-                <img class="user-image" src="{{ channel.host.avatar.url }}" alt="user-image">
-                {% endif %}{{channel.host.username}} - Created: {{channel.created_on|timesince}}
+                <div class="channel-content">
+                    Hosted by:
+                    {% if channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                    <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                    {% else %}
+                    <img class="user-image" src="{{ channel.host.avatar.url }}" alt="user-image">
+                    {% endif %}
+                    <a href="{% url 'account' channel.host.id %}">{{channel.host.username}}</a>
+                    <br>
+                    Created: {{channel.created_on|timesince}}
+                    <br>
+                    <span>Category: {{ channel.topic }}</span>
+                </div>
             </div>
-
-            <span>{{ channel.topic }}</span>
             <hr>
             <div class="channel-content">
-                <h3><a href="{{request.META.HTTP_REFERER}}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
+                <!-- <h3><a href="{{request.META.HTTP_REFERER}}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3> -->
+                <h3><a href="{% url 'channel' channel.id %}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
                 {{ channel.content }}
                 <hr>
                 {% for post in objects %}
                 {% if post.channel.title == channel.title  %}
-                <div>
-                    
-                    <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
-                        {{ post.created_on|timesince }} ago</small>
-                    <h5>{{ post.title }}</h5>
-                    <p>Comment: {{ post.body }}</p>
-                    {% if post.image %}
-                    <img class="post-image" src="{{ post.image.url }}" alt="post-image">
-                    {% endif %}
-                    {% if request.user == post.user%}
-                    <a href="{% url 'delete-comment' post.id %}"><button
-                            class="btn btn-outline-success button">X</button></a>
-                    {% endif %}
-                    <hr>
-                </div>
+                    <div>
+                        
+                        <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
+                            {{ post.created_on|timesince }} ago</small>
+                        <h5>{{ post.title }}</h5>
+                        <p>Comment: {{ post.body }}</p>
+                        {% if post.image %}
+                        <img class="post-image" src="{{ post.image.url }}" alt="post-image">
+                        {% endif %}
+                        {% if request.user == post.user%}
+                        <a href="{% url 'delete-comment' post.id %}"><button
+                                class="btn btn-outline-success button">X</button></a>
+                        {% endif %}
+                        <hr>
+                    </div>
+                {% elif forloop.counter0 == 0 %}
+                    <h4 class="bad-news">Sorry! Your query returned 0 results.</h4>
                 {% endif %}
                 {% endfor%}
 

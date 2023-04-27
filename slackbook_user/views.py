@@ -17,16 +17,13 @@ def home(request):
         Q(description__icontains=s)
     ).order_by('-created_on')
 
-    topics = Topic.objects.all()[0:6]
+    topics = Topic.objects.all()
     channels = Channel.objects.all().order_by('updated_on', '-created_on')
     users = User.objects.all().order_by('-last_login')
     # guests = users.guests.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(
         Q(channel__topic__title__icontains=s))
-    # Q(channel__title__icontains=s))
-    # this filters by the title of the topic of the channel
-    # if the url ending is in channel title
 
     context = {
         'topics': topics, 'channels': channels, 'queryset': queryset,
@@ -40,54 +37,34 @@ def channel(request, pk):
     s = request.GET.get('s') if request.GET.get('s') is not None else ''
 
     objects = Post.objects.filter(
-        Q(title__icontains=s)
+        Q(title__icontains=s) |
+        Q(body__icontains=s)
     )
 
     queryset = Channel.objects.get(id=pk)
     posts = Post.objects.all().order_by('-created_on')
-    # posts = queryset.post_set.all().order_by('-created_on')
-    # this gives all attributes of the Channel-Model-Child Post
     guests = queryset.guests.all()
     post_form = PostForm()
-    # chat = Chat.objects.all()
 
     if request.method == 'POST':
-        # post_form = PostForm(request.FILES)
         posts = Post.objects.create(
                 user=request.user,
                 channel=queryset,
 
             )
         post_form = PostForm(request.POST, request.FILES, instance=posts)
-        # post_form = PostForm(request.POST, request.FILES)
 
         post_form.body = request.POST.get('body')
         post_form.image = request.POST.get('image')
-    #     post_form.image_description = request.POST.get('image_description')
         if post_form.is_valid():
             post_form.save()
-            # posts = Post.objects.create(
-            #     user=request.user,
-            #     channel=queryset,
-            #     body=post_form.body,
-            #     image=post_form.image,
-            # )
             queryset.guests.add(request.user)
+            messages.success(request, f"You posted in {queryset.title}.")
             return redirect('channel', pk)
         else:
-            messages.error(request, 'Please only enter letters.')
+            messages.error(request, 'This is no valid post.')
             return redirect('channel', pk)
 
-    # if request.method == 'POST':
-    #     post = Post.objects.create(
-    #         user=request.user,
-    #         channel=queryset,
-    #         body=request.POST.get('body'),
-    #         image=request.POST.get('image'),
-    #     )
-        # .create is a django function
-
-        # queryset.guests.add(request.user)
         # this makes everybody a guest of the channel who posts something
         return redirect('channel', pk)
 
@@ -116,6 +93,8 @@ def chat(request, pk):
         if post_form.is_valid():
             post_form.save()
 
+            messages.success(
+                request, f"You are connected with {post_form.host.username}.")
             return redirect('chat', pk)
 
     context = {'chat': queryset, 'posts': posts,
