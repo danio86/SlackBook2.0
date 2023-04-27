@@ -223,6 +223,31 @@ footer{
     text-align: center;
 }
 
+
+/* ---------Messages------------ */
+ .message {
+	border-radius: 10px;
+	box-shadow: 3px 3px 4px 0px rgba(50, 50, 50, 0.75);
+	color: white;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	text-align: center;
+	width: 80%;
+}
+
+
+ */.message.success {
+	background-color: green;
+}
+
+.message.error {
+	background-color: red;
+}
+
+
 /* Media Queries */
 @media (max-width: 992px) {
     .index-headline {

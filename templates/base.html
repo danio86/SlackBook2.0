@@ -90,18 +90,17 @@
           </div>
         </div>
       </nav>
-<!-- -------------Content---------------- -->
-    {% if messages %}
-    <div>
-    <strong>Messages:</strong>
-    <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-    </div>
-    {% endif %}
 
+<!-- ------------Messages---------------- -->
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+        {{ message | safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    
+
+<!-- -------------Content---------------- -->
     <div class="base-conent">
     {% block content %}
 
@@ -116,18 +115,13 @@
     <a href="#">Social Media</a>
 </footer>
     
-    
-</body>
-<script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
-
-    <script text="javascript">
-    setTimeout(fade_out, 3000);
-    function fade_out() {
-        $(".messages").fadeOut().empty();
-    }
-    $(".post-form")[0].reset(); // this is to reset the form 
+    <script>
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 4500);
     </script>
+</body>
+
 </html>
