@@ -28,7 +28,25 @@
     border: 2px solid red;
     border-radius: 50px;
 }
+/* ------Allauth------- */
+.signUp{
+    text-align: center;
+}
 
+.signUp input{
+    width: -moz-available;
+}
+
+#id_login{
+    width: -moz-available;
+}
+
+#id_password{
+    width: -moz-available;
+}
+
+
+/* -----Header-------- */
 .header{
     text-align: center;
     display: block ruby;
@@ -41,25 +59,27 @@
 
 .header form{
     display: flex;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .header input{
     width: 75%;
 }
 
-.header2{
-    width: 100%;
+.header-user{
+    margin: 0 auto;
 }
-
-#navbarSupportedContent {
-    display: block !important;
-  }
 
 .nav-link{
     color: white;
 }
 
+.navbar-light .navbar-toggler{
+    background-color: darkcyan;
+}
 
+/* ------Content------ */
 .index-headline{
     margin: 20px auto;
 }
@@ -87,9 +107,7 @@
     border-color: darkcyan;
 }
 
-.navbar-light .navbar-toggler{
-    background-color: darkcyan;
-}
+
 
 /* Main Content */
 .container{
@@ -225,7 +243,7 @@ footer{
 
 
 /* ---------Messages------------ */
- .message {
+ /* .message {
 	border-radius: 10px;
 	box-shadow: 3px 3px 4px 0px rgba(50, 50, 50, 0.75);
 	color: white;
@@ -239,13 +257,13 @@ footer{
 }
 
 
- */.message.success {
+.message.success {
 	background-color: green;
 }
 
 .message.error {
 	background-color: red;
-}
+} */
 
 
 /* Media Queries */
@@ -278,8 +296,8 @@ footer{
         margin: 0 auto;
       }
 
-    .header-small{
-        margin: 0 50px;
+    .header-user{
+        margin: 0 10px;
     }
 
     .btn {

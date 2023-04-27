@@ -34,7 +34,6 @@
                     
                     <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
                         {{ post.created_on|timesince }} ago</small>
-                    <!-- timesince replace the date and the time -->
                     <h5>{{ post.title }}</h5>
                     <p>Comment: {{ post.body }}</p>
                     {% if post.image %}
@@ -51,16 +50,6 @@
 
 
                 {% if request.user.is_authenticated %}
-                <!-- <div class="post-form">
-              <form action="" method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <input type="text" placeholder="Place your Comment..." name="body">    -->
-                <!-- <input type="image" placeholder="Image..." name="image">   
-                  <input type="file" placeholder="Image..." name="image">   
-                  <input type="submit" value="Submit"> -->
-                <!-- </form>
-          </div>
-          <hr> -->
 
                 <form action="" method="POST" enctype="multipart/form-data">
                     <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
@@ -68,7 +57,6 @@
                     <h6><small>Your contribution:</small></h6>
                     {% for field in post_form %}
                     <div>
-                        <!-- <label for="post-field" name="">{{field.label}}</label> -->
                         <div>{{ field }}</div>
                     </div>
                     {% endfor %}
@@ -93,7 +81,6 @@
                         {% else %}
                         <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image"><a
                             href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
-                        <!-- <p>{{guest.avatar.url}}<a href="{% url 'account' guest.id %}"> @{{ guest.username }}</p></a> -->
                         {% endif %}
                     </div>
                     <br>
@@ -109,22 +96,15 @@
                         <img class="user-image" src="/static/images/avatar.png" alt="logo">
                         {% else %}
                         <img class="user-image" src="{{ channel.host.avatar.url }}" alt="user-image">
-                        {% endif %}<a href="{% url 'account' channel.host.id %}">{{channel.host.username}}</a>   
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'account' channel.host.id %}">{{channel.host.username}}</a>
+                        {% else %}
+                        {{channel.host.username}}
                         <br>
-                        <!-- {% if request.user == user %}
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-envelope"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                {% for conversation in chat %}
-                                    {% if conversation.host == user %}
-                                    <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation}}</a>
-                                    {% endif %}
-                                {% endfor %}
-                                </div>
-                            </div>
-                        {% endif %} -->
+                        Please <a href="{% url 'account_signup' %}">Sign Up!</a>
+                        {% endif%}   
+                        <br>
                     </div>
                 </div>
                 {% endif %}

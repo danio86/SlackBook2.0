@@ -38,57 +38,28 @@
                     <div class="channel-content">
                         <h5><a href="{% url 'channel' channel.id %} ">{{ channel.title }}</a></h5>
                     
-                        <a href="#"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>
-                        <!-- host.user is a django function -->
+                        <a href="{% url 'account' channel.host.id %}"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>
                         {{ channel.created_on|timesince }}
                         <br>
-                        <div class="channel-content channel-scroll-topics">
-                            {% for post in posts %}
-                                {% if post.channel.title == channel.title %}
-                                    {{ post.body }}
-                                    <br>
-                                    {{ post.user.username }} - {{ post.created_on|timesince }} ago
-                                    <br> 
-                                    <br>                                               
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+                    <div class="channel-content channel-scroll-topics">
+                        {% for post in posts %}
+                            {% if post.channel.title == channel.title %}
+                                {{ post.body }}
+                                <br>
+                                {{ post.user.username }} - {{ post.created_on|timesince }} ago
+                                <br> 
+                                <br>                                               
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                         <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
                         <span class="category-open"><small> - Category: {{ channel.topic.title }}</small></span>
                     </div>
                 </div>
                 <hr>
             {% endfor %}
-            <!-- <br>
-            <button class="btn btn-outline-success button">more</button> -->
         </div>
     </div>
-
-    <!-- <div class="col-3">
-        <div class="channel-content">
-            <div class="row">
-                <a class="col-md-10" href="{% url 'topics' %}">Available Channels</a>
-                <span class="col-md-2">{{ channels.count }}</span>
-                {% for channel in channels %}
-                    <div>
-                        <h5><a href="{% url 'channel' channel.id %} ">{{channel.title}}</a></h5>
-                    </div>
-                    <a href="#"><span>@ <i class="fas fa-user"></i> {{ channel.host.username }}</span></a>
-                    {{ channel.created_on|timesince }} ago
-                    <br>
-                    {% if channel.post_set.all %}
-                    <div class="channel-content">
-                        {{ channel.post_set.all|first }}
-                    </div>
-                    {% endif %}
-                    <a href="{% url 'member' channel.id %}"><i class="fas fa-user-friends"></i></a> {{ channel.guests.count }} Members
-                    <span class="category-open"><small> - Category: <a href="#">{{ channel.topic.title }}</a></small></span>
-                    <hr>
-                {% endfor %}
-            </div>
-            <br>
-        </div>
-    </div> -->
 
 </div>
 
