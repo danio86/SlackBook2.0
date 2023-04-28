@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Rubik&display=swap');
 
+body{
+    overflow-x: hidden;
+}
 
 .no-gutters{
     --bs-gutter-x: 0;
@@ -208,8 +211,8 @@
 }
 
 .post-image{
-    width: 150px;
     height: 100px;
+    width: auto;
     border: 1px solid darkcyan;
     border-radius: 5px;
 }
@@ -256,7 +259,15 @@ footer{
     bottom: 0;
     width: 100%;
     text-align: center;
+    background: #3a3a3a;
+    height: 80px;
 }
+
+.footer a {
+    color: white;
+    margin: 0 50px;
+    font-size: 35px;
+  }
 
 
 /* ---------Messages------------ */
@@ -331,4 +342,12 @@ footer{
     margin: 0 auto;
     width: 80%;
     }
+
+.channel-headline{
+    font-size: 90%;
+    }
+
+.headline{
+    font-size: 80%;
+}
 }

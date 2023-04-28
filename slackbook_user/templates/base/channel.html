@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-4 main-channel-content">
 
-            {% if channel.private == False %}
+            {% if channel.private == False or channel.host == request.user or request.user in guests %}
             <div>
                 <h2 class="channel-headline">{{ channel.title }}</h2>
                 {% if request.user == channel.host %}
@@ -31,7 +31,7 @@
             <hr>
             <div class="channel-content">
                 <!-- <h3><a href="{{request.META.HTTP_REFERER}}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3> -->
-                <h3><a href="{% url 'channel' channel.id %}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
+                <h3 class="headline"><a href="{% url 'channel' channel.id %}"><i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
                 {{ channel.content }}
                 <hr>
                 {% for post in objects %}
@@ -52,7 +52,7 @@
                         <hr>
                     </div>
                 {% elif forloop.counter0 == 0 %}
-                    <h4 class="bad-news">Sorry! Your query returned 0 results.</h4>
+                    <h4 class="bad-news">No matching posts yet!</h4>
                 {% endif %}
                 {% endfor%}
 

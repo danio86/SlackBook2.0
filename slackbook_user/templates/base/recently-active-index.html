@@ -6,14 +6,6 @@
                     <div class="row channel-content">
                         <div >
                             <small><a href="{% url 'account' user.id %}">@{{ user.username }}</a></small>
-                            <!-- <br>
-                            {{ user.loggedin }}a
-                            <br>
-                            {{ user.is_active }}b
-                            <br>
-                            {{ user.last_login }}c
-                            
-                            <br> -->
                             {% for comment in user.post_set.all|slice:"1" %}
                                 {% if comment.channel and comment.channel.private == False %}
                                 {{ comment.created_on|timesince }}
@@ -28,42 +20,8 @@
                         <br>
                     </div>
                     <hr>
-            {% endfor %}
-
-            
-        </div>
-
-        <!-- <div>
-            {% for comment in comments %}
-                <div class="recent-comments">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="col-md-10">
-
-
-                            <small><a href="{% url 'account' comment.user.id %}">@{{ comment.user.username }}</a> - {{ comment.created_on|timesince }} ago</small>
-                            
-                            <h5>answered to: <a href="{% url 'channel' comment.channel.id %}">{{ comment.channel }}</a></h5>
-                        </div>
-                        <div class="col-md-1">
-                            {% if request.user == comment.user%}
-                                <a href="{% url 'delete-comment' comment.id %}">X</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div>
-                        <div class="row bg-secondary text-white message">
-                            <h5>{{ comment.body }}</h5>
-
-                        </div>
-                        
-                    </div>
                 </div>
-                <hr>
-            {% endfor %}
-        </div> -->
-
+            {% endfor %}     
+        </div>
     </div>
 </div>

@@ -97,11 +97,37 @@
     <!-- -------------Footer---------------- -->
 
     <footer class="footer">
-        <a href="#">Social Media</a>
-        <a href="#">Social Media</a>
-        <a href="#">Social Media</a>
-        <a href="#">Social Media</a>
+            
+        <a href="https://twitter.com/" target="_blank" rel="noopener"
+            aria-label="Visit our Twitter page (opens in a new tab)"><i id="twitter"
+                class="fab fa-twitter"></i></a>
+    
+       <a href="http://facebook.com" target="_blank" rel="noopener"
+            aria-label="Visit our Facebook page (opens in a new tab)"><i id="facebook"
+                class="fab fa-facebook"></i></a>
+
+        <a href="http://youtube.com" target="_blank" rel="noopener"
+        aria-label="Visit our Youtube page (opens in a new tab)"><i id="youtube" 
+                class="fab fa-youtube"></i></a>
+
+        <a href="http://linkedin.com" target="_blank" rel="noopener"
+        aria-label="Visit our LinkedIn page (opens in a new tab)"><i id="linkedin" 
+                class="fab fa-linkedin"></i></a>
+    
+        <a href="http://instagram.com" target="_blank" rel="noopener"
+            aria-label="Visit our Instagram page (opens in a new tab)"><i id="instagram"
+                class="fab fa-instagram"></i></a>
+               
+        <p>Copyright © SlackBook 2023</p>
     </footer>
+
+    <script>
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 4500);
+    </script>
 
 </body>
 

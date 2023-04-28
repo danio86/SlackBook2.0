@@ -94,7 +94,7 @@ def chat(request, pk):
             post_form.save()
 
             messages.success(
-                request, f"You are connected with {post_form.host.username}.")
+                request, f"You are connected with {queryset.host}.")
             return redirect('chat', pk)
 
     context = {'chat': queryset, 'posts': posts,
@@ -220,8 +220,10 @@ def deleteComment(request, pk):
     if request.method == 'POST':
         object.delete()
         if object.channel:
+            messages.success(request, f"Comment deleted!")
             return redirect('channel', channelId)
         else:
+            messages.success(request, f"Comment deleted!")
             return redirect('chat', chatId)
 
     return render(request, 'base/delete.html', context)
@@ -281,7 +283,7 @@ def createPersonalChannel(request):
         if form.is_valid():
             form.save()
         # instance.guests.add(request.POST.get('guests'))
-
+        messages.success(request, f"You are connected with {form.title}")
         return redirect('home')
     context = {'form': form}
     # context = {'form': form, 'categories': categories}
@@ -357,6 +359,7 @@ def addMembers(request, pk):
 
         queryset.save()
 
+        messages.success(request, "Member is added!")
         return redirect('home')
 
     context = {'form': form, 'categories': categories, 'queryset': queryset}

@@ -1,115 +1,144 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>SlackBook</title>
 </head>
 <!--------------------------------- Body -->
+
 <body class="text-white bg-dark">
-<!------------------------------- Header -->
+    <!------------------------------- Header -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-      <div class="row header no-gutters">
-        <div class="col-md-4">
-          <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
+        <div class="row header no-gutters">
+            <div class="col-md-4">
+                <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png"
+                        alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
-        
-        <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="row no-gutters header-user">
-                <div class="btn-group account-image">
-                      <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button" data-toggle="dropdown" aria-expanded="false">
-                      {% if user.is_authenticated %}
-                          {{ request.user.username }}
-                      {% endif %}
-                      {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">              
-                      {% elif not user.is_authenticated %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                      {% else %}
-                         <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
-                      {% endif %}
-                      </button>
-                      <div class="dropdown-menu">
-                        {% if user.is_authenticated %}
-                          <li class="nav-item">
-                              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                          </li>
-                        {% else %}
-                          <li class="nav-item">
-                              <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                          </li>
-                        {% endif %}
 
-                        <div class="dropdown-divider"></div>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'user-settings' %}">Settings</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'account' request.user.id %}">My Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'recently-active' %}">Active Users</a>
-                          </li>
-                        {% endif %}
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'topics' %}">Categories and Channels</a>
-                        </li>    
-                      </div>
+            <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="row no-gutters header-user">
+                    <div class="btn-group account-image">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button"
+                            data-toggle="dropdown" aria-expanded="false">
+                            {% if user.is_authenticated %}
+                            {{ request.user.username }}
+                            {% endif %}
+                            {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            {% elif not user.is_authenticated %}
+                            <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                            {% else %}
+                            <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
+                            {% endif %}
+                        </button>
+                        <div class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                            </li>
+                            {% endif %}
+
+                            <div class="dropdown-divider"></div>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user-settings' %}">Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account' request.user.id %}">My Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'recently-active' %}">Active Users</a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'topics' %}">Categories and Channels</a>
+                            </li>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="s">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-        </div>
-        <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="s">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-          </div>
-        </div>
-      </nav>
+    </nav>
 
-<!-- ------------Messages---------------- -->
+    <!-- ------------Messages---------------- -->
     {% for message in messages %}
     <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
         {{ message | safe }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
-    
 
-<!-- -------------Content---------------- -->
+
+    <!-- -------------Content---------------- -->
     <div class="base-conent">
-    {% block content %}
+        {% block content %}
 
-    {% endblock %}
-    </div>  
-<!-- -------------Footer---------------- --> 
+        {% endblock %}
+    </div>
 
-<footer class="footer">
-    <a href="#">Social Media</a>
-    <a href="#">Social Media</a>
-    <a href="#">Social Media</a>
-    <a href="#">Social Media</a>
-</footer>
+    <!-- -------------Footer---------------- -->
+
+    <footer class="footer">
+            
+        <a href="https://twitter.com/" target="_blank" rel="noopener"
+            aria-label="Visit our Twitter page (opens in a new tab)"><i id="twitter"
+                class="fab fa-twitter"></i></a>
     
+       <a href="http://facebook.com" target="_blank" rel="noopener"
+            aria-label="Visit our Facebook page (opens in a new tab)"><i id="facebook"
+                class="fab fa-facebook"></i></a>
+
+        <a href="http://youtube.com" target="_blank" rel="noopener"
+        aria-label="Visit our Youtube page (opens in a new tab)"><i id="youtube" 
+                class="fab fa-youtube"></i></a>
+
+        <a href="http://linkedin.com" target="_blank" rel="noopener"
+        aria-label="Visit our LinkedIn page (opens in a new tab)"><i id="linkedin" 
+                class="fab fa-linkedin"></i></a>
+    
+        <a href="http://instagram.com" target="_blank" rel="noopener"
+            aria-label="Visit our Instagram page (opens in a new tab)"><i id="instagram"
+                class="fab fa-instagram"></i></a>
+               
+        <p>Copyright © SlackBook 2023</p>
+    </footer>
+
     <script>
         setTimeout(function () {
             let messages = document.getElementById('msg');
