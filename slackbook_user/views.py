@@ -195,6 +195,7 @@ def userSettings(request):
         user_form.email = request.POST.get('email')
         if user_form.is_valid():
             user_form.save()
+            messages.success(request, f"Update successful!")
         else:
             messages.error(request, 'Please only enter letters.')
             return redirect('/user-settings/')
@@ -227,7 +228,7 @@ def deleteComment(request, pk):
 
 
 @login_required(login_url='/accounts/login/')
-def createChannel(request, slug):
+def createChannel(request):
     form = ChannelForm()
     categories = Topic.objects.all()
     # queryset = Channel.objects.all()
