@@ -3,7 +3,7 @@
 SlackBook is a platform on which people can get in touch with each other. You can form groups/channels here and exchange and discuss any topic here. Texts or pictures can be posted for this. The channels can be public or private, so two people can also chat privately with each other.
 
 - Responsice Mockup
-<img src="assets/images/screenshot-media-query.png" alt="Responsice Mockup">
+<img src="static/images/screenshot-media-query.png" alt="Responsice Mockup">
 
 
 ## User Stories
@@ -32,11 +32,11 @@ SlackBook is a platform on which people can get in touch with each other. You ca
     - On small screens the header collapes to the logo and a dropdrown button.
     - The header tells the user the name of the company and clearly guides the user to all the points that interest them. 
      - Header Images
-        - <img src="static/images/SlackBook-Logo.png" alt="logo">
-        - <img src="static/images/screenshot-full-header.png" alt="header1">
-        - <img src="static/images/screenshot-header-dropdown.png" alt="dropdown">
-        - <img src="static/images/screenshot-header-hamburger.png" alt="hamburger">
-        - <img src="static/images/screenshot-log-out.png" alt="header2">
+        - <img src="static/images/SlackBook-Logo.png" alt="Logo">
+        - <img src="static/images/screenshot-full-header.png" alt="Header1">
+        - <img src="static/images/screenshot-header-dropdown.png" alt="Dropdown">
+        - <img src="static/images/screenshot-header-hamburger.png" alt="Hamburger">
+        - <img src="static/images/screenshot-log-out.png" alt="Header2">
 
 
 - __The Footer__ 
@@ -47,7 +47,7 @@ SlackBook is a platform on which people can get in touch with each other. You ca
   - The footer idea and basic code is taken form the **Code-Institute Love-Running-Project** but has been slightly modified.
 
   - Footer
-  <img src="assets/images/screenshot-footer.png" alt="footer">
+  <img src="static/images/screenshot-footer.png" alt="Footer">
 
 
 ### The Homepage
@@ -68,14 +68,14 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 
 - All SlackBook users are displayed on the right side. These are sorted by the most recent login date and linked to the respective user account. In addition, the most recent post of the respective user is displayed here if they were not posted in a private channels.
 
+    - Landing Page Image
+<img src="static/images/screenshot-landing-logged-in.png" alt="Landing">
+<img src="static/images/screenshot-landing-logged-in2.png" alt="Landing2">
 
-- Slogan and Slideshow
-<img src="assets/images/screenshot-slogan-slideshow.png" alt="Slogan-Slideshow">
 
+### The Channels/Channel Page
 
-### The Channels/Channelpage
-
-- The channels are divided into two sections.
+- The channels are divided into two parts.
 
 #### Channel-Content
 
@@ -87,8 +87,8 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 #### Channel-Members
 On the right side you can see all members of the channel, who are also linked here.
 
-    - Map
-    <img src="assets/images/screenshot-map2.png" alt="Map">
+- Channel Image
+<img src="static/images/screenshot-channel.png" alt="Channel">
 
 
 ### Categories and Channel Page

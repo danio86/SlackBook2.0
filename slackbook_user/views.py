@@ -42,6 +42,7 @@ def channel(request, pk):
         Q(body__icontains=s)
     )
 
+    object_count = objects.count()
     queryset = Channel.objects.get(id=pk)
     posts = Post.objects.all().order_by('-created_on')
     guests = queryset.guests.all()
@@ -70,7 +71,7 @@ def channel(request, pk):
         return redirect('channel', pk)
 
     context = {'channel': queryset, 'posts': posts, 'guests': guests,
-               'post_form': post_form, 'objects': objects}
+               'post_form': post_form, 'objects': objects, 'object_count': object_count}
     return render(request, 'base/channel.html', context)
 
 
