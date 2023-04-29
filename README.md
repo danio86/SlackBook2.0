@@ -159,6 +159,9 @@ On the right side you can see all members of the channel, who are also linked he
     - If the account owner visits their own account, all private chats are linked in a drop-down menu instead.
 - Below are visible to all, the account owner's hosted channels including the latest posts are displayed. It also shows the channels that the account owner has joined. In addition, the age of the posts and post creators is displayed and linked.
 
+    - User-Account Image
+    <img src="static/images/screenshot-user-account.png" alt="Create-Channel">
+
 
 ### Chat Page
 - The user gets here when he clicks on "send message" in another account or on the message icon in his own account. Then all the chats that the user either hosted, has, or has been added to will be displayed.

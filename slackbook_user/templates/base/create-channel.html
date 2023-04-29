@@ -23,13 +23,10 @@
                         <datalist id="topic-list">
                             <select name="categories" id="form-category">
                                 {% for category in categories %}
-                                    <!-- <option value="{{ category.title }}"></option> -->
                                     <option value="{{ category.title }}">{{ category.title }}</option>
                                 {% endfor %}
                             </select>
-                        </datalist>
-                        <!-- <span class="text-white-50" bg-dark id="form-topic">{{ form.topic }}</span> -->
-                        
+                        </datalist>                    
                     </div>
                     <br>
                     <div>
