@@ -371,7 +371,6 @@ def addMembers(request, pk):
 def deleteChannel(request, pk):
     object = Channel.objects.get(id=pk)
 
-
     context = {'object': object}
     if request.method == 'POST':
         object.delete()
