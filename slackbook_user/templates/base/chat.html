@@ -27,7 +27,7 @@
             <div class="main-content">
                 <div class="channel-content">
                 {% if 'chat' in request.path %}
-                <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a>
+                <a class="navbar-brand" href="/"><img class="brand" src="{% static 'images/SlackBook-Logo.png' %}" alt="logo"></a>
                 <label for="channel-description">Conversation with
                     {% if request.user == chat.host %}
                         {{ chat.title }}

@@ -33,9 +33,13 @@ SlackBook is a platform on which people can get in touch with each other. You ca
     - The header tells the user the name of the company and clearly guides the user to all the points that interest them. 
      - Header Images
         - <img src="static/images/SlackBook-Logo.png" alt="Logo">
+        <br>
         - <img src="static/images/screenshot-full-header.png" alt="Header1">
+        <br>
         - <img src="static/images/screenshot-header-dropdown.png" alt="Dropdown">
+        <br>
         - <img src="static/images/screenshot-header-hamburger.png" alt="Hamburger">
+        <br>
         - <img src="static/images/screenshot-log-out.png" alt="Header2">
 
 
@@ -68,8 +72,9 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 
 - All SlackBook users are displayed on the right side. These are sorted by the most recent login date and linked to the respective user account. In addition, the most recent post of the respective user is displayed here if they were not posted in a private channels.
 
-    - Landing Page Image
+    - Landing Page Images
 <img src="static/images/screenshot-landing-logged-in.png" alt="Landing">
+<br>
 <img src="static/images/screenshot-landing-logged-in2.png" alt="Landing2">
 
 
@@ -137,6 +142,8 @@ On the right side you can see all members of the channel, who are also linked he
 
 - If the user has hosted a channel, he can then update it. If he clicks "edit" in the channel, he can change the title and category on the page that is being viewed. Also, he can change the channel status from public to private and vice versa. If the channel is private, you'll see a link to "add members" here.
 
+    
+
 ### Add-Members Page
 
 - Here you can select individual users and add them to the channel.
@@ -144,12 +151,18 @@ On the right side you can see all members of the channel, who are also linked he
     - Create-Channel Image
     <img src="static/images/screenshot-create-channel.png" alt="Create-Channel">
 
+    - Edit-Channel Image
+    <img src="static/images/screenshot-edit-channel.png" alt="Edit-Channel">
 
 
-### Delete Page
+
+### Delete Object Page
 
 - The Delete page always looks the same. Posts or channels can be deleted here. To do this, the user first clicks on delete and can then confirm here that the selected object should actually be deleted.
 - Alternatively, he can click back and will then be taken back to the previous page.
+
+    - Delete Image
+    <img src="static/images/screenshot-delete.png" alt="Create-Channel">
 
 ### Account Page
 
@@ -160,7 +173,7 @@ On the right side you can see all members of the channel, who are also linked he
 - Below are visible to all, the account owner's hosted channels including the latest posts are displayed. It also shows the channels that the account owner has joined. In addition, the age of the posts and post creators is displayed and linked.
 
     - User-Account Image
-    <img src="static/images/screenshot-user-account.png" alt="Create-Channel">
+    <img src="static/images/screenshot-user-account.png" alt="User Account">
 
 
 ### Chat Page
@@ -168,8 +181,9 @@ On the right side you can see all members of the channel, who are also linked he
 - This shows how long the connection to the other user has existed and the previous chat history.
 - A new post can be written and sent underneath.
 
-  - Response
-  <img src="assets/images/screenshot-response.png" alt="Response">
+  - Chat
+  <img src="static/images/screenshot-chat.png" alt="Chat">
+
 
 ### 404 Page
 
@@ -189,7 +203,7 @@ On the right side you can see all members of the channel, who are also linked he
   - The User can log in with email adress and password.
 
   - Login
-  <img src="assets/images/screenshot-login.png" alt="Login">
+  <img src="static/images/screenshot-logIn.png" alt="Log-In">
 
 
 ### The Sign Up Pages
@@ -198,12 +212,15 @@ On the right side you can see all members of the channel, who are also linked he
   
 
   - Sign Up
-  <img src="assets/images/screenshot-signup.png" alt="Sign Up">
+  <img src="static/images/screenshot-signUp.png" alt="Sign Up">
 
 
 ### The Log Out
 
   - Here the user can either log out or be directed back to the homepage with a link.
+
+  - Log Out
+  <img src="static/images/screenshot-log-out.png" alt="Log-Out">
 
   - Thank You
   <img src="assets/images/screenshot-thank-you.png" alt="Thank You">
