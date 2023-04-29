@@ -19,7 +19,6 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'images/avatar.png' %}">
     <link rel="stylesheet" href="{% static 'images/SlackBook-Logo.png' %}">
     <title>SlackBook</title>
 </head>
@@ -46,11 +45,9 @@
                             {{ request.user.username }}
                             {% endif %}
                             {% if request.user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                            <!-- <img class="user-image" src="/static/images/avatar.png" alt="logo"> -->
-                            <img class="user-image" src="{% static 'images/avatar.png' %}" alt="logo">
+                            <i class="far fa-user user-image default-user"></i>
                             {% elif not user.is_authenticated %}
-                            <!-- <img class="user-image" src="/static/images/avatar.png" alt="logo"> -->
-                            <img class="user-image" src="{% static 'images/avatar.png' %}" alt="logo">
+                            <i class="far fa-user user-image default-user"></i>
                             {% else %}
                             <img class="user-image" src="{{ request.user.avatar.url }}" alt="user-image">
                             {% endif %}

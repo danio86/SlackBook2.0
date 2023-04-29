@@ -12,11 +12,10 @@ class User(AbstractUser):
     biography = models.TextField(null=True)
     id = models.AutoField(primary_key=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
-    # userImage = models.ImageField(null=True, default="avatar.png")
     loggedin = models.BooleanField(default=True, blank=True)
     online = models.BooleanField(default=False, blank=True)
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
 
@@ -33,14 +32,11 @@ class Channel(models.Model):
     # if the Topic Class would be below the this(Channel) Class
     # Topic wouldt need quotes ('Topic')
     # if the topic is deleted, the Channel is not deleted (SET_NULL)
-    # title = models.CharField(max_length=200)
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True, max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
-    # slug = models.SlugField(max_length=200)
     guests = models.ManyToManyField(User, related_name='guests', blank=True)
     featured_image = CloudinaryField('image', default='placeholder')
-    # excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -48,9 +44,6 @@ class Channel(models.Model):
     private = models.BooleanField(default=False, blank=True)
     permission = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
-    # members = models.ManyToManyField(
-    #     User, blank=True, related_name='members',
-    #     limit_choices_to={'name': True})
 
     class Meta:
         ordering = ["-created_on"]
@@ -88,8 +81,6 @@ class Post(models.Model):
     image = models.ImageField(null=True, blank=True)
     image_description = models.TextField(null=True, max_length=200, blank=True)
     keywords = models.TextField(blank=True)
-    # video = models.FileField(upload_to='videos_uploaded',null=True,
-    # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
 

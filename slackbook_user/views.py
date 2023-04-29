@@ -20,6 +20,7 @@ def home(request):
     topics = Topic.objects.all()
     channels = Channel.objects.all().order_by('updated_on', '-created_on')
     users = User.objects.all().order_by('-last_login')
+    # images = Images.def_avatar
     # guests = users.guests.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(

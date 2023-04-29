@@ -115,13 +115,33 @@ On the right side you can see all members of the channel, who are also linked he
 
 ### User-Settings Page
 
-- 
+- Here the user can change some of his personal data. He can change the username, the name and the email address and his avatar. You can log in with your email address.
 
+
+## Create - Update - Delete - Channel
+
+- The create channel, the edit channel and the add member page are rendered by different functions in views.py, but are displayed in the same template. The template looks different depending on which page is being rendered.
 
 ### Create-Channel Page
+
+- The user can host their own channel on the Create Channel page. The user has to enter the category (the main topic) and the title of the channel. He also has yet to announce whether it is a private or public channel.
+- If it is a private channel, he must then edit the channel and add users manually.
+- If the channel is public, every user who posts here will automatically be added as a user.
+- Only registered users can create a channel.
+
+
 ### Update-Channel Page
+
+- If the user has hosted a channel, he can then update it. If he clicks "edit" in the channel, he can change the title and category on the page that is being viewed. Also, he can change the channel status from public to private and vice versa. If the channel is private, you'll see a link to "add members" here.
+
 ### Add-Members Page
 
+- Here you can select individual users and add them to the channel.
+
+### Delete Page
+
+- The Delete page always looks the same. Posts or channels can be deleted here. To do this, the user first clicks on delete and can then confirm here that the selected object should actually be deleted.
+- Alternatively, he can click back and will then be taken back to the previous page.
 
 ### Account Page
 
@@ -133,35 +153,29 @@ On the right side you can see all members of the channel, who are also linked he
 
 
 ### Chat Page
-
-
-
-### 404 Page
-
-
-__The Send us a message section__
-
-  - This section will allow the user to send us (***coachfinder-company***) a message with feddback, questions, suggestions, and complaints.
-  - to submit the message, the has to type in an e-mail address. 
-  - If it were a real website, the only way the company could reply was like that. If the user wants to delete his message or e-mail address, the Clear Form button can be clicked.
-  - After sending the message, the user will receive confirmation that the message has arrived and is being processed. Since Coachfinder does not have a real server, the ***Code-Institute*** server was used as an example. Since no nice answer appears here, a *Receive Answer button* has been added. Clicking on this button demonstrates how feedback will look like in the future. If the company ever exists, this button will be deleted.
-  - The *Receive Answer button* leads to a **fourth web page (The Response Page)** that can only be reached here. 
-
-  - Contact
-  <img src="assets/images/screenshot-contact.png" alt="Contact">
-
-
-### The Response Page
-
-  - The Response Page contains the same header and footer as the other web pages. Additionally, there is a response section under the header. Here is the message that the request has been received and is being processed.
+- The user gets here when he clicks on "send message" in another account or on the message icon in his own account. Then all the chats that the user either hosted, has, or has been added to will be displayed.
+- This shows how long the connection to the other user has existed and the previous chat history.
+- A new post can be written and sent underneath.
 
   - Response
   <img src="assets/images/screenshot-response.png" alt="Response">
 
+### 404 Page
+
+- If the user clicks on a link that goes nowhere, they will be directed here.
+- An apology and two links will appear. One leads to the previous page, the other leads to the homepage.
+
+
+## Login - Sign Up - Log Out - Page
+
+- All three pages have been taken over and modified by the Django framework "Allauth".
+    - [Django-allauth](https://django-allauth.readthedocs.io/en/latest/)
+
 
 ### The Login Page
 
-  - This page will allow the user to log in to coachfinder. If the user has not yet registered, he can do so here. No user can log in without having registered. After klicking the sign up button oder the login butten, without beeing registered, the user comes to the signup page.
+  - This page will allow the user to log in to his or her account. If the user has not yet registered, he can do so here. No user can log in without having registered. There is a link to the signup page.
+  - The User can log in with email adress and password.
 
   - Login
   <img src="assets/images/screenshot-login.png" alt="Login">
@@ -169,51 +183,29 @@ __The Send us a message section__
 
 ### The Sign Up Pages
 
-  - There are two Sign Up pages with different headings. To the first one the user comes by clicking the Sign Up button, to the other page the user comes by trying to log in without being registered first. Other than that, both sides are the same. The user can register here. All fields are mandatory.
-  - A few lines of javascript were used for the repeat-password field. The basic code for this is taken from the following website.
-    - [Codepen](https://codepen.io/diegoleme/pen/qBpyvr)
+  - In der SignUp Seite muss der Username, und das Passwort angegeben werden. Dieses muss im Nachhinein bestätigt werden. Zusätzlich kann die Emailadresse angegeben werden.
+  
 
   - Sign Up
   <img src="assets/images/screenshot-signup.png" alt="Sign Up">
 
-  - Sign Up-Mistake
-  <img src="assets/images/screenshot-signup-mistake.png" alt="Sign Up">
 
+### The Log Out
 
-### The Thank You Page
-
-  - The Thank You (thx) page contains a landing image with a message inside. In it, the company Coachfinder thanks the user for registering it. In the future, the user will now receive an email in which he must click a confirmation link. This will lead him to a Coachfinder profile page. In the future he can then set up his profile. This page will be created in the future.
+  - Here the user can either log out or be directed back to the homepage with a link.
 
   - Thank You
   <img src="assets/images/screenshot-thank-you.png" alt="Thank You">
 
 
-### The Sport Category Page
-
-  - The Sport Category page contains a landing image and a dropdown menu below. It is the same dropdown menu like the spors page. But only the sport category that the user clicked appears. Because there are far too many sports categories and only three pages to create, there is only one sample sports category page in this practice website. The other sports category pages will be created in the future.
-  - The dropdown menu contains links to a specific sport page. Because there are far too many sports and only three pages to create, there is only one sample page in this practice website. The other specific sport pages will be created in the future.
-
-  - Sport Category
-  <img src="assets/images/screenshot-sport-category.png" alt="Sport Category">
 
 
-### The Specific Sport Page 
-
-  - The Specific Sport Page contains a list of coaches to choose. 
-  - Here the user finds all the information he needs to decide on a trainer. This coach can then be contacted directly.
-  - In the future you will find here a selection selected by location. The location is taken from the profile but can be changed here temporarily (travel situation). There will also be the option of contacting the coach via a chat function.
-
-  - Specific Sport
-  <img src="assets/images/screenshot-specific-sport.png" alt="Specific Sport">
-
-### Features Left to Implement
+## Features Left to Implement
 
   - Planned features: 
-    - A Profile page. Here you will be able to set up your profile. This is particularly important for coaches and sports club owners who want to market themselves. 
-    - All sport category and all specific sports pages that can be selected from the main sports page. Here, as a user, you will select a coach who is nearby and use the link to further information about her/him.
-    - A chat function will be added to the specific sport page to contact the coach directly.
-    - A location selector will be added to the specific sport page.
-    - The map will show many destinations leading to the coaches' profiles.
+    - In the future, the user will log in with an e-mail address.
+    - Other users will see whether you are online or not.nearby and use the link to further information about her/him.
+    - The user will receive a message if he or she has received a message from another user.
 
 
 
