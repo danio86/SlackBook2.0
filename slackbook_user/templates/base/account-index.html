@@ -16,7 +16,7 @@
                 <h4><a href="{% url 'channel' topic.id %}">{{topic.title}}</a></h4>
                 {% if topic.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
                 <!-- <img class="user-image" src="/static/images/avatar.png" alt="logo"> -->
-                <img class="user-image" src="{% static 'images/avatar.png' %}" alt="logo">
+                <i class="far fa-user user-image default-user"></i>
                 {% else %}
                 <img class="user-image" src="{{ topic.host.avatar.url }}" alt="user-image">
                 {% endif %}

@@ -25,6 +25,12 @@ body{
     border-radius: 50px;
 }
 
+.default-user{
+    padding: 4px;
+    font-size: 25px;
+    padding-top: 2px;
+}
+
 .user-logedout{
     width: 35px;
     height: 35px;
