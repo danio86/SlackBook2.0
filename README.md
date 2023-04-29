@@ -8,10 +8,17 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 
 ## User Stories
 
-- As a visiting user, I can easily understand the main purpose of the website. 
-- As a visiting user, I can navigate the website without any problems.
-- As a visiting user, I will be able to learn about other users and contact them.
-- As a visiting user, I can easily contact the company service.
+- As a Site User I can view a list of channel so that I can select one to read the posts.
+- As a Site User I can choose between several topics so that I can see different channels refereed to this topic.
+- As a Site User I can register an account so that I can comment and join channels.
+- As a Site User / Admin I can view comments on an individual post so that I can read the conversation.
+- As a Site Admin/User I can create, read, update and delete posts so that I can manage my blog content.
+- As a Site User I can leave comments on a post so that I can be involved in the conversation.
+- As a Site User I can create, read, update and delete Channels so that I can get in contact with people of same interests.
+- As a Site User I can click on a Channel so that I can read the full content.
+- As a Site User I can create, update, delete private channels or chats so that I can communicate privately to a person or to a group.
+- As a Site User I can upload images so that I can support my statements with pictures and add a personal touch to my avatar
+- As a Site User I can search for content so that filter channels or topics
 
 
 ## Features 
@@ -98,7 +105,7 @@ On the right side you can see all members of the channel, who are also linked he
 
 - This page shows the same content like in the landing page on the left side. But here it is not filtert. 
 - On smaller screens this part ist not shown on the landin page anymore. Instead this page is linked in the header dropdown.
-- The channel categories are displayed.. These can be created by the user. Clicking on it will display all the channels associated with the category the user clicked.
+- The channel categories are displayed. These can be created by the user. Clicking on it will display all the channels associated with the category the user clicked.
 - The channels are displayed below the categories. If no category is clicked, all categories and all channels are displayed. The channel titles of the respective channels are displayed. In addition to the channel titles, the channel hosts are displayed. These are also links that lead to the respective user accounts.
 
 
