@@ -9,9 +9,6 @@
             <form class="col-md-4 form channel-content" action="" method="POST">
                 <!-- if method is not specified, it will send to the current url -->
                 {% csrf_token %}
-                <!-- {{ form.as_p }} -->
-                <!-- if somesthing is sendent the token needs to be included to avoid malicious attempts -->
-                <!-- the .as_ps wraps a paragraph around every inputfield (looks nicer) -->
                 <div>
 
                     
@@ -22,9 +19,7 @@
                     <div>
                         <label for="channel-title">Enter a Channel topic:</label>
                         <br>
-                        <!-- creating a manuel dropdown -->
                         <input type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
-                        <!-- <input required type="text" value="{{room.topic.name}}" name="topic" list="topic-list" /> -->
                         <datalist id="topic-list">
                             <select name="categories" id="form-category">
                                 {% for category in categories %}
@@ -60,7 +55,7 @@
                         <!-- <input type="checkbox" value="True" name="private" checked> -->
                         <br>
                         {% if not 'add-members' in request.path %}
-                        This is a free channel. Each user can register himself.
+                        This is a public channel. Each user can register himself.
                         <button class="btn private-button" name="private" value="False"><i class="far fa-square"></i></button>
                         {% endif %}
                     {% elif form.private.value == False %}
@@ -68,14 +63,14 @@
                         <!-- <input type="checkbox" value="True" name="private"> -->
                         <button class="btn private-button" name="private" value="True"><i class="far fa-square"></i></button>
                         <br>
-                        This is a free channel. Each user can register himself. <i class="far fa-check-square"></i>
+                        This is a public channel. Each user can register himself. <i class="far fa-check-square"></i>
                         <!-- <input type="checkbox" value="False" name="private" checked> -->
                     {% else %}
                         Set channel to private. Host adds users manually.
                         <!-- <input type="checkbox" value="True" name="private"> -->
                         <button class="btn private-button" name="private" value="True">Create a private channel</button>
                         <br>
-                        Set channelvto free. Each user can register himself.
+                        Set channel to public. Each user can register himself.
                         <button class="btn private-button" name="private" value="False">Create an open channel</button>
                         <!-- <input type="checkbox" value="False" name="private" checked> -->
                     {% endif %}

@@ -141,6 +141,11 @@ On the right side you can see all members of the channel, who are also linked he
 
 - Here you can select individual users and add them to the channel.
 
+    - Create-Channel Image
+    <img src="static/images/screenshot-create-channel.png" alt="Create-Channel">
+
+
+
 ### Delete Page
 
 - The Delete page always looks the same. Posts or channels can be deleted here. To do this, the user first clicks on delete and can then confirm here that the selected object should actually be deleted.
