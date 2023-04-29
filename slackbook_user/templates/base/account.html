@@ -8,7 +8,8 @@
 
             <div class="main-content-headline">
                 {% if user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                    <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                    <!-- <img class="user-image" src="/static/images/avatar.png" alt="logo"> -->
+                    <img class="user-image" src="{% static 'images/avatar.png' %}" alt="logo">
                 {% else %}
                     <img class="user-image" src="{{ user.avatar.url }}" alt="user-image">
                 {% endif %}
