@@ -19,7 +19,7 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = '__all__'
-        fields = ['avatar', 'username', 'name', 'email', 'biography']
+        fields = ['avatar', 'username', 'name', 'email']
         # exclude = ['', '']
 
 

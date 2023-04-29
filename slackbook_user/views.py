@@ -180,8 +180,9 @@ def recentlyActive(request):
 
     posts = Post.objects.all()
     users = User.objects.all()
+    user_count = queryset.count()
 
-    context = {'queryset': queryset, 'posts': posts}
+    context = {'queryset': queryset, 'posts': posts, 'user_count': user_count}
     return render(request, 'base/recently-active.html', context)
 
 

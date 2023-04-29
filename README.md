@@ -109,13 +109,16 @@ On the right side you can see all members of the channel, who are also linked he
 - On smaller screens this part ist not shown on the landin page anymore. Instead this page is linked in the header dropdown.
 - All SlackBook users are displayed. These are sorted by the most recent login date and linked to the respective user account. In addition, the most recent post of the respective user is displayed here if they were not posted in a private channels.
 
-  - Sport-Dropdown
-  <img src="assets/images/screenshot-sport-selector.png" alt="Sport-Dropdown">
+  - Active User Image
+  <img src="static/images/screenshot-user.png" alt="Active-User">
 
 
 ### User-Settings Page
 
 - Here the user can change some of his personal data. He can change the username, the name and the email address and his avatar. You can log in with your email address.
+
+    - User Settings Image
+  <img src="static/images/screenshot-settings.png" alt="User-Settings">
 
 
 ## Create - Update - Delete - Channel

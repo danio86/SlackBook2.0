@@ -6,8 +6,7 @@
     <div class="col-md-4 offset-md-4">
         <div>
             {% for user in queryset %}
-                <div>
-                    <div class="row main-content">
+                    <div class="row main-content">         
                         <div class="channel-content">
                             <small><a href="{% url 'account' user.id %}">@{{ user.username }}</a></small>
                             {% if user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
@@ -29,6 +28,7 @@
                         </div>
                         <br>
                     </div>
+                    
             {% endfor %}
 
             
