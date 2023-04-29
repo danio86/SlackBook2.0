@@ -25,29 +25,18 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 
 - __Header__
 
-    - The header contains the SlackBook logo which is a link to the home webpage. The header also contanisa seachbar and a dropdown menu button with   the user image or a default avatar. 
+    - The header contains the SlackBook logo which is a link to the home webpage. The header also contanisa seachbar and a dropdown menu button with the user image or a default avatar. 
         -  The  dropdown button includes links to the user settings, the user, the user account, to all all channels and categories. If the user is logged in, it also containes the link to the logout page. If the user is not logged in, it contains the link to the log in page.
     - The header has a fixed position and can be seen on all  webpages at the top of the browser window. 
     - On pages where a seachbar makes no scence, it is missing.
     - On small screens the header collapes to the logo and a dropdrown button.
     - The header tells the user the name of the company and clearly guides the user to all the points that interest them. 
-
-
-
-  - Nav Bar Images:
-    - Nav Bar
-    <img src="assets/images/Screenshot top-menu.png" alt="Nav Bar">
-    <img src="assets/images/top-menu + dropdown.png" alt="Nav Bar + Dropdown">
-
-    - Hamburger Menu
-
-    <img src="assets/images/screenshot-burger.png" alt="Burger">
-    <img src="assets/images/screenshot-burger-dropdown.png" alt="Burger + Dropdown">
-
-
-  - Landing Page image
-
-  <img src="assets/images/screeshot-mountain-paar.png" alt="Landing Page" height="50%" width="50%">
+     - Header Images
+        - <img src="static/images/SlackBook-Logo.png" alt="logo">
+        - <img src="static/images/screenshot-full-header.png" alt="header1">
+        - <img src="static/images/screenshot-header-dropdown.png" alt="dropdown">
+        - <img src="static/images/screenshot-header-hamburger.png" alt="hamburger">
+        - <img src="static/images/screenshot-log-out.png" alt="header2">
 
 
 - __The Footer__ 
@@ -58,7 +47,7 @@ SlackBook is a platform on which people can get in touch with each other. You ca
   - The footer idea and basic code is taken form the **Code-Institute Love-Running-Project** but has been slightly modified.
 
   - Footer
-  <img src="assets/images/screenshot-footer.png" alt="Footer">
+  <img src="assets/images/screenshot-footer.png" alt="footer">
 
 
 ### The Homepage
@@ -72,7 +61,8 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 
 #### User Channels
 
-- The channels in which the user is a member are displayed in the middle. As a rule, these are also channels that the user has hosted. The last post of the user is displayed in the channels. Linked here are the channel host and the channel itself.
+- In the middle are the channels that the user has joined or which he/she has hosted. The last post of the user is displayed in the channels. Linked here are the channel host and the channel itself.
+- If the user is not registered, the request to register can be seen here.
 
 #### Slackbook User
 
