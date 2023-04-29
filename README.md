@@ -87,8 +87,8 @@ SlackBook is a platform on which people can get in touch with each other. You ca
 #### Channel-Members
 On the right side you can see all members of the channel, who are also linked here.
 
-- Channel Image
-<img src="static/images/screenshot-channel.png" alt="Channel">
+   - Channel Image
+   <img src="static/images/screenshot-channel.png" alt="Channel">
 
 
 ### Categories and Channel Page
@@ -97,6 +97,9 @@ On the right side you can see all members of the channel, who are also linked he
 - On smaller screens this part ist not shown on the landin page anymore. Instead this page is linked in the header dropdown.
 - The channel categories are displayed. These can be created by the user. Clicking on it will display all the channels associated with the category the user clicked.
 - The channels are displayed below the categories. If no category is clicked, all categories and all channels are displayed. The channel titles of the respective channels are displayed. In addition to the channel titles, the channel hosts are displayed. These are also links that lead to the respective user accounts.
+
+    - Channel Image
+    <img src="static/images/screenshot-categories-channels.png" alt="Channel">
 
 
 
