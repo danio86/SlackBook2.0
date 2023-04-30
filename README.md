@@ -2,6 +2,8 @@
 
 SlackBook is a platform on which people can get in touch with each other. You can form groups/channels here and exchange and discuss any topic here. Texts or pictures can be posted for this. The channels can be public or private, so two people can also chat privately with each other.
 
+The Project can be seen [here](https://slackbook2.herokuapp.com/)
+
 
 ## User Stories
 
