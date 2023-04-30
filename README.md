@@ -2,9 +2,6 @@
 
 SlackBook is a platform on which people can get in touch with each other. You can form groups/channels here and exchange and discuss any topic here. Texts or pictures can be posted for this. The channels can be public or private, so two people can also chat privately with each other.
 
-- Responsice Mockup
-<img src="static/images/screenshot-media-query.png" alt="Responsice Mockup">
-
 
 ## User Stories
 
@@ -309,9 +306,10 @@ On the right side you can see all members of the channel, who are also linked he
 ### Unfixed Bugs
 
  - No Bugs are unfixed.
- - There were a few bugs, but they were fixed within a short time. 
-  - For example, the Sports category page displayed well in Firefox and not in Google Chrome. The image formatting caused free white areas to appear on the page in Google Chrome. 
-  - Another difficulty was the dropdown button (Sport) in the header menu. This had to be formatted separately, just like the other menu buttons.
+ - But functions that have to be solved better in the future.
+    - In the future, the user will log in with an e-mail address.
+    - Other users will see whether you are online or not.nearby and use the link to further information about her/him.
+    - The user will receive a message if he or she has received a message from another user.
 
 
 
