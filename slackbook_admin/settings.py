@@ -34,7 +34,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 # 2 hosts (heroku and local)
-ALLOWED_HOSTS = ['slackbook2.herokuapp.com', 'localhost', '8000-danio86-slackbook2-ts48rmc1ov.us2.codeanyapp.com']
+ALLOWED_HOSTS = ['slackbook2.herokuapp.com', 'localhost',
+                 '8000-danio86-slackbook2-ts48rmc1ov.us2.codeanyapp.com']
 
 
 # Application definition

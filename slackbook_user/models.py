@@ -6,6 +6,7 @@ from taggit.managers import TaggableManager
 STATUS = ((0, 'Draft'), (1, 'Published'))
 
 
+# User Model expands the default User Model
 class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True)
@@ -19,6 +20,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 
+# Topic/Category
 class Topic(models.Model):
     title = models.CharField(max_length=200, unique=True)
 
@@ -26,12 +28,10 @@ class Topic(models.Model):
         return self.title
 
 
+# Channel Model
 class Channel(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
-    # if the Topic Class would be below the this(Channel) Class
-    # Topic wouldt need quotes ('Topic')
-    # if the topic is deleted, the Channel is not deleted (SET_NULL)
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True, max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -52,6 +52,7 @@ class Channel(models.Model):
         return self.title
 
 
+# Chat Model
 class Chat(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200)
@@ -69,13 +70,13 @@ class Chat(models.Model):
         return self.title
 
 
+# Post Model is connected to Channel and Chat
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True, related_name='channel_post')
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, null=True, blank=True)
-    # this says to which channel the post belongs
-    # all posts are children of the Channel Class/Model.
-    # If Channel or User gets deleted, all posts have to get deleted too.
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True,
+                                related_name='channel_post')
+    chat = models.ForeignKey(
+        Chat, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200, blank=True)
     body = models.TextField(blank=True)
     image = models.ImageField(null=True, blank=True)

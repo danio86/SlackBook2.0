@@ -3,11 +3,11 @@ from .models import User, Channel, Topic, Post, Chat
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-# from .forms import ChannelForm, UserForm
 from .forms import ChannelForm, UserForm, PostForm, ChatForm
 from django.contrib.auth import authenticate, login, logout
 
 
+# home page
 def home(request):
     s = request.GET.get('s') if request.GET.get('s') is not None else ''
 
@@ -20,8 +20,6 @@ def home(request):
     topics = Topic.objects.all()
     channels = Channel.objects.all().order_by('updated_on', '-created_on')
     users = User.objects.all().order_by('-last_login')
-    # images = Images.def_avatar
-    # guests = users.guests.all()
 
     comments = Post.objects.all().order_by('-created_on').filter(
         Q(channel__topic__title__icontains=s))
@@ -33,6 +31,7 @@ def home(request):
     return render(request, 'base/index.html', context)
 
 
+# Channels
 def channel(request, pk):
 
     s = request.GET.get('s') if request.GET.get('s') is not None else ''
@@ -71,14 +70,16 @@ def channel(request, pk):
         return redirect('channel', pk)
 
     context = {'channel': queryset, 'posts': posts, 'guests': guests,
-               'post_form': post_form, 'objects': objects, 'object_count': object_count}
+               'post_form': post_form, 'objects': objects,
+               'object_count': object_count}
     return render(request, 'base/channel.html', context)
 
 
+# Chat
 def chat(request, pk):
     queryset = Chat.objects.get(id=pk)
     posts = queryset.post_set.all().order_by('-created_on')
-    
+
     post_form = PostForm()
 
     if request.method == 'POST':
@@ -104,18 +105,18 @@ def chat(request, pk):
     return render(request, 'base/chat.html', context)
 
 
+# Guests of a Channel
 def channelMember(request, pk):
     queryset = Channel.objects.get(id=pk)
-    # queryset = Channel.objects.all()
     guests = queryset.guests.all()
 
     context = {'guests': guests}
     return render(request, 'base/channel-member.html', context)
 
 
+#  Personal Account
 def account(request, pk):
     queryset = User.objects.get(id=pk)
-    # chat = Chat.objects.get(id=request.user.id)
     chat = Chat.objects.all()
     user_channels = queryset.channel_set.all()
     all_Channels = Channel.objects.all()
@@ -135,14 +136,11 @@ def account(request, pk):
             host=queryset,
             title=request.user.username,
             body=request.POST.get('body'),
-            # title from the frontend
             )
         if form.is_valid():
             form.save()
-            # return redirect('chat', form.id)
-        
+
         return redirect('chat', chat[0].id)
-        # return redirect('home')
 
     chat_count = chat.count()
 
@@ -156,6 +154,7 @@ def account(request, pk):
     return render(request, 'base/account.html', context)
 
 
+# Topic / Categories
 def topics(request):
     s = request.GET.get('s') if request.GET.get('s') is not None else ''
 
@@ -172,6 +171,7 @@ def topics(request):
     return render(request, 'base/topics.html', context)
 
 
+# Active Users
 def recentlyActive(request):
     s = request.GET.get('s') if request.GET.get('s') is not None else ''
 
@@ -188,6 +188,7 @@ def recentlyActive(request):
     return render(request, 'base/recently-active.html', context)
 
 
+# User Settings
 @login_required(login_url='/accounts/login/')
 def userSettings(request):
     user = request.user
@@ -206,13 +207,12 @@ def userSettings(request):
             return redirect('/user-settings/')
 
         return redirect('home')
-        # return redirect('user-settings')
-        # return redirect('user-account', user.id)
 
     context = {'user_form': user_form}
     return render(request, 'base/user-settings.html', context)
 
 
+# Delete Post
 @login_required(login_url='/accounts/login/')
 def deleteComment(request, pk):
     object = Post.objects.get(id=pk)
@@ -234,15 +234,13 @@ def deleteComment(request, pk):
     return render(request, 'base/delete.html', context)
 
 
+# Create Channels
 @login_required(login_url='/accounts/login/')
 def createChannel(request):
     form = ChannelForm()
     categories = Topic.objects.all()
-    # queryset = Channel.objects.all()
-    # channel = get_object_or_404(categories, title=slug)
 
     if request.method == 'POST':
-        # method of the form in channel_form.html
         form = ChannelForm(request.POST)
         # this passis the POST into the form automatically.
         category_title = request.POST.get('topic')
@@ -255,46 +253,37 @@ def createChannel(request):
             topic=category,
             title=request.POST.get('topic-name'),
             slug=request.POST.get('topic-name').lower().replace(" ", "-"),
-            # description=request.POST.get('description'),
-            # title from the frontend
             private=request.POST.get('private'),
-            # guests=request.POST.get('guests'),
             )
-        # instance.guests.add(request.POST.get('guests'))
         messages.success(request, "You created a Channel.")
         return redirect('home')
     context = {'form': form, 'categories': categories}
     return render(request, 'base/create-channel.html', context)
 
 
+# Create Chat
 @login_required(login_url='/accounts/login/')
 def createPersonalChannel(request):
 
     form = ChatForm()
-    # categories = Topic.objects.all()
 
     if request.method == 'POST':
         form = ChatForm(request.POST)
-        # category_title = 'test1'
-        # category, created = Topic.objects.get_or_create(title=category_title)
-        # get_or_create() is a method which gets or creates an object
 
         Chat.objects.create(
             host=request.user,
             title='test4',
             body=request.POST.get('body'),
-            # title from the frontend
             )
         if form.is_valid():
             form.save()
-        # instance.guests.add(request.POST.get('guests'))
         messages.success(request, f"You are connected with {form.title}")
         return redirect('home')
     context = {'form': form}
-    # context = {'form': form, 'categories': categories}
     return render(request, 'base/create-personal-channel.html', context)
 
 
+# Edit Channel
 @login_required(login_url='/accounts/login/')
 def updateChannel(request, pk):
     queryset = Channel.objects.get(id=pk)
@@ -302,9 +291,6 @@ def updateChannel(request, pk):
     categories = Topic.objects.all()
     # this shows the prefild form to edit (instance is important!)
     groups_member = queryset.guests.all()
-
-    # if request.user != queryset.host:
-    #     return HttpResponse('You are not authorized!')
 
     if request.method == 'POST':
         form = ChannelForm(request.POST, instance=queryset)
@@ -315,15 +301,7 @@ def updateChannel(request, pk):
 
         queryset.title = request.POST.get('topic-name')
         queryset.topic = category
-        # queryset.description = request.POST.get('description')
         queryset.private = request.POST.get('private')
-        # queryset.guests = groups_member.update('guests')
-        # print(queryset.private)
-        # if queryset.private == 'True':
-        #     queryset.guests.add(request.POST.get('guests'))
-        # else:
-        #     pass
-
         queryset.save()
 
         return redirect('home')
@@ -332,36 +310,22 @@ def updateChannel(request, pk):
     return render(request, 'base/create-channel.html', context)
 
 
+# Add Member to a private Channel
 @login_required(login_url='/accounts/login/')
 def addMembers(request, pk):
     queryset = Channel.objects.get(id=pk)
     form = ChannelForm(instance=queryset)
     categories = Topic.objects.all()
-    # this shows the prefild form to edit (instance is important!)
     groups_member = queryset.guests.all()
-
-    # if request.user != queryset.host:
-    #     return HttpResponse('You are not authorized!')
 
     if request.method == 'POST':
         form = ChannelForm(request.POST, instance=queryset)
-        # this only updates the form. It doesn't refill it.
-
-        # category_name = request.POST.get('topic')
-        # category, created = Topic.objects.get_or_create(title=category_name)
-
-        # queryset.title = request.POST.get('topic-name')
-        # queryset.topic = category
-        # queryset.description = request.POST.get('description')
-        # queryset.private = True
         queryset.private = request.POST.get('private')
-        # queryset.guests = groups_member.update('guests')
         print(queryset.private)
         if queryset.private == 'True':
             queryset.guests.add(request.POST.get('guests'))
         else:
             pass
-
         queryset.save()
 
         messages.success(request, "Member is added!")
@@ -371,6 +335,7 @@ def addMembers(request, pk):
     return render(request, 'base/create-channel.html', context)
 
 
+# Delete Channel
 @login_required(login_url='/accounts/login/')
 def deleteChannel(request, pk):
     object = Channel.objects.get(id=pk)
@@ -382,6 +347,7 @@ def deleteChannel(request, pk):
     return render(request, 'base/delete.html', context)
 
 
+# User log out
 @login_required(login_url='/accounts/login/')
 def logoutUser(request):
     request.user.loogedin = False
@@ -389,6 +355,7 @@ def logoutUser(request):
     return redirect('home')
 
 
+# 404 Handling
 def handling_404(request, exception):
 
     return render(request, 'base/404.html', {})

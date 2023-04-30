@@ -12,8 +12,6 @@ urlpatterns = [
     path(
      'delete-comment/<str:pk>/', views.deleteComment, name='delete-comment'),
     path('create-channel/', views.createChannel, name='create-channel'),
-    # path('<slug:slug>/', views.createChannel, name='create-channel'),
-    # path('create-channel/', views.createChannel, name='create-channel'),
     path('add-members/<str:pk>/', views.addMembers, name='add-members'),
     path('create-personal-channel/', views.createPersonalChannel,
          name='personal-channel'),
@@ -24,6 +22,4 @@ urlpatterns = [
     path(
      'delete-channel/<str:pk>/', views.deleteChannel, name='delete-channel'),
     path('user-settings/', views.userSettings, name='user-settings'),
-    # path('account/logout/', views.logoutUser, name='logout'),
-
 ]

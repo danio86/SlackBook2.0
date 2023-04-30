@@ -254,6 +254,7 @@ On the right side you can see all members of the channel, who are also linked he
 ### Validator Testing
 
   - CI Python PEP8 Linter 
+     - No errors were detected when passing through the CI Python PEP8 Linter.
 
   - HTML
       - No errors were returned when passing through the official W3C validator.
@@ -263,15 +264,8 @@ On the right side you can see all members of the channel, who are also linked he
       - No errors were found when passing through the official (Jigsaw) validator.
 
   - JavaScipt
-
-    No errors were found when passing through the JSHint validator.
-        Metrics
-        There are 26 functions in this file.
-        Function with the largest signature take 2 arguments, while the median is 0.
-        Largest function has 68 statements in it, while the median is 3.
-        The most complex function has a cyclomatic complexity value of 31 while the median is 1.
-
-
+      - No errors were found when passing through the JSHint validator.
+        
 
   - Accessibility
       - I confirm that the colors and fonts selected are easy to read and accessible. This was discovered using lighthouse in devtools.
@@ -281,19 +275,16 @@ On the right side you can see all members of the channel, who are also linked he
 <img src="static/images/screenshot-HTML-val.png" alt="HTML Validation">
 
 - CSS Validation
-<img src="assets/images/screenshot-css-validator-english.png" alt="CSS Validation">
+<img src="static/images/screenshot-css-val.png" alt="CSS Validation">
 
 - JavaScipt Validation
-<img src="assets/images/screenshot-js-validation.png" alt="CSS JavaScipt">
+<img src="static/images/screenshot-js-validation.png" alt="JavaScipt Validation">
 
-- Lighthouse-Desktop
+- Python Validation
+<img src="static/images/screenshot-python-val.png" alt="Python Validation">
 
+- Lighthouse
 <img src="assets/images/screenshot-lighthouse.png" alt="Lighthouse Desktop">
-
-- Lighthouse-Mobil
-
-<img src="assets/images/screenshot-lighthouse-mobil.png" alt="Lighthouse Mobil">
-
 
 - user story besed test cases (screenshots):
 
