@@ -65,6 +65,8 @@ body{
 
 .header ul{
     display: block;
+    list-style-type: none;
+    padding: 5px;
 }
 
 .header form{

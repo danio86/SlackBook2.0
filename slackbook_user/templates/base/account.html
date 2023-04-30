@@ -8,75 +8,79 @@
 
             <div class="main-content-headline">
                 {% if user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                    <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                <img class="user-image" src="/static/images/avatar.png" alt="logo">
                 {% else %}
-                    <img class="user-image" src="{{ user.avatar.url }}" alt="user-image">
+                <img class="user-image" src="{{ user.avatar.url }}" alt="user-image">
                 {% endif %}
-                
+
                 <span>{{ user.username }}</span>
                 <br>
                 <a href="{% url 'create-channel' %}">Create Channel</a>
                 {% if request.user == user %}
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          {% for conversation in chat %}
-                            {% if conversation.host == user or conversation.title == user.username %}
-                                {% if conversation.host == user %}
-                                    <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation.title}}</a>
-                                {% else %}
-                                    <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation.host.username}}</a>
-                                {% endif %}
-                            {% else %}
-                                {% ifchanged You have no current conversation. %}
-                                Your conversations: 
-                                {% endifchanged %}                  
-                            {% endif %}
-                          {% endfor %}
-                        </div>
-                    </div>
-                {% endif %}
-                {% if request.user != user %}
-                    <p>Get connected</p>
-                    <div>
-                        {% for converstation in chat|slice:"1" %}
-                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
-                            <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
-                            {{ break }}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <!-- this part includes chat.html -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for conversation in chat %}
+                        {% if conversation.host == user or conversation.title == user.username %}
+                        {% if conversation.host == user %}
+                        <a class="dropdown-item" href="{% url 'chat' conversation.id %}">{{conversation.title}}</a>
                         {% else %}
-                            {% include 'base/chat.html' %}
+                        <a class="dropdown-item"
+                            href="{% url 'chat' conversation.id %}">{{conversation.host.username}}</a>
+                        {% endif %}
+                        {% else %}
+                        {% ifchanged You have no current conversation. %}
+                        Your conversations:
+                        {% endifchanged %}
                         {% endif %}
                         {% endfor %}
                     </div>
+                </div>
+                {% endif %}
+                {% if request.user != user %}
+                <p>Get connected</p>
+                <div>
+                    {% for converstation in chat|slice:"1" %}
+                    {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                    <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
+                    {{ break }}
+                    {% else %}
+                    {% include 'base/chat.html' %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
                 {% endif %}
             </div>
-
+            <!-- Hosted and joined Channels -->
             <div class="row justify-content-center">
                 <div class="col-6">
-                    <h4>{{channel_count}} hosted Channels</h4>      
+                    <h4>{{channel_count}} hosted Channels</h4>
                     {% for topic in channels %}
                     <div class="channel-content">
                         <h5><a href="{% url 'channel' topic.id %} ">{{topic.title}}</a></h5>
                         {% if request.user == topic.host %}
-                            <a href="{% url 'update-channel' topic.id %}"><i class="fas fa-edit"></i></a>
-                            <a href="{% url 'delete-channel' topic.id %}"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{% url 'update-channel' topic.id %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'delete-channel' topic.id %}"><i class="fas fa-trash-alt"></i></a>
                         {% endif %}
                         <div class="channel-content channel-scroll-topics">
                             {% for comment in all_comments %}
-                                {% if comment.channel.title == topic.title %}
-                                    {{ comment.body }}
-                                    {% if comment.image %}
-                                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
-                                    {% endif %}
-                                    <br>
-                                    <br>
-                                {% endif %}
+                            {% if comment.channel.title == topic.title %}
+                            {{ comment.body }}
+                            {% if comment.image %}
+                            <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                            {% endif %}
+                            <br>
+                            <br>
+                            {% endif %}
                             {% endfor %}
                         </div>
-                        <a href="{% url 'member' topic.id %}"><i class="fas fa-user-friends"></i></a> {{ topic.guests.count }} Members
+                        <a href="{% url 'member' topic.id %}"><i class="fas fa-user-friends"></i></a>
+                        {{ topic.guests.count }} Members
                         <span class="category-open"><small>{{ topic.topic.title }}</small></span>
                     </div>
                     <hr>
@@ -84,37 +88,38 @@
                 </div>
                 <div class="col-6" style="margin-left: -10px;">
                     <div>
-                    <h4>{{joined_count}} Joined Channels</h4>
-                        
+                        <h4>{{joined_count}} Joined Channels</h4>
+
                         <div>
                             {% for guest in guests %}
-                                {% if guest.host != user %}
-                                    <div class="channel-content">
-                                        <h5><a href="{% url 'channel' guest.id %}">{{guest.title}}</a></h5>                                 
-                                        <h6><a href="{% url 'channel' guest.host.id %}">@{{guest.host.username}}</a></h6>                                 
-                                        {% for comment in comments %}
-                                            {% if guest.title == comment.channel.title and comment.user == user %}
-                                                <small>@{{ comment.user.username }} - {{ comment.created_on|timesince }} ago</small>
-                                                <div class="channel-content">
-                                                    {{ comment.body }}
-                                                    {% if comment.image %}
-                                                        <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
-                                                    {% endif %}
-                                                </div>
-                                                <a href="{% url 'member' comment.channel.id %}"><i class="fas fa-user-friends"></i></a> {{ comment.channel.guests.count }} Members
-                                                <span><small>{{ comment.channel.topic.title }}</small></span>
-                                            {% endif %}               
-                                            {{ break }}                 
-                                        {% endfor %}
-                                    </div>
-                                    <hr>
+                            {% if guest.host != user %}
+                            <div class="channel-content">
+                                <h5><a href="{% url 'channel' guest.id %}">{{guest.title}}</a></h5>
+                                <h6><a href="{% url 'channel' guest.host.id %}">@{{guest.host.username}}</a></h6>
+                                {% for comment in comments %}
+                                {% if guest.title == comment.channel.title and comment.user == user %}
+                                <small>@{{ comment.user.username }} - {{ comment.created_on|timesince }} ago</small>
+                                <div class="channel-content">
+                                    {{ comment.body }}
+                                    {% if comment.image %}
+                                    <img class="post-image" src="{{ comment.image.url }}" alt="post-image">
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'member' comment.channel.id %}"><i class="fas fa-user-friends"></i></a>
+                                {{ comment.channel.guests.count }} Members
+                                <span><small>{{ comment.channel.topic.title }}</small></span>
                                 {% endif %}
+                                {{ break }}
+                                {% endfor %}
+                            </div>
+                            <hr>
+                            {% endif %}
                             {% endfor %}
                         </div>
 
                     </div>
-                </div>  
-            </div>  
+                </div>
+            </div>
         </div>
     </div>
 </div>

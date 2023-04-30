@@ -9,80 +9,70 @@
             <form class="col-md-4 form channel-content" action="" method="POST">
                 <!-- if method is not specified, it will send to the current url -->
                 {% csrf_token %}
+
+                {% if not 'add-members' in request.path %}
+                <h2>Create your Channel</h2>
+                <!-- Enter Category and Title -->
                 <div>
-
-                    
-                    {% if not 'add-members' in request.path %}
-                    <h2>Create your Channel</h2>
-                    
-                    
-                    <div>
-                        <label for="channel-title">Enter a Channel topic:</label>
-                        <br>
-                        <input type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
-                        <datalist id="topic-list">
-                            <select name="categories" id="form-category">
-                                {% for category in categories %}
-                                    <option value="{{ category.title }}">{{ category.title }}</option>
-                                {% endfor %}
-                            </select>
-                        </datalist>                    
-                    </div>
+                    <label>Enter a Channel topic:</label>
                     <br>
-                    <div>
-                        <label for="form-category">Coose a title:</label>
-                        <br>
-                        <input type="text" value="{{ queryset.title }}" name="topic-name">
-                    </div>
+                    <input type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
+                    <datalist id="topic-list">
+                        <select name="categories" id="form-category">
+                            {% for category in categories %}
+                            <option value="{{ category.title }}">{{ category.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </datalist>
+                </div>
+                <br>
+                <div>
+                    <label for="form-category">Coose a title:</label>
                     <br>
+                    <input type="text" value="{{ queryset.title }}" name="topic-name">
+                </div>
+                <br>
 
-                    {% else %}
-                        <h2>{{ queryset.title }}</h2>
+                {% else %}
+                <h2>{{ queryset.title }}</h2>
+                {% endif %}
+
+                <!-- Privacy -->
+                <div>
+                    {% if 'create-channel' in request.path %}
+                    <label>Is this a private channel?</label>
+                    <br>
                     {% endif %}
-                         
-                    <div>
-                        {% if 'create-channel' in request.path %}
-                        <label for="private">Is this a private channel?</label>
-                        <br>
-                        {% endif %}
-                        
+
                     <br>
                     {% if form.private.value == True %}
-                        This is a private channel. Host adds users manually. <i class="far fa-check-square"></i>
-                        <!-- <input type="checkbox" value="True" name="private" checked> -->
-                        <br>
-                        {% if not 'add-members' in request.path %}
-                        This is a public channel. Each user can register himself.
-                        <button class="btn private-button" name="private" value="False"><i class="far fa-square"></i></button>
-                        {% endif %}
-                    {% elif form.private.value == False %}
-                        Set channel to private. Host adds users manually.
-                        <!-- <input type="checkbox" value="True" name="private"> -->
-                        <button class="btn private-button" name="private" value="True"><i class="far fa-square"></i></button>
-                        <br>
-                        This is a public channel. Each user can register himself. <i class="far fa-check-square"></i>
-                        <!-- <input type="checkbox" value="False" name="private" checked> -->
-                    {% else %}
-                        Set channel to private. Host adds users manually.
-                        <!-- <input type="checkbox" value="True" name="private"> -->
-                        <button class="btn private-button" name="private" value="True">Create a private channel</button>
-                        <br>
-                        Set channel to public. Each user can register himself.
-                        <button class="btn private-button" name="private" value="False">Create an open channel</button>
-                        <!-- <input type="checkbox" value="False" name="private" checked> -->
+                    This is a private channel. Host adds users manually. <i class="far fa-check-square"></i>
+                    <br>
+                    {% if not 'add-members' in request.path %}
+                    This is a public channel. Each user can register himself.
+                    <button class="btn private-button" name="private" value="False"><i
+                            class="far fa-square"></i></button>
                     {% endif %}
-    
+                    {% elif form.private.value == False %}
+                    Set channel to private. Host adds users manually.
+                    <button class="btn private-button" name="private" value="True"><i
+                            class="far fa-square"></i></button>
+                    <br>
+                    This is a public channel. Each user can register himself. <i class="far fa-check-square"></i>
+                    {% else %}
+                    Set channel to private. Host adds users manually.
+                    <button class="btn private-button" name="private" value="True">Create a private channel</button>
+                    <br>
+                    Set channel to public. Each user can register himself.
+                    <button class="btn private-button" name="private" value="False">Create an open channel</button>
+                    {% endif %}
+
                     <br>
                     <div>
                         {% if form.private.value == True %}
-                        
+
                         {% if not 'add-members' in request.path %}
-                        <!-- test{{ queryset.id }}test -->
                         <a href="{% url 'add-members' queryset.id %}">Add Members</a>
-                        <!-- <a href="{% url 'add-members' 1 %}">Add Members</a> -->
-                        <!-- <label for="members">Members: </label>
-                        <br>
-                        <div aria-required="true" id="members" name="guests">{{form.guests}}</div> -->
                         {% endif %}
                         {% endif %}
 
@@ -91,40 +81,28 @@
                         <br>
                         <div aria-required="true" id="members" name="guests">{{form.guests}}</div>
                         {% endif %}
-    
-                       
-                        <!-- {% for member in form.guests %}
-                        <input type="submit" required id="id_guests" value=2>
-                        {{ member }}
-                        <button id="id_guests" required name="guests" value=4>{{ member }}</button> -->
-    
-    
-                        <!-- {% endfor %} -->
-                        
-                        
-                        
-    
+
                     </div>
                     <br>
-    
+
                 </div>
-    
-    
-                <button class="btn btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
+
+                <!-- Submit Part (depends on current url) -->
+                <a class="btn btn-outline-success button" href="{{request.META.HTTP_REFERER}}">Cancel</a>
                 {% if 'add-members' in request.path %}
-                    <!-- <input class="btn btn-outline-success button" type="submit" value="Add Members"> -->
-                    <button type="submit" class="btn btn-outline-success button" name="private" value="True">Add Members</button>
+                <button type="submit" class="btn btn-outline-success button" name="private" value="True">Add
+                    Members</button>
                 {% elif 'update-channel' in request.path %}
-                    {% if form.private.value == True %}
-                        <button type="submit" class="btn private-button" name="private" value="True">Update Channel</button>
-                    {% else %}
-                        <button type="submit" class="btn private-button" name="private" value="False">Update Channel</button>
-                    {% endif %}
+                {% if form.private.value == True %}
+                <button type="submit" class="btn private-button" name="private" value="True">Update Channel</button>
                 {% else %}
-                    <!-- <input class="btn btn-outline-success button" type="submit" value="Create Channel"> -->
-                    <button type="submit" style="color: cyan;" class="btn btn-outline-success button" name="private" value="False">Create Channel</button>
+                <button type="submit" class="btn private-button" name="private" value="False">Update Channel</button>
                 {% endif %}
-            </form>    
+                {% else %}
+                <button type="submit" style="color: cyan;" class="btn btn-outline-success button" name="private"
+                    value="False">Create Channel</button>
+                {% endif %}
+            </form>
         </div>
     </div>
 </div>

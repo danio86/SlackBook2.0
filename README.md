@@ -239,12 +239,21 @@ On the right side you can see all members of the channel, who are also linked he
 
 ## Testing 
 
-- I have tested that the website works in different browsers (Chrome and Firefox).
-- I confirm that the website works and looks good on all standard screen sizes. This was tested with the devtools divice toolbar.
-- I certify that the header, navigation, sport, contact and response text is easy to read and understand.
-- I confirm that the form in the contact page is working. An e-mail address must be entered in order to receive a reply.
+- I have manually tested the program in the Code institute Heroku terminal and in my local terminal.by doing the following:
+    - I have tested that the website works in different browsers (Chrome and Firefox).
+    - I confirm that the website works and looks good on all standard screen sizes. This was tested with the devtools divice toolbar.
+    - I confirm that the all forms are working.
+    - I confirm that the the user can create, edit and delete channels and posts.
+    - Passed the code through the Code institute - PEP8 linter and confirmed that there are no problems
+
+   
+ Tested in the Code institute Heroku terminal and in my local terminal.
+    CI Python Linter 
+    
 
 ### Validator Testing
+
+  - CI Python PEP8 Linter 
 
   - HTML
       - No errors were returned when passing through the official W3C validator.
@@ -253,18 +262,29 @@ On the right side you can see all members of the channel, who are also linked he
   - CSS
       - No errors were found when passing through the official (Jigsaw) validator.
 
+  - JavaScipt
+
+    No errors were found when passing through the JSHint validator.
+        Metrics
+        There are 26 functions in this file.
+        Function with the largest signature take 2 arguments, while the median is 0.
+        Largest function has 68 statements in it, while the median is 3.
+        The most complex function has a cyclomatic complexity value of 31 while the median is 1.
+
+
+
   - Accessibility
       - I confirm that the colors and fonts selected are easy to read and accessible. This was discovered using lighthouse in devtools.
       - All web pages have been tested for desktop and mobil devices.
 
 - HTML Validation
-<img src="assets/images/screenshot-html-validator.png" alt="HTML Validation">
+<img src="static/images/screenshot-HTML-val.png" alt="HTML Validation">
 
 - CSS Validation
 <img src="assets/images/screenshot-css-validator-english.png" alt="CSS Validation">
 
 - JavaScipt Validation
-<img src="assets/images/screenshot-jshint.png" alt="CSS JavaScipt">
+<img src="assets/images/screenshot-js-validation.png" alt="CSS JavaScipt">
 
 - Lighthouse-Desktop
 

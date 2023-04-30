@@ -23,15 +23,16 @@
     <link rel="stylesheet" href="{% static 'images/SlackBook-Logo.png' %}">
     <title>SlackBook</title>
 </head>
-<!--------------------------------- Body -->
+<!-- Body -->
 
 <body class="text-white bg-dark">
-    <!------------------------------- Header -->
+    <!-- Header -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="row header no-gutters">
             <div class="col-md-4">
-                <!-- <a class="navbar-brand" href="/"><img class="brand" src="/static/images/SlackBook-Logo.png" alt="logo"></a> -->
-                <a class="navbar-brand" href="/"><img class="brand" src="{% static 'images/SlackBook-Logo.png' %}" alt="logo"></a>
+                <a class="navbar-brand" href="/"><img class="brand" src="{% static 'images/SlackBook-Logo.png' %}"
+                        alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -39,8 +40,8 @@
                 </button>
             </div>
 
-
-            <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-md-8 collapse navbar-collapse" id="navbarSupportedContent">
+            <div>
                 <div class="row no-gutters header-user">
                     <div class="btn-group account-image">
                         <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button"
@@ -58,47 +59,56 @@
                         </button>
                         <div class="dropdown-menu">
                             {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                            </li>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                                </li>
+                            </ul>
                             {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                            </li>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                                </li>
+                            </ul>
                             {% endif %}
 
                             <div class="dropdown-divider"></div>
                             {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user-settings' %}">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account' request.user.id %}">My Account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'recently-active' %}">Active Users</a>
-                            </li>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'user-settings' %}">Settings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'account' request.user.id %}">My Account</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'recently-active' %}">Active Users</a>
+                                </li>
+                            </ul>
                             {% endif %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'topics' %}">Categories and Channels</a>
-                            </li>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'topics' %}">Categories and Channels</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
+            <div>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="s">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </div>
+        </div>
     </nav>
 
-    <!-- ------------Messages---------------- -->
+    <!-- Messages -->
     {% for message in messages %}
     <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
         {{ message | safe }}
@@ -107,40 +117,37 @@
     {% endfor %}
 
 
-    <!-- -------------Content---------------- -->
+    <!-- Content -->
     <div class="base-conent">
         {% block content %}
 
         {% endblock %}
     </div>
 
-    <!-- -------------Footer---------------- -->
+    <!-- Footer -->
 
     <footer class="footer">
-            
+
         <a href="https://twitter.com/" target="_blank" rel="noopener"
-            aria-label="Visit our Twitter page (opens in a new tab)"><i id="twitter"
-                class="fab fa-twitter"></i></a>
-    
-       <a href="http://facebook.com" target="_blank" rel="noopener"
-            aria-label="Visit our Facebook page (opens in a new tab)"><i id="facebook"
-                class="fab fa-facebook"></i></a>
+            aria-label="Visit our Twitter page (opens in a new tab)"><i id="twitter" class="fab fa-twitter"></i></a>
+
+        <a href="http://facebook.com" target="_blank" rel="noopener"
+            aria-label="Visit our Facebook page (opens in a new tab)"><i id="facebook" class="fab fa-facebook"></i></a>
 
         <a href="http://youtube.com" target="_blank" rel="noopener"
-        aria-label="Visit our Youtube page (opens in a new tab)"><i id="youtube" 
-                class="fab fa-youtube"></i></a>
+            aria-label="Visit our Youtube page (opens in a new tab)"><i id="youtube" class="fab fa-youtube"></i></a>
 
         <a href="http://linkedin.com" target="_blank" rel="noopener"
-        aria-label="Visit our LinkedIn page (opens in a new tab)"><i id="linkedin" 
-                class="fab fa-linkedin"></i></a>
-    
+            aria-label="Visit our LinkedIn page (opens in a new tab)"><i id="linkedin" class="fab fa-linkedin"></i></a>
+
         <a href="http://instagram.com" target="_blank" rel="noopener"
             aria-label="Visit our Instagram page (opens in a new tab)"><i id="instagram"
                 class="fab fa-instagram"></i></a>
-               
+
         <p>Copyright © SlackBook 2023</p>
     </footer>
 
+    <!-- JavaScript -->
     <script>
         setTimeout(function () {
             let messages = document.getElementById('msg');

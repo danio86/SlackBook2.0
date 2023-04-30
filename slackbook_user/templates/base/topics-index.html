@@ -6,17 +6,15 @@
                 <span class="col-md-4">{{topics.count}}</span>
             </div>
             <br>
+            <!-- filterable topics with search bar  -->
             {% for topic in topics %}
-                <div class="row">
-                    <a class="col-md-8" href="{% url 'home' %}?s={{topic.title}}">{{topic.title}}</a>
-                    <!-- this leads to the home-page with the url-endig of ?s=topic.title (e.x. pizza) -->
-                    <!-- r = request couls be any letter -->
-                    <span class="col-md-4">{{topic.channel_set.all.count}}</span>
-                    <!-- all childs of topic.Channel -->
-                </div>
+            <div class="row">
+                <a class="col-md-8" href="{% url 'home' %}?s={{topic.title}}">{{topic.title}}</a>
+                <span class="col-md-4">{{topic.channel_set.all.count}}</span>
+            </div>
             {% endfor %}
             <br>
-            
+
         </div>
         <div class="channel-content topic-index-button">
             <a class="btn btn-outline-success button" href="{% url 'topics' %}">more</a>

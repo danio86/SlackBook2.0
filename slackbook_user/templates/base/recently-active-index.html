@@ -1,6 +1,7 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
         <div>
+            <!-- All Users ordered by last login and filterable  -->
             {% for user in users reversed %}
                 <div>
                     <div class="row channel-content">
@@ -13,7 +14,7 @@
                                 <div class="channel-content">
                                 {{ comment.body }}
                                 </div>
-                                in Channel: <a href="#">{{comment.channel.title}}</a>
+                                in Channel: <a href="{% url 'channel' comment.channel.id %}">{{ comment.channel.title }}</a>
                                 {% endif %}
                             {% endfor %}
                         </div>

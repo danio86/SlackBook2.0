@@ -6,7 +6,7 @@
         <div class="col-md-6 delete-form channel-content">   
             <form action="" method="POST">
                 {% csrf_token %}
-                <button class="field-headline btn btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Back</a></button>
+                <a class="field-headline btn btn-outline-success button" href="{{request.META.HTTP_REFERER}}">Back</a>
                 <br>
                 <div class="field-contend">
                     <p>Are you sure you want to delete:</p>

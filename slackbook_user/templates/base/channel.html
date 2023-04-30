@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4 main-channel-content">
-
+            <!-- The channel view depends on whether the channel is private or not and whether the user has access. -->
             {% if channel.private == False or channel.host == request.user or request.user in guests %}
             <div>
                 <h2 class="channel-headline">{{ channel.title }}</h2>
@@ -39,14 +39,12 @@
                 <div>
                     <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
                         {{ post.created_on|timesince }} ago</small>
-                    <h5>{{ post.title }}</h5>
                     <p>Comment: {{ post.body }}</p>
                     {% if post.image %}
                     <img class="post-image" src="{{ post.image.url }}" alt="post-image">
                     {% endif %}
                     {% if request.user == post.user%}
-                    <a href="{% url 'delete-comment' post.id %}"><button
-                            class="btn btn-outline-success button">X</button></a>
+                    <a class="btn btn-outline-success button" href="{% url 'delete-comment' post.id %}">X</a>
                     {% endif %}
                     <hr>
                 </div>
@@ -55,7 +53,7 @@
                 {% endif %}
                 {% endfor%}
 
-
+                <!-- Post/Comment Part -->
                 {% if request.user.is_authenticated %}
 
                 <form action="" method="POST" enctype="multipart/form-data">
@@ -75,7 +73,7 @@
                 {% endif %}
             </div>
         </div>
-
+        <!-- Channel Guests -->
         <div class="col-4 main-channel-content">
             <div>
                 <h2 class="channel-headline">Who is there? ({{guests.count}} joined)</h2>
@@ -93,7 +91,7 @@
                     <br>
                     {% endfor %}
                 </div>
-
+                <!-- If User has no access -->
                 {% else %}
                 <div>
                     <h2> This is a private Channel. You need to ask the host for access.</h2>

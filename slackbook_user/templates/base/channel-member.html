@@ -5,14 +5,14 @@
 <div class="row main-content">
     <div class="col-md-4 offset-md-4 channel-content">
         <div>
+            <!-- All guests from one channel -->
             <h3>Who is there?</h3>
             <hr>
             {% for guest in guests %}
-                <div>
-                    <!-- <h5>@{{ guest }}</h5> -->
-                    @ <a href="{% url 'account' guest.id %}">{{ guest.username }}</a>
-                    <br>
-                </div>
+            <div>
+                @ <a href="{% url 'account' guest.id %}">{{ guest.username }}</a>
+                <br>
+            </div>
             {% endfor %}
         </div>
     </div>
