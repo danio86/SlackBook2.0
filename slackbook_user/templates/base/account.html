@@ -24,6 +24,7 @@
                     </button>
                     <!-- this part includes chat.html -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        Your conversations:
                         {% for conversation in chat %}
                         {% if conversation.host == user or conversation.title == user.username %}
                         {% if conversation.host == user %}
@@ -34,7 +35,6 @@
                         {% endif %}
                         {% else %}
                         {% ifchanged You have no current conversation. %}
-                        Your conversations:
                         {% endifchanged %}
                         {% endif %}
                         {% endfor %}
@@ -42,18 +42,34 @@
                 </div>
                 {% endif %}
                 {% if request.user != user %}
-                <p>Get connected</p>
-                <div>
-                    {% for converstation in chat|slice:"1" %}
-                    {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
-                    <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
-                    {{ break }}
-                    {% else %}
-                    {% include 'base/chat.html' %}
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
+                    <p>Get connected</p>
+                    <div>
+                        {% for converstation in chat %}
+                        
+                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                        <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
+                        {% endif %}
+                        {% endfor %}
+                        
+                        
+                        {% for converstation in chat %}
+                        
+                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                        
+                        {% else %}
+                        <!-- {{ forloop|length }}
+                            {{chat|length}}   -->
+                            
+                            {% if forloop|length == chat|length %}
+                                {% include 'base/chat.html' %}
+                            {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        
+                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                        <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
+                        {% endif %}
+                    </div>
                 {% endif %}
             </div>
             <!-- Hosted and joined Channels -->

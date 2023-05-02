@@ -1,28 +1,8 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
         <div>
-
             <form class="col-md-4 form channel-content" action="" method="POST">
-                <!-- if method is not specified, it will send to the current url -->
                 {% csrf_token %}
-                <!-- {{ form.as_p }} -->
-                <!-- if somesthing is sendent the token needs to be included to avoid malicious attempts -->
-                <!-- the .as_ps wraps a paragraph around every inputfield (looks nicer) -->
-                <!-- <div>
-                    text2{{instance}}tst2
-                    text2{{instance.host}}tst2
-                </div> -->
-                
-                <!-- <div>
-                    <label for="channel-description">About:</label>
-                    <br>
-                    {{ form }}
-                    {{ categories }}
-                </div> -->
-                    
-    
-                   
-                        
                     <div>
                         <label for="channel-description">Your Message:</label>
                         <br>
@@ -30,11 +10,7 @@
                         <p>{{ form.image }}</p>
                     </div>
                     <br>
-                    
-    
-    
-                <button class="btn btn-primary dropdown-toggle btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Send</a></button>
-                
+                <button class="btn btn-primary dropdown-toggle btn-outline-success button"><a href="{{request.META.HTTP_REFERER}}">Send</a></button>         
                 <input class="btn btn-primary dropdown-toggle btn-outline-success button" type="submit" value="Send">
             </form>    
         </div>

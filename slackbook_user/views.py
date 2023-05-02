@@ -100,8 +100,10 @@ def chat(request, pk):
                 request, f"You are connected with {queryset.host}.")
             return redirect('chat', pk)
 
+    chat_count = queryset.count()
+
     context = {'chat': queryset, 'posts': posts,
-               'post_form': post_form}
+               'post_form': post_form, 'chat_count': chat_count}
     return render(request, 'base/chat.html', context)
 
 
