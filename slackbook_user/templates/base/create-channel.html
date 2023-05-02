@@ -6,7 +6,7 @@
     <div class="col-4">
         <div class="main-content">
 
-            <form class="col-md-4 form channel-content" action="" method="POST">
+            <form class="col-md-4 form channel-content" action="{% url 'create-channel' %}" method="POST">
                 <!-- if method is not specified, it will send to the current url -->
                 {% csrf_token %}
 
