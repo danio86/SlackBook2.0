@@ -30,12 +30,12 @@
             </div>
             <hr>
             <div class="channel-content">
-                <h3 class="headline"><a href="{% url 'channel' channel.id %}"><i
-                            class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
+                <h3 class="headline"><a href="{% url 'channel' channel.id %}">
+                    <i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
                 {{ channel.content }}
                 <hr>
                 {% for post in objects %}
-                {% if post.channel.title == channel.title  %}
+                {% if post.channel.title == channel.title %}
                 <div>
                     <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
                         {{ post.created_on|timesince }} ago</small>
@@ -56,21 +56,21 @@
                 <!-- Post/Comment Part -->
                 {% if request.user.is_authenticated %}
 
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
-                    {% csrf_token %}
-                    <h6><small>Your contribution:</small></h6>
-                    {% for field in post_form %}
-                    <div>
-                        <div>{{ field }}</div>
-                    </div>
-                    {% endfor %}
-                    <br>
-                    <input class="btn btn-outline-success button" type="submit" value="Submit">
-                </form>
-                <hr>
+                    <form action="{% url 'channel' channel.id %}" method="POST" enctype="multipart/form-data">
+                        <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
+                        {% csrf_token %}
+                        <h6><small>Your contribution:</small></h6>
+                        {% for field in post_form %}
+                        <div>
+                            <div>{{ field }}</div>
+                        </div>
+                        {% endfor %}
+                        <br>
+                        <input class="btn btn-outline-success button" type="submit" value="Submit">
+                    </form>
+                    <hr>
 
-                {% endif %}
+                
             </div>
         </div>
         <!-- Channel Guests -->
@@ -81,11 +81,11 @@
                     {% for guest in guests %}
                     <div>
                         {% if guest.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo"><a
-                            href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
+                        <i class="far fa-user user-image default-user"></i>
+                        <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
                         {% else %}
-                        <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image"><a
-                            href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
+                        <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image">
+                        <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
                         {% endif %}
                     </div>
                     <br>
@@ -116,5 +116,6 @@
             </div>
         </div>
     </div>
-
+</div>
+{% endif %}
     {% endblock %}

@@ -65,7 +65,7 @@
                     <!-- new Comments -->
                     {% if request.user.is_authenticated %}
                     <div class="post-form">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{% url 'chat' chat.id %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% if 'chat' in request.path %}
                             <input class="comment-field" type="text" placeholder="Place your meassage..." name="body">
