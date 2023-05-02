@@ -1,3 +1,4 @@
+{% load static %}
 <div class="row justify-content-around">
     <div class="col-4 main-content">
 
@@ -56,6 +57,10 @@
         <!-- If User is not registered -->
         {% else %}
         <div class="channel-content">
+            <h2>Welcome to
+            <br>
+            <img class="welcome-logo" src="{% static 'images/SlackBook-Logo.png' %}"alt="logo"></h2>
+            
             <h3>Your channels may be visible here. Please <a class="nav-link" href="{% url 'account_signup' %}">Sign
                     Up!</a></h3>
         </div>
