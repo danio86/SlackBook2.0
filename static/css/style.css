@@ -69,6 +69,10 @@ body{
     width: 100%;
 }
 
+.header-2{
+    margin: 0 auto;
+}
+
 .header ul{
     display: block;
     list-style-type: none;
@@ -217,6 +221,12 @@ body{
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
   }
+
+.user-scroll{
+    height: 742px;
+    overflow-y: auto;
+    margin-bottom: 95px;
+}
 
 .topic-index-button{
     border-top-right-radius: 0px;

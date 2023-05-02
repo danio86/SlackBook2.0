@@ -41,10 +41,10 @@
             </div>
 
             <div class="col-md-8 collapse navbar-collapse" id="navbarSupportedContent">
-            <div>
+            <div class= "header-2">
                 <div class="row no-gutters header-user">
                     <div class="btn-group account-image">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button"
+                        <button type="button" style="width: 280px" class="btn btn-primary dropdown-toggle btn-outline-success button"
                             data-toggle="dropdown" aria-expanded="false">
                             {% if user.is_authenticated %}
                             {{ request.user.username }}
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div class= "header-2">
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="s">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
