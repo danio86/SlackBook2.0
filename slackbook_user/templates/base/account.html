@@ -8,15 +8,16 @@
 
             <div class="main-content-headline">
                 {% if user.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                <i class="far fa-user user-image default-user"></i>
                 {% else %}
                 <img class="user-image" src="{{ user.avatar.url }}" alt="user-image">
                 {% endif %}
 
                 <span>{{ user.username }}</span>
                 <br>
-                <a href="{% url 'create-channel' %}">Create Channel</a>
+                
                 {% if request.user == user %}
+                <a href="{% url 'create-channel' %}">Create Channel</a>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,24 +52,43 @@
                         {% endif %}
                         {% endfor %}
                         
-                        
+
+
                         {% for converstation in chat %}
-                        
-                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
-                        
-                        {% else %}
-                        <!-- {{ forloop|length }}
-                            {{chat|length}}   -->
-                            
-                            {% if forloop|length == chat|length %}
-                                {% include 'base/chat.html' %}
+                            {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                                ????
+                                {{ break }}
                             {% endif %}
+                        {% empty %}
+                            !!!
+                        {% endfor %}
+
+                        {% if not chat %}
+                            !!!!
                         {% endif %}
+
+
+                        {% for converstation in chat %}
+                            {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                                no
+                                {{ break }}
+                            {% else %}
+                                {% if chat.count == chat_count %}
+                                    ok
+                                    {% include 'base/chat.html' %}
+                                    {{ break }}
+                                {% endif %}
+                            {% endif %}
+                        {% empty %}
+                        yeah
+                    
                         {% endfor %}
                         
-                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                        <!-- {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
                         <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
-                        {% endif %}
+                        {% else %}
+                        
+                        {% endif %} -->
                     </div>
                 {% endif %}
             </div>

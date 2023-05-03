@@ -1,7 +1,7 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
         <div>
-            <form class="col-md-4 form channel-content" action="" method="POST">
+            <form class="col-md-4 form channel-content" action="{% url 'personal-channel' %}" method="POST">
                 {% csrf_token %}
                     <div>
                         <label for="channel-description">Your Message:</label>
