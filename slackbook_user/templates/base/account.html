@@ -52,37 +52,26 @@
                         {% endif %}
                         {% endfor %}
                         
-
-
+                
                         {% for converstation in chat %}
-                            {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
-                                ????
-                                {{ break }}
-                            {% endif %}
-                        {% empty %}
-                            !!!
-                        {% endfor %}
-
-                        {% if not chat %}
-                            !!!!
+                        
+                        {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
+                        no 
+                        {{converstation}}
+                        {% else %}
+                        {{chat.count}}
+                        <!-- {{chat.length}} -->
+                        <!-- {{forloop.length}} -->
+                        {{converstation.count}}
+                        {{forloop.counter}}
                         {% endif %}
-
-
-                        {% for converstation in chat %}
-                            {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
-                                no
-                                {{ break }}
-                            {% else %}
-                                {% if chat.count == chat_count %}
-                                    ok
-                                    {% include 'base/chat.html' %}
-                                    {{ break }}
-                                {% endif %}
-                            {% endif %}
-                        {% empty %}
-                        yeah
-                    
                         {% endfor %}
+
+
+                        
+
+                        {% include 'base/chat.html' %}
+                       
                         
                         <!-- {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
                         <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
