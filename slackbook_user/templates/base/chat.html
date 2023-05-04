@@ -64,18 +64,18 @@
 
                     <!-- new Comments -->
                     {% if request.user.is_authenticated %}
-                    <div class="post-form">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% if 'chat' in request.path %}
-                            <input class="comment-field" type="text" placeholder="Place your meassage..." name="body">
-                            {% endif %}
-                            <button class="btn btn-outline-success button" type="submit"><i class="fas fa-envelope"></i></button>
-                        </form>
-                    </div>
-                    {% if 'chat' in request.path %}
-                    <hr>
-                    {% endif %}
+                        <div class="post-form">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% if 'chat' in request.path %}
+                                <input class="comment-field" type="text" placeholder="Place your meassage..." name="body">
+                                {% endif %}
+                                <button class="btn btn-outline-success button" type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                        {% if 'chat' in request.path %}
+                        <hr>
+                        {% endif %}
 
                     {% endif %}
                 </div>
