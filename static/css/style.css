@@ -278,6 +278,26 @@ body{
     padding: 5px;
   }
 
+
+.contact-window{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message{
+    position: absolute;
+    width: 50px;
+    background-color: #3a3a3a;
+    height: 40px;
+    border: 1px solid aqua;
+    border-radius: 5px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Footer */
 footer{
     position: fixed;

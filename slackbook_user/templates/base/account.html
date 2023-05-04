@@ -44,33 +44,40 @@
                 {% endif %}
                 {% if request.user != user %}
                     <p>Get connected</p>
-                    <div>
+                    <div class="contact-window">
                         {% for converstation in chat %}
                         
                         {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
-                        <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
+                        <div class="message">
+                            <a href="{% url 'chat' converstation.id %}"><i class="fas fa-envelope"></i></a>
+                        </div> 
                         {% endif %}
                         {% endfor %}
                         
-                
-                        {% for converstation in chat %}
+
+                        <!-- {% for converstation in chat %}
                         
                         {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}
                         no 
                         {{converstation}}
                         {% else %}
+                        {{chat_list|add:"1"}}
+                        {{chat_list}}
                         {{chat.count}}
-                        <!-- {{chat.length}} -->
-                        <!-- {{forloop.length}} -->
-                        {{converstation.count}}
+                        {{chat.index}} -->
+                        
+                        <!-- {{chat|length}} -->
+                        <!-- {{forloop|length}} -->
+                        <!-- {{converstation.count}}
                         {{forloop.counter}}
                         {% endif %}
-                        {% endfor %}
+                        {% endfor %} -->
 
 
                         
-
+                        <div style="width: -moz-available;">
                         {% include 'base/chat.html' %}
+                        </div>
                        
                         
                         <!-- {% if converstation.title == request.user.username and user == converstation.host or converstation.title == user and request.user.username == converstation.host %}

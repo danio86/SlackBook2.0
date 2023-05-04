@@ -36,7 +36,7 @@ DEBUG = True
 # 2 hosts (heroku and local)
 ALLOWED_HOSTS = ['slackbook2.herokuapp.com', 'localhost',
                  '8000-danio86-slackbook2-ts48rmc1ov.us2.codeanyapp.com',
-                 'slackbook2-0.herokuapp.com']
+                 'slackbook2-0.herokuapp.com', '8000-danio86-slackbook20-an9urwb7uo.us2.codeanyapp.com']
 
 
 # Application definition
