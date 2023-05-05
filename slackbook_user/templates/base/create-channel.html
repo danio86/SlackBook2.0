@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row justify-content-around">
-    <div class="col-4">
+    <div class="col-4 main-content">
         <div class="main-content">
 
             <form class="col-md-4 form channel-content" action="{% url 'create-channel' %}" method="POST">
@@ -16,7 +16,7 @@
                 <div>
                     <label>Enter a Channel topic:</label>
                     <br>
-                    <input type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
+                    <input style="width: 165px;" type="text" list="topic-list" value="{{queryset.topic}}" name="topic" required>
                     <datalist id="topic-list">
                         <select name="categories" id="form-category">
                             {% for category in categories %}
@@ -29,7 +29,7 @@
                 <div>
                     <label for="form-category">Coose a title:</label>
                     <br>
-                    <input type="text" value="{{ queryset.title }}" name="topic-name">
+                    <input style="width: 165px;" type="text" value="{{ queryset.title }}" name="topic-name">
                 </div>
                 <br>
 
@@ -55,19 +55,19 @@
                     {% endif %}
                     {% elif form.private.value == False %}
                     Set channel to private. Host adds users manually.
-                    <button class="btn private-button" name="private" value="True"><i
-                            class="far fa-square"></i></button>
+                    <br>
+                    <button style="color: cyan;" class="btn btn-outline-success button" name="private" value="True">Create private Channel</button>
                     <br>
                     This is a public channel. Each user can register himself. <i class="far fa-check-square"></i>
                     {% else %}
                     Set channel to private. Host adds users manually.
                     <button class="btn private-button" name="private" value="True">Create a private channel</button>
-                    <br>
+                    
                     Set channel to public. Each user can register himself.
                     <button class="btn private-button" name="private" value="False">Create an open channel</button>
                     {% endif %}
 
-                    <br>
+                    
                     <div>
                         {% if form.private.value == True %}
 
@@ -83,7 +83,7 @@
                         {% endif %}
 
                     </div>
-                    <br>
+                    
 
                 </div>
 
