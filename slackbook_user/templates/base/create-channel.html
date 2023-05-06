@@ -76,17 +76,10 @@
                         {% endif %}
 
                         {% if 'add-members' in request.path %}
-                        <label for="members">Choose Members:</label>
-                        <br>
+                        <label for="members">Choose a Member:</label>
+                        <p><small>Marked users are already in the channel.</small></p>
                         <br>
                         <div aria-required="true" id="members" name="guests">{{form.guests}}</div>
-                        <!-- {% for guest in form.guests %}
-                            <div>
-                            <button type="submit">{{guest}}</button>
-                            <label for="guest">{{guest}}</label>
-                            <input type="submit" id="guest" name="guest">
-                            </div>
-                        {% endfor %} -->
                         <br>
                         {% endif %}
 
