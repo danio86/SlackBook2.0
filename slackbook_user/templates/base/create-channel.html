@@ -5,7 +5,6 @@
 <div class="row justify-content-around">
     <div class="col-4 main-content">
         <div class="main-content">
-
             <form class="col-md-4 form channel-content" action="" method="POST">
                 <!-- if method is not specified, it will send to the current url -->
                 {% csrf_token %}
@@ -55,8 +54,8 @@
                     {% endif %}
                     {% elif form.private.value == False %}
                     Set channel to private. Host adds users manually.
-                    <br>
-                    <button style="color: cyan;" class="btn btn-outline-success button" name="private" value="True">Create private Channel</button>
+                    <button class="btn private-button" name="private" value="True"><i
+                        class="far fa-square"></i></button>
                     <br>
                     This is a public channel. Each user can register himself. <i class="far fa-check-square"></i>
                     {% else %}
@@ -79,7 +78,16 @@
                         {% if 'add-members' in request.path %}
                         <label for="members">Choose Members:</label>
                         <br>
+                        <br>
                         <div aria-required="true" id="members" name="guests">{{form.guests}}</div>
+                        <!-- {% for guest in form.guests %}
+                            <div>
+                            <button type="submit">{{guest}}</button>
+                            <label for="guest">{{guest}}</label>
+                            <input type="submit" id="guest" name="guest">
+                            </div>
+                        {% endfor %} -->
+                        <br>
                         {% endif %}
 
                     </div>
@@ -94,9 +102,9 @@
                     Members</button>
                 {% elif 'update-channel' in request.path %}
                 {% if form.private.value == True %}
-                <button type="submit" class="btn private-button" name="private" value="True">Update Channel</button>
+                <button type="submit" style="color: cyan;" class="btn btn-outline-success button" name="private" value="True">Update Channel</button>
                 {% else %}
-                <button type="submit" class="btn private-button" name="private" value="False">Update Channel</button>
+                <button type="submit" style="color: cyan;" class="btn btn-outline-success button" name="private" value="False">Update Channel</button>
                 {% endif %}
                 {% else %}
                 <button type="submit" style="color: cyan;" class="btn btn-outline-success button" name="private"
