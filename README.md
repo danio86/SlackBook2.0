@@ -1,8 +1,11 @@
 # SlackBook
 
 SlackBook is a platform on which people can get in touch with each other. You can form groups/channels here and exchange and discuss any topic here. Texts or pictures can be posted for this. The channels can be public or private, so two people can also chat privately with each other.
+The Project can be seen [here](https://slackbook2-0.herokuapp.com/)
 
-The Project can be seen [here](https://slackbook2.herokuapp.com/)
+- Responsive Mockup
+<img src="static/images/responsive-mockup.png" alt="Responsive Mockup">
+
 
 
 ## User Stories
@@ -10,7 +13,7 @@ The Project can be seen [here](https://slackbook2.herokuapp.com/)
 - As a Site User I can view a list of channel so that I can select one to read the posts.
 - As a Site User I can choose between several topics so that I can see different channels refereed to this topic.
 - As a Site User I can register an account so that I can comment and join channels.
-- As a Site User / Admin I can view comments on an individual post so that I can read the conversation.
+- As a Site User/Admin I can view comments on an individual post so that I can read the conversation.
 - As a Site Admin/User I can create, read, update and delete posts so that I can manage my blog content.
 - As a Site User I can leave comments on a post so that I can be involved in the conversation.
 - As a Site User I can create, read, update and delete Channels so that I can get in contact with people of same interests.
@@ -31,15 +34,20 @@ The Project can be seen [here](https://slackbook2.herokuapp.com/)
     - On small screens the header collapes to the logo and a dropdrown button.
     - The header tells the user the name of the company and clearly guides the user to all the points that interest them. 
      - Header Images
-        - <img src="static/images/SlackBook-Logo.png" alt="Logo">
+        - Logo
+        <img src="static/images/SlackBook-Logo.png" alt="Logo">
         <br>
-        - <img src="static/images/screenshot-full-header.png" alt="Header1">
+        - Header large Screen
+        <img src="static/images/screenshot-full-header.png" alt="Header1">
         <br>
-        - <img src="static/images/screenshot-header-dropdown.png" alt="Dropdown">
+        - Dropdown menu
+        <img src="static/images/screenshot-header-dropdown.png" alt="Dropdown">
         <br>
-        - <img src="static/images/screenshot-header-hamburger.png" alt="Hamburger">
+        - Hamburger menu
+        <img src="static/images/screenshot-header-hamburger.png" alt="Hamburger">
         <br>
-        - <img src="static/images/screenshot-log-out.png" alt="Header2">
+        - Header small
+        <img src="static/images/screenshot-log-out.png" alt="Header2">
 
 
 - __The Footer__ 
