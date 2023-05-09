@@ -334,7 +334,7 @@ The project was deployed using Code institut's mock for Heroku
         The Heroku app was linked to the repository
         Deploy was clicked.
 
-The live link can be found [here](https://slackbook2.herokuapp.com/)
+The live link can be found [here](https://slackbook2-0.herokuapp.com/)
 
 
 ## Credits 
@@ -349,13 +349,20 @@ The live link can be found [here](https://slackbook2.herokuapp.com/)
 - The all HTML structures are from Bootrap. [Bootstrap](https://getbootstrap.com/docs/4.1/layout/grid/)
 - Instructions on how to implement links into the footer was taken from [Code Institute - Love Running Project](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LR101+2021_T1/courseware/4a07c57382724cfda5834497317f24d5/e6d4cda2bc08458ba94d2092be9bad3a/)
 - Instructions on how to loop through in the template and count was taken from [Stack Overflow](https://stackoverflow.com/questions/11481499/django-iterate-number-in-for-loop-of-a-template)
-- Instructions on how to extend the Django User Model were taken from [Youtube](https://www.youtube.com/watch?v=PtQiiknWUcI&t=9718s)
+- Instructions on how to extend the Django User Model how to count in views.py were taken from [Youtube](https://www.youtube.com/watch?v=PtQiiknWUcI&t=9718s)
+- Instructions on how to change crollbars in chrome were taken from [Stack Overflow](https://stackoverflow.com/questions/66166047/how-to-make-thin-scrollbar-in-chrome)
+- Instructions on how to user the django forloop counter were taken from [Stack Overflow](https://stackoverflow.com/questions/11481499/django-iterate-number-in-for-loop-of-a-template)
+- Instructions on how to user the django forloop counter were taken from [Stack Overflow](https://stackoverflow.com/questions/11481499/django-iterate-number-in-for-loop-of-a-template)
+- Instructions on how to filter results in a forloop were taken from [w3schools](https://www.w3schools.com/django/django_ref_filter.php)
 
 - Color-Scheme
   <img src="static/images/color-scheme.png" alt="Color Scheme">
 
+
 ### Media
 
+- All icons were taken from [Font Awesome](https://fontawesome.com/)
+- Font styles were taken from [Google Fonts](https://fonts.googleapis.com)
 - The Images used on all pages, except the sport-category page and trainer photos on the specific-sport page are from this Open Source site [Pixabay](https://pixabay.com/de/)
 - All Images are stored in the Cloudinary platform.
 - The Logo was made with [Canva](https://www.canva.com/create/logos/)
@@ -364,5 +371,5 @@ The live link can be found [here](https://slackbook2.herokuapp.com/)
 ### Personal Advice
 
   - Thank You!
-    -  Jubril Akolade
+    - Jubril Akolade
     - All people from my Slack Group!
