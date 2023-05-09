@@ -115,7 +115,7 @@ On the right side you can see all members of the channel, who are also linked he
 - The channel categories are displayed. These can be created by the user. Clicking on it will display all the channels associated with the category the user clicked.
 - The channels are displayed below the categories. If no category is clicked, all categories and all channels are displayed. The channel titles of the respective channels are displayed. In addition to the channel titles, the channel hosts are displayed. These are also links that lead to the respective user accounts.
 
-    - Channel Image
+    - Channels and Categories
     <img src="static/images/screenshot-categorie-channels.png" alt="Channel">
 
 
