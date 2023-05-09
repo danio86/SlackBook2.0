@@ -44,7 +44,7 @@
             <div class= "header-2">
                 <div class="row no-gutters header-user">
                     <div class="btn-group account-image">
-                        <button type="button" style="width: 280px" class="btn btn-primary dropdown-toggle btn-outline-success button"
+                        <button id="al" aria-label="Name" type="button" style="width: 280px" class="btn btn-primary dropdown-toggle btn-outline-success button"
                             data-toggle="dropdown" aria-expanded="false">
                             {% if user.is_authenticated %}
                             {{ request.user.username }}

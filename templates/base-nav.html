@@ -40,7 +40,7 @@
             <div class="col-md-4 collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="row no-gutters header-user">
                     <div class="btn-group account-image">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-outline-success button"
+                        <button id="al" aria-label="Name" type="button" class="btn btn-primary dropdown-toggle btn-outline-success button"
                             data-toggle="dropdown" aria-expanded="false">
                             {% if user.is_authenticated %}
                             {{ request.user.username }}
