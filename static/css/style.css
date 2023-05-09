@@ -344,6 +344,10 @@ footer{
     .index-headline {
         font-size: inherit;
       }
+
+    .tablet {
+        width: 100%;
+      }
 }
 
 @media (max-width: 768px) {
@@ -352,8 +356,12 @@ footer{
     }
 
     .small_screens {
-        margin: 0 10px;
+        margin: 0 auto;
         width: 66%;
+    }
+
+    .smaller_screens {
+        display: none;
     }
 
     .header {
