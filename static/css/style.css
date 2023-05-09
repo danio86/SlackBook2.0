@@ -12,6 +12,7 @@ body{
 .brand{
     border: 2px solid rgb(57, 57, 57);
     border-radius: 5px;
+    height: 50px;
 }
 
 .welcome-logo{
