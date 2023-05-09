@@ -296,27 +296,14 @@ On the right side you can see all members of the channel, who are also linked he
 <img src="static/images/screenshot-python-val.png" alt="Python Validation">
 
 - Lighthouse
-<img src="assets/images/screenshot-lighthouse.png" alt="Lighthouse Desktop">
+<br>
+<img src="static/images/screenshot-lighthouse.png" alt="Lighthouse Desktop">
+<br>
 
-- user story besed test cases (screenshots):
-
-  - As a visiting user, I can easily understand the main purpose of the website.
-      - Slogan and Slideshow
-      <img src="assets/images/screenshot-slogan-slideshow.png" alt="Slogan-Slideshow">
-
-  - As a visiting user, I can navigate the website without any problems.
-      - Navigation
-      <img src="assets/images/screenshot-userstory-test-navigation.png" alt="Navigation">
-
-  - As a visiting user, I will be able to learn about other users and contact them.
-      - Info about other user
-      <img src="assets/images/screenshot-userstory-test-user-contact.png" alt="Info about other user">
-
-  - As a visiting user, I can easily contact the company service.
-      - Company Service
-      <img src="assets/images/screenshot-contact.png" alt="Company Service">
-
-
+- Lighthouse Mobil
+<br>
+<img src="static/images/screenshot-lighthouse-mobil.png" alt="Lighthouse Mobil">
+<br>
 
 ### Unfixed Bugs
 
