@@ -44,10 +44,11 @@ The Project can be seen [here](https://slackbook2-0.herokuapp.com/)
         <img src="static/images/screenshot-header-dropdown.png" alt="Dropdown">
         <br>
         - Hamburger menu
+        <br>
         <img src="static/images/screenshot-header-hamburger.png" alt="Hamburger">
         <br>
         - Header small
-        <img src="static/images/screenshot-log-out.png" alt="Header2">
+        <img src="static/images/screenshot-small-header.png" alt="Header-small">
 
 
 - __The Footer__ 
@@ -79,8 +80,11 @@ The Project can be seen [here](https://slackbook2-0.herokuapp.com/)
 
 - All SlackBook users are displayed on the right side. These are sorted by the most recent login date and linked to the respective user account. In addition, the most recent post of the respective user is displayed here if they were not posted in a private channels.
 
-    - Landing Page Images
+- Landing Page Images
+<br>
 <img src="static/images/screenshot-landing-logged-in.png" alt="Landing">
+<br>
+- Landing Page Images-My Channels
 <br>
 <img src="static/images/screenshot-landing-logged-in2.png" alt="Landing2">
 
@@ -100,6 +104,7 @@ The Project can be seen [here](https://slackbook2-0.herokuapp.com/)
 On the right side you can see all members of the channel, who are also linked here.
 
    - Channel Image
+   <br>
    <img src="static/images/screenshot-channel.png" alt="Channel">
 
 
@@ -111,7 +116,7 @@ On the right side you can see all members of the channel, who are also linked he
 - The channels are displayed below the categories. If no category is clicked, all categories and all channels are displayed. The channel titles of the respective channels are displayed. In addition to the channel titles, the channel hosts are displayed. These are also links that lead to the respective user accounts.
 
     - Channel Image
-    <img src="static/images/screenshot-categories-channels.png" alt="Channel">
+    <img src="static/images/screenshot-categorie-channels.png" alt="Channel">
 
 
 
