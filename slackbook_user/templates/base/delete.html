@@ -4,7 +4,7 @@
     <div class="row text-white bg-dark main-content">
         <div class="col-md-3"></div>
         <div class="col-md-6 delete-form channel-content">   
-            <form action="{% url 'home' %}" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
                 <a class="field-headline btn btn-outline-success button" href="{{request.META.HTTP_REFERER}}"><i class="fas fa-arrow-alt-circle-left"></i></a>
                 <br>

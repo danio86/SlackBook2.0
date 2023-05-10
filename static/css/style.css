@@ -67,6 +67,8 @@ margin: 2px;
 /* ------Allauth------- */
 .signUp{
     text-align: center;
+    width: min-content;
+    margin: 0 auto;
 }
 
 .signUp input{

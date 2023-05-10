@@ -14,13 +14,13 @@ The Project can be seen [here](https://slackbook2-0.herokuapp.com/)
 - As a Site User I can choose between several topics so that I can see different channels refereed to this topic.
 - As a Site User I can register an account so that I can comment and join channels.
 - As a Site User/Admin I can view comments on an individual post so that I can read the conversation.
-- As a Site Admin/User I can create, read, update and delete posts so that I can manage my blog content.
+- As a Site Admin/User I can create, read and delete posts so that I can manage my blog content.
 - As a Site User I can leave comments on a post so that I can be involved in the conversation.
 - As a Site User I can create, read, update and delete Channels so that I can get in contact with people of same interests.
 - As a Site User I can click on a Channel so that I can read the full content.
 - As a Site User I can create, update, delete private channels or chats so that I can communicate privately to a person or to a group.
 - As a Site User I can upload images so that I can support my statements with pictures and add a personal touch to my avatar
-- As a Site User I can search for content so that filter channels or topics
+- As a Site User I can search for content so that channels or topics are filtered
 
 
 ## Features 
@@ -116,7 +116,7 @@ On the right side you can see all members of the channel, who are also linked he
 - The channels are displayed below the categories. If no category is clicked, all categories and all channels are displayed. The channel titles of the respective channels are displayed. In addition to the channel titles, the channel hosts are displayed. These are also links that lead to the respective user accounts.
 
     - Channels and Categories
-    <img src="static/images/screenshot-categorie-channels.png" alt="Channel">
+    <img src="static/images/screenshot-categorie-channels.png" alt="Channels">
 
 
 
@@ -234,11 +234,6 @@ On the right side you can see all members of the channel, who are also linked he
   - Log Out
   <img src="static/images/screenshot-log-out.png" alt="Log-Out">
 
-  - Thank You
-  <img src="assets/images/screenshot-thank-you.png" alt="Thank You">
-
-
-
 
 ## Features Left to Implement
 
@@ -304,6 +299,43 @@ On the right side you can see all members of the channel, who are also linked he
 <br>
 <img src="static/images/screenshot-lighthouse-mobil.png" alt="Lighthouse Mobil">
 <br>
+
+### User story besed test cases (screenshots):
+
+- As a Site User I can view a list of channel so that I can select one to read the posts.
+  <br>
+  - <img src="static/images/screenshot-categorie-channels.png" alt="Channels">
+- As a Site User I can choose between several topics so that I can see different channels refereed to this topic.
+  <br>
+  - <img src="static/images/screenshot-preselected-channels.png" alt="Channels">
+- As a Site User I can register an account so that I can comment and join channels.
+  <br>
+  - <img src="static/images/screenshot-signUp.png" alt="Sign Up">
+- As a Site User/Admin I can view comments on an individual post so that I can read the conversation.
+  <br>
+  - <img src="static/images/screenshot-channels-post-view.png" alt="Post-View">
+- As a Site Admin/User I can create, read and delete posts so that I can manage my blog content.
+- As a Site User I can leave comments on a post so that I can be involved in the conversation.
+  <br>
+  - <img src="static/images/screenshot-channel-post.png" alt="Post">
+- As a Site User I can create, read, update and delete Channels so that I can get in contact with people of same interests.
+- As a Site User I can create, update, delete private channels or chats so that I can communicate privately to a person or to a group.
+  <br>
+  - Create
+  <br>
+  - <img src="static/images/screenshot-create-channel.png" alt="Create-Channel">
+  <br>
+  - Update
+  <br>
+  - <img src="static/images/screenshot-edit-channel.png" alt="Edit-Channel">
+  <br>
+  - Delete
+  <br>
+  <img src="static/images/screenshot-delete.png" alt="Delete-Channel">
+- As a Site User I can upload images so that I can support my statements with pictures and add a personal touch to my avatar
+  <br>
+    <img src="static/images/screenshot-img-upload.png" alt="Image-Upload">
+
 
 ### Unfixed Bugs
 
