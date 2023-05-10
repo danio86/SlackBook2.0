@@ -52,10 +52,8 @@
                 <h4 class="bad-news">No matching posts yet!</h4>
                 {% endif %}
                 {% endfor%}
-
                 <!-- Post/Comment Part -->
                 {% if request.user.is_authenticated %}
-
                     <form action="{% url 'channel' channel.id %}" method="POST" enctype="multipart/form-data">
                         <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
                         {% csrf_token %}
@@ -69,53 +67,51 @@
                         <input class="btn btn-outline-success button" type="submit" value="Submit">
                     </form>
                     <hr>
-
-                
-            </div>
-        </div>
-        <!-- Channel Guests -->
-        <div class="col-4 main-channel-content">
-            <div>
-                <h2 class="channel-headline">Who is there? ({{guests.count}} joined)</h2>
-                <div class="channel-content">
-                    {% for guest in guests %}
-                    <div>
-                        {% if guest.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                        <i class="far fa-user user-image default-user"></i>
-                        <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
-                        {% else %}
-                        <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image">
-                        <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
-                        {% endif %}
-                    </div>
-                    <br>
-                    {% endfor %}
-                </div>
-                <!-- If User has no access -->
-                {% else %}
-                <div>
-                    <h2> This is a private Channel. You need to ask the host for access.</h2>
-                    <div class="channel-content">
-                        Hosted by:
-                        {% if channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                        <img class="user-image" src="/static/images/avatar.png" alt="logo">
-                        {% else %}
-                        <img class="user-image" src="{{ channel.host.avatar.url }}" alt="user-image">
-                        {% endif %}
-                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'account' channel.host.id %}">{{channel.host.username}}</a>
-                        {% else %}
-                        {{channel.host.username}}
-                        <br>
-                        Please <a href="{% url 'account_signup' %}">Sign Up!</a>
-                        {% endif%}
-                        <br>
-                    </div>
-                </div>
                 {% endif %}
             </div>
+            <!-- Channel Guests -->
+            <div class="col-4 main-channel-content">
+                <div>
+                    <h2 class="channel-headline">Who is there? ({{guests.count}} joined)</h2>
+                    <div class="channel-content">
+                        {% for guest in guests %}
+                        <div>
+                            {% if guest.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                            <i class="far fa-user user-image default-user"></i>
+                            <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
+                            {% else %}
+                            <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image">
+                            <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
+                            {% endif %}
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- If User has no access -->
+            {% else %}
+            <div>
+                <h2> This is a private Channel. You need to ask the host for access.</h2>
+                <div class="channel-content">
+                    Hosted by:
+                    {% if channel.host.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
+                    <img class="user-image" src="/static/images/avatar.png" alt="logo">
+                    {% else %}
+                    <img class="user-image" src="{{ channel.host.avatar.url }}" alt="user-image">
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'account' channel.host.id %}">{{channel.host.username}}</a>
+                    {% else %}
+                    {{channel.host.username}}
+                    <br>
+                    Please <a href="{% url 'account_signup' %}">Sign Up!</a>
+                    {% endif%}
+                    <br>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
-{% endif %}
-    {% endblock %}
+{% endblock %}

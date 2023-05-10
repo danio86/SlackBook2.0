@@ -97,7 +97,7 @@ def chat(request, pk):
             post_form.save()
 
             messages.success(
-                request, "You are connected.")
+                request, "You sent a message.")
             return redirect('chat', pk)
 
     context = {'chat': queryset, 'posts': posts,

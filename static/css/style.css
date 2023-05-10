@@ -69,6 +69,7 @@ margin: 2px;
     text-align: center;
     width: min-content;
     margin: 0 auto;
+    height: 100%;
 }
 
 .signUp input{
