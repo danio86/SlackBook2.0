@@ -3,7 +3,8 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-10 main-channel-content">
+        <div class="col-10 main-channel-content" style="margin-bottom: 70px;">
+            <!-- Channel Info -->
             <!-- The channel view depends on whether the channel is private or not and whether the user has access. -->
             {% if channel.private == False or channel.host == request.user or request.user in guests %}
             <div>
@@ -29,7 +30,7 @@
                 </div>
             </div>
             <hr>
-
+            <!-- Main Channel Content -->
             <div class="row justify-content-center">
                 <div class="col-9">
                     <div class="channel-content">
@@ -73,6 +74,7 @@
                         {% endif %}
                     </div>
                 </div>
+                <!-- All Channel Guests -->
                 <div class="col-3 members">
                     <div class="channel-content">
                         <h2>Who is there? ({{guests.count}} joined)</h2>
@@ -90,67 +92,6 @@
                             <br>
                             {% endfor %}
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="channel-content">
-                <h3 class="headline"><a href="{% url 'channel' channel.id %}">
-                    <i class="fas fa-arrow-alt-circle-left"></i></a> Disscussion</h3>
-                {{ channel.content }}
-                <hr>
-                {% for post in objects %}
-                {% if post.channel.title == channel.title %}
-                <div>
-                    <small><a href="{% url 'account' post.user.id %}">@{{ post.user.username }}</a> -
-                        {{ post.created_on|timesince }} ago</small>
-                    <p>Comment: {{ post.body }}</p>
-                    {% if post.image %}
-                    <img class="post-image" src="{{ post.image.url }}" alt="post-image">
-                    {% endif %}
-                    {% if request.user == post.user%}
-                    <a class="btn btn-outline-success button" href="{% url 'delete-comment' post.id %}">X</a>
-                    {% endif %}
-                    <hr>
-                </div>
-                {% elif object_count == 1 %}
-                <h4 class="bad-news">No matching posts yet!</h4>
-                {% endif %}
-                {% endfor%}
-                <!-- Post/Comment Part -->
-                {% if request.user.is_authenticated %}
-                    <form action="{% url 'channel' channel.id %}" method="POST" enctype="multipart/form-data">
-                        <!-- with enctype="multipart/form-data" we can submit files not just content/text -->
-                        {% csrf_token %}
-                        <h6><small>Your contribution:</small></h6>
-                        {% for field in post_form %}
-                        <div>
-                            <div>{{ field }}</div>
-                        </div>
-                        {% endfor %}
-                        <br>
-                        <input class="btn btn-outline-success button" type="submit" value="Submit">
-                    </form>
-                    <hr>
-                {% endif %}
-            </div>
-            <!-- Channel Guests -->
-            <div class="col-4 main-channel-content">
-                <div>
-                    <h2 class="channel-headline">Who is there? ({{guests.count}} joined)</h2>
-                    <div class="channel-content">
-                        {% for guest in guests %}
-                        <div>
-                            {% if guest.avatar.url == 'https://res.cloudinary.com/ddigiimwd/image/upload/v1/images/avatar.svg' %}
-                            <i class="far fa-user user-image default-user"></i>
-                            <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
-                            {% else %}
-                            <img class="user-image" src="{{ guest.avatar.url }}" alt="user-image">
-                            <a href="{% url 'account' guest.id %}"> @{{ guest.username }}</a>
-                            {% endif %}
-                        </div>
-                        <br>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
