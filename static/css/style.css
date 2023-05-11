@@ -419,11 +419,16 @@ footer{
     width: 80%;
     }
 
-.channel-headline{
+.channel-headline {
     font-size: 90%;
     }
 
-.headline{
+.headline {
     font-size: 80%;
 }
+
+.col-9 {
+    width: auto;
+}
+
 }
