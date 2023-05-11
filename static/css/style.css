@@ -211,6 +211,10 @@ margin: 2px;
     width: unset;
 }
 
+.members{
+    display: flex;
+}
+
 .topic-index-button{
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
@@ -279,10 +283,12 @@ margin: 2px;
 #id_body{
     height: 50px;
     width: -moz-available;
+    width: -webkit-fill-available;
 }
 
 #id_image {
     width: -moz-available;
+    width: -webkit-fill-available;
     font-size: 70%;
 }
 
@@ -378,10 +384,14 @@ footer{
         width: 75%;
         height: min-content;
         margin: 0 auto;
-      }
+    }
 
     .header-user{
         margin: 0 10px;
+    }
+
+    .members{
+        width: auto;
     }
 
     .btn {
